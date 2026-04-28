@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Melody's Magical World 🎀</title>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&family=Caveat:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --pink: #ff7eb3;
@@ -12,429 +12,282 @@
     --pink-deep: #e8527a;
     --cream: #fff8f5;
     --red: #e8334a;
-    --red-light: #ffb3be;
-    --mint: #b8f0e8;
     --yellow: #ffe88a;
-    --purple: #d4b8f0;
     --white: #ffffff;
     --text: #5a3a4a;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Nunito', sans-serif;
-    background: var(--cream);
-    color: var(--text);
-    overflow-x: hidden;
-  }
+  body { font-family: 'Nunito', sans-serif; background: var(--cream); color: var(--text); overflow-x: hidden; }
   .floaties { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
-  .floaty { position: absolute; font-size: 1.5rem; animation: float-up linear infinite; opacity: 0.15; }
-  @keyframes float-up {
-    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
-    10% { opacity: 0.15; }
-    90% { opacity: 0.15; }
-    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
-  }
-  nav {
-    position: sticky; top: 0; z-index: 100;
-    background: linear-gradient(135deg, #ff7eb3, #e8527a);
-    padding: 0.8rem 2rem;
-    display: flex; align-items: center; justify-content: space-between;
-    box-shadow: 0 4px 20px rgba(255,126,179,0.4);
-  }
-  .nav-logo { font-family: 'Pacifico', cursive; color: white; font-size: 1.5rem; text-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
-  .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
-  .nav-links a {
-    background: rgba(255,255,255,0.25); color: white; text-decoration: none;
-    padding: 0.4rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.85rem;
-    transition: all 0.2s; border: 2px solid rgba(255,255,255,0.3);
-  }
-  .nav-links a:hover { background: white; color: var(--pink-deep); }
-  .wallet { background: var(--yellow) !important; color: var(--text) !important; border-color: #f0c020 !important; }
-  .hero {
-    position: relative; z-index: 1;
-    background: linear-gradient(160deg, #ffe0f0 0%, #fff0f8 40%, #ffd6e8 100%);
-    padding: 4rem 2rem 3rem;
-    text-align: center; overflow: hidden;
-  }
-  .hero-melody { font-size: 8rem; line-height: 1; margin-bottom: 1rem; filter: drop-shadow(0 8px 20px rgba(255,126,179,0.5)); animation: bounce 2s ease-in-out infinite; }
-  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-  .hero h1 { font-family: 'Pacifico', cursive; font-size: clamp(2rem, 6vw, 4rem); color: var(--pink-deep); text-shadow: 3px 3px 0 rgba(255,126,179,0.3); margin-bottom: 0.5rem; }
-  .hero p { font-size: 1.1rem; color: #a05070; font-weight: 600; }
-  .ribbon { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--red); color: white; padding: 0.5rem 1.5rem; border-radius: 30px; margin-top: 1rem; font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(232,51,74,0.3); }
-  section { position: relative; z-index: 1; padding: 3rem 1.5rem; }
-  .section-title {
-    font-family: 'Pacifico', cursive;
-    font-size: clamp(1.6rem, 4vw, 2.5rem);
-    color: var(--pink-deep);
-    text-align: center; margin-bottom: 2rem;
-    text-shadow: 2px 2px 0 rgba(255,126,179,0.2);
-  }
-  .section-title span { font-size: 1.5em; }
-  .characters-section { background: linear-gradient(135deg, #fff0f8, #fce8ff); }
-  .characters-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; max-width: 900px; margin: 0 auto; }
-  .char-card {
-    background: white; border-radius: 24px; padding: 1.5rem 1.2rem;
-    text-align: center; width: 150px;
-    box-shadow: 0 8px 25px rgba(255,126,179,0.2);
-    transition: all 0.3s; cursor: pointer;
-    border: 3px solid transparent;
-  }
-  .char-card:hover { transform: translateY(-8px) rotate(-2deg); border-color: var(--pink); box-shadow: 0 15px 35px rgba(255,126,179,0.35); }
-  .char-card.featured { border-color: var(--red); background: linear-gradient(135deg, #fff5f8, #ffe8f0); transform: scale(1.08); }
-  .char-emoji { font-size: 3.5rem; display: block; margin-bottom: 0.5rem; }
-  .char-name { font-weight: 800; font-size: 0.9rem; color: var(--text); }
-  .char-tag { font-size: 0.75rem; color: var(--pink); font-weight: 600; }
-  .icecream-section { background: linear-gradient(135deg, #e8f8ff, #fff0fa); }
-  .shop-container { max-width: 900px; margin: 0 auto; }
-  .ice-creams { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
-  .ic-card {
-    background: white; border-radius: 20px; padding: 1.5rem 1rem;
-    text-align: center; cursor: pointer;
-    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-    transition: all 0.3s; border: 3px solid #f0e0ea;
-    position: relative; overflow: hidden;
-  }
-  .ic-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; }
-  .ic-card[data-flavor="strawberry"]::before { background: linear-gradient(90deg, #ff7eb3, #e8527a); }
-  .ic-card[data-flavor="vanilla"]::before { background: linear-gradient(90deg, #ffe8b8, #f0c050); }
-  .ic-card[data-flavor="blueberry"]::before { background: linear-gradient(90deg, #b8b8f8, #8080e8); }
-  .ic-card[data-flavor="matcha"]::before { background: linear-gradient(90deg, #b8f0b8, #50c050); }
-  .ic-card[data-flavor="cherry"]::before { background: linear-gradient(90deg, #e83050, #c01030); }
-  .ic-card[data-flavor="bubblegum"]::before { background: linear-gradient(90deg, #f8b0d8, #e870b8); }
-  .ic-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(255,126,179,0.25); border-color: var(--pink); }
-  .ic-emoji { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
-  .ic-name { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.3rem; }
-  .ic-price { color: var(--pink-deep); font-weight: 700; font-size: 1.1rem; }
-  .ic-desc { font-size: 0.75rem; color: #a08090; margin-top: 0.3rem; }
-  .buy-btn {
-    background: linear-gradient(135deg, #ff7eb3, #e8527a);
-    color: white; border: none; padding: 0.6rem 1.5rem;
-    border-radius: 20px; font-weight: 700; cursor: pointer;
-    margin-top: 0.8rem; font-size: 0.85rem; width: 100%;
-    transition: all 0.2s; font-family: 'Nunito', sans-serif;
-  }
-  .buy-btn:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(232,82,122,0.4); }
-  .cart-panel {
-    background: white; border-radius: 20px; padding: 1.5rem;
-    box-shadow: 0 6px 20px rgba(255,126,179,0.15);
-    border: 2px solid var(--pink-light);
-  }
-  .cart-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 1rem; color: var(--pink-deep); }
-  .cart-items { min-height: 60px; max-height: 180px; overflow-y: auto; margin-bottom: 1rem; }
-  .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dashed #f0d0e0; font-size: 0.9rem; }
-  .cart-item span:last-child { color: var(--pink-deep); font-weight: 700; }
-  .cart-total { display: flex; justify-content: space-between; font-weight: 800; font-size: 1.1rem; padding-top: 0.5rem; border-top: 2px solid var(--pink-light); }
-  .checkout-btn {
-    width: 100%; background: linear-gradient(135deg, #ff3070, #e8334a);
-    color: white; border: none; padding: 0.8rem; border-radius: 15px;
-    font-weight: 800; font-size: 1rem; cursor: pointer; margin-top: 1rem;
-    transition: all 0.2s; font-family: 'Nunito', sans-serif;
-    box-shadow: 0 4px 15px rgba(232,51,74,0.3);
-  }
-  .checkout-btn:hover { transform: scale(1.03); }
-  .empty-cart { text-align: center; color: #c0a0b0; font-size: 0.9rem; padding: 1rem 0; }
-  .outfit-section { background: linear-gradient(135deg, #fff8e8, #ffe8f8); }
-  .customizer-wrap { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; max-width: 900px; margin: 0 auto; }
-  .melody-display {
-    flex: 0 0 280px; border-radius: 30px; padding: 1.5rem;
-    text-align: center; box-shadow: 0 10px 30px rgba(255,126,179,0.2);
-    border: 3px solid var(--pink-light); position: relative;
-    min-height: 320px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-    transition: background 0.5s; background: linear-gradient(135deg,#fff5f8,#ffe8f0); overflow: hidden;
-  }
-  .melody-scene { position: relative; width: 180px; height: 220px; display: flex; align-items: center; justify-content: center; }
-  .melody-scene .layer { position: absolute; left: 50%; transform: translateX(-50%); font-size: 1px; line-height: 1; transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1); pointer-events: none; user-select: none; }
-  .melody-scene .layer-body { font-size: 9rem; top: 20px; }
-  .melody-scene .layer-dress { font-size: 5rem; bottom: 10px; opacity: 0; }
-  .melody-scene .layer-dress.show { opacity: 1; }
-  .melody-scene .layer-hood { font-size: 3.5rem; top: 0px; opacity: 0; }
-  .melody-scene .layer-hood.show { opacity: 1; }
-  .melody-scene .layer-acc { font-size: 3rem; bottom: 15px; right: -10px; left: auto; transform: none; opacity: 0; }
-  .melody-scene .layer-acc.show { opacity: 1; }
-  .melody-scene .layer-bg-emojis { font-size: 1.4rem; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; gap: 0.5rem; flex-wrap: wrap; opacity: 0; z-index: -1; }
-  .melody-scene .layer-bg-emojis.show { opacity: 0.35; }
-  .outfit-label { font-weight: 800; color: var(--pink-deep); margin-top: 0.8rem; font-size: 0.95rem; min-height: 1.4em; transition: all 0.3s; }
-  .outfit-hint { font-size: 0.78rem; color: #c0a0b0; margin-top: 0.3rem; }
-  .options-panel { flex: 1; min-width: 280px; }
-  .option-group { margin-bottom: 1.5rem; }
-  .option-group-title { font-weight: 800; color: var(--text); margin-bottom: 0.8rem; font-size: 0.95rem; }
-  .options-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
-  .opt-btn {
-    background: white; border: 2.5px solid #f0d8e8;
-    border-radius: 12px; padding: 0.5rem 0.9rem;
-    cursor: pointer; font-size: 0.85rem; font-weight: 700;
-    transition: all 0.2s; font-family: 'Nunito', sans-serif;
-  }
-  .opt-btn:hover { border-color: var(--pink); background: var(--pink-light); transform: scale(1.05); }
-  .opt-btn.active { background: var(--pink); border-color: var(--pink-deep); color: white; }
-  .save-outfit {
-    background: linear-gradient(135deg, #ff7eb3, #e8527a);
-    color: white; border: none; padding: 0.8rem 2rem;
-    border-radius: 20px; font-weight: 800; cursor: pointer;
-    margin-top: 1rem; font-size: 0.95rem;
-    transition: all 0.2s; font-family: 'Nunito', sans-serif;
-    box-shadow: 0 4px 15px rgba(255,126,179,0.35);
-  }
-  .save-outfit:hover { transform: scale(1.05); }
-  .gacha-section { background: linear-gradient(135deg, #f0e8ff, #ffe8f0); }
-  .gacha-wrap { max-width: 900px; margin: 0 auto; }
-  .gacha-machine {
-    background: white; border-radius: 30px; padding: 2rem;
-    text-align: center; margin-bottom: 2rem;
-    box-shadow: 0 10px 40px rgba(180,100,255,0.2);
-    border: 3px solid #e8d8ff; position: relative; overflow: hidden;
-  }
-  .gacha-machine::before {
-    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 8px;
-    background: linear-gradient(90deg, #ff7eb3, #a070ff, #70d0ff, #70ff70, #ffd070, #ff7070);
-  }
-  .gacha-orb {
-    width: 160px; height: 160px; border-radius: 50%;
-    background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.8), rgba(200,150,255,0.6) 40%, #9040e8);
-    margin: 1.5rem auto; cursor: pointer;
-    box-shadow: 0 10px 40px rgba(144,64,232,0.5), inset 0 -6px 20px rgba(0,0,0,0.1);
-    transition: all 0.3s; display: flex; align-items: center; justify-content: center;
-    font-size: 4rem; position: relative; overflow: hidden;
-    animation: glow-orb 2s ease-in-out infinite;
-  }
-  @keyframes glow-orb {
-    0%,100% { box-shadow: 0 10px 40px rgba(144,64,232,0.5), inset 0 -6px 20px rgba(0,0,0,0.1); }
-    50% { box-shadow: 0 10px 60px rgba(144,64,232,0.8), 0 0 30px rgba(255,126,179,0.4), inset 0 -6px 20px rgba(0,0,0,0.1); }
-  }
-  .gacha-orb:hover { transform: scale(1.08) rotate(5deg); }
-  .gacha-orb.spinning { animation: spin-fast 0.4s linear infinite; }
-  @keyframes spin-fast { 0% { transform: scale(1) rotate(0deg); } 100% { transform: scale(1.1) rotate(360deg); } }
-  .gacha-costs { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
-  .gacha-pull-btn {
-    padding: 0.7rem 1.5rem; border-radius: 20px; border: none;
-    font-weight: 800; cursor: pointer; font-size: 0.9rem;
-    transition: all 0.2s; font-family: 'Nunito', sans-serif;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-  }
-  .gacha-pull-btn:hover { transform: scale(1.05); }
-  .gacha-pull-btn.single { background: linear-gradient(135deg, #ff7eb3, #e8527a); color: white; }
-  .gacha-pull-btn.multi { background: linear-gradient(135deg, #a070ff, #7040d8); color: white; }
-  .rarity-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin: 1rem 0; }
-  .rarity-badge { padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 800; font-size: 0.8rem; }
-  .rarity-common { background: #e8e8e8; color: #606060; }
-  .rarity-rare { background: #b8d8ff; color: #2060c0; }
-  .rarity-epic { background: #e8c8ff; color: #7030c0; }
-  .rarity-legendary { background: linear-gradient(135deg, #ffe888, #ffb820); color: #804000; }
-  .rarity-secret { background: linear-gradient(135deg, #ff88d8, #d020a0); color: white; }
-  .result-overlay {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.7); z-index: 2000;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 1rem;
-  }
-  .result-overlay.show { opacity: 1; pointer-events: all; }
-  .result-modal {
-    background: white; border-radius: 30px; padding: 2rem;
-    text-align: center; max-width: 420px; width: 100%;
-    transform: scale(0.7); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
-    max-height: 88vh; overflow-y: auto; overflow-x: hidden;
-  }
-  .result-overlay.show .result-modal { transform: scale(1); }
-  .result-item-emoji { font-size: 5rem; display: block; animation: pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both; }
-  @keyframes pop-in { 0% { transform: scale(0) rotate(-20deg); } 100% { transform: scale(1) rotate(0deg); } }
-  .result-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem; }
-  .result-desc { color: #a08090; font-size: 0.9rem; margin-bottom: 1.5rem; }
-  .result-close {
-    background: linear-gradient(135deg, #ff7eb3, #e8527a);
-    color: white; border: none; padding: 0.8rem 2.5rem;
-    border-radius: 25px; font-weight: 800; cursor: pointer;
-    font-family: 'Nunito', sans-serif; font-size: 1rem;
-    margin-top: 1rem; display: inline-block;
-    box-shadow: 0 4px 15px rgba(232,82,122,0.4); transition: all 0.2s;
-  }
-  .result-close:hover { transform: scale(1.05); }
-  .multi-results { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 1rem 0; max-height: 300px; overflow-y: auto; }
-  .mini-result { background: #f8f0fc; border-radius: 12px; padding: 0.7rem; text-align: center; width: 80px; }
-  .mini-result .emoji { font-size: 2rem; }
-  .mini-result .mini-name { font-size: 0.65rem; font-weight: 700; margin-top: 0.2rem; }
-  .mini-result .mini-rarity { font-size: 0.65rem; font-weight: 800; }
-  .collection-section { background: linear-gradient(135deg, #f0fff8, #f8f0ff); }
-  .collection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1rem; max-width: 900px; margin: 0 auto; }
-  .col-item {
-    background: white; border-radius: 16px; padding: 1rem 0.5rem;
-    text-align: center; border: 2px solid #f0e0ec; transition: all 0.2s;
-  }
-  .col-item.locked { opacity: 0.35; filter: grayscale(0.8); }
-  .col-item:not(.locked):hover { transform: scale(1.08); border-color: var(--pink); }
-  .col-item .emoji { font-size: 2rem; display: block; }
-  .col-item .name { font-size: 0.7rem; font-weight: 700; margin-top: 0.3rem; }
-  .col-item .count { font-size: 0.65rem; color: var(--pink); font-weight: 800; }
-  .market-section { background: linear-gradient(135deg, #fff0e8, #ffeef8); }
-  .market-tabs { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; margin-bottom: 2rem; }
-  .mtab {
-    padding: 0.55rem 1.4rem; border-radius: 25px; border: 2.5px solid #f0d0e0;
-    background: white; font-weight: 800; font-size: 0.9rem; cursor: pointer;
-    transition: all 0.2s; font-family: 'Nunito', sans-serif; color: var(--text);
-  }
-  .mtab.active { background: linear-gradient(135deg,#ff7eb3,#e8527a); color: white; border-color: transparent; }
-  .mtab:hover:not(.active) { border-color: var(--pink); background: var(--pink-light); }
-  .market-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px,1fr)); gap: 1.2rem; max-width: 960px; margin: 0 auto; }
-  .market-card {
-    background: white; border-radius: 22px; padding: 1.4rem 1rem;
-    text-align: center; border: 3px solid #f5e0ee;
-    box-shadow: 0 6px 18px rgba(255,126,179,0.12);
-    transition: all 0.25s; display: flex; flex-direction: column; align-items: center;
-  }
-  .market-card:hover { transform: translateY(-6px); border-color: var(--pink); box-shadow: 0 12px 30px rgba(255,126,179,0.22); }
-  .market-card .mc-emoji { font-size: 3.2rem; margin-bottom: 0.5rem; display: block; }
-  .market-card .mc-name { font-weight: 800; font-size: 0.92rem; margin-bottom: 0.2rem; }
-  .market-card .mc-char { font-size: 0.72rem; color: var(--pink); font-weight: 700; margin-bottom: 0.3rem; }
-  .market-card .mc-desc { font-size: 0.72rem; color: #a08090; margin-bottom: 0.8rem; flex: 1; }
-  .market-card .mc-price { font-weight: 900; color: var(--pink-deep); font-size: 1rem; margin-bottom: 0.6rem; }
-  .market-card .mc-owned { font-size: 0.72rem; color: #50b870; font-weight: 800; margin-bottom: 0.4rem; min-height: 1em; }
-  .market-buy {
-    background: linear-gradient(135deg,#ff7eb3,#e8527a); color: white;
-    border: none; border-radius: 18px; padding: 0.5rem 1.2rem;
-    font-weight: 800; font-size: 0.82rem; cursor: pointer; width: 100%;
-    transition: all 0.2s; font-family: 'Nunito',sans-serif;
-  }
-  .market-buy:hover { transform: scale(1.04); }
-  .market-buy:disabled { background: #d0c0c8; cursor: not-allowed; transform: none; }
-  .inventory-btn {
-    background: linear-gradient(135deg,#a070ff,#7040d8); color: white;
-    border: none; border-radius: 20px; padding: 0.6rem 1.5rem;
-    font-weight: 800; cursor: pointer; font-family: 'Nunito',sans-serif;
-    font-size: 0.9rem; margin-top: 1.5rem; display: block; margin-left: auto; margin-right: auto;
-    transition: all 0.2s;
-  }
-  .inventory-btn:hover { transform: scale(1.04); }
-  .inv-overlay {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.55); z-index: 900;
-    display: flex; align-items: flex-end; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s;
-  }
-  .inv-overlay.show { opacity: 1; pointer-events: all; }
-  .inv-panel {
-    background: white; border-radius: 30px 30px 0 0; padding: 2rem;
-    width: 100%; max-width: 700px; max-height: 70vh; overflow-y: auto;
-    transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-  }
-  .inv-overlay.show .inv-panel { transform: translateY(0); }
-  .inv-title { font-family: 'Pacifico', cursive; color: var(--pink-deep); font-size: 1.4rem; margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: center; }
-  .inv-close { background: #f0d0e0; border: none; border-radius: 50%; width: 34px; height: 34px; cursor: pointer; font-size: 1.1rem; font-weight: 800; }
-  .inv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px,1fr)); gap: 0.8rem; }
-  .inv-item { background: #fff5f8; border-radius: 14px; padding: 0.8rem 0.5rem; text-align: center; border: 2px solid #f0dae8; }
-  .inv-item .emoji { font-size: 2rem; display: block; }
-  .inv-item .iname { font-size: 0.68rem; font-weight: 700; margin-top: 0.3rem; }
-  .inv-item .iqty { font-size: 0.65rem; color: var(--pink); font-weight: 800; }
-  .arcade-section { background: linear-gradient(135deg, #1a0a2e, #2e0a1a); }
-  .arcade-section .section-title { color: #ff88cc; text-shadow: 0 0 20px rgba(255,136,204,0.6); }
-  .arcade-subtitle { text-align: center; color: #d090c0; font-weight: 600; margin-bottom: 2rem; font-size: 0.95rem; }
-  .arcade-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px,1fr)); gap: 1.5rem; max-width: 960px; margin: 0 auto; }
-  .arcade-card {
-    background: linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03));
-    border-radius: 24px; padding: 1.8rem 1.4rem; text-align: center;
-    border: 2px solid rgba(255,136,204,0.3);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
-    transition: all 0.3s; position: relative; overflow: hidden;
-  }
-  .arcade-card::before {
-    content: ''; position: absolute; top: -2px; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, #ff7eb3, #a070ff, #70d0ff);
-  }
-  .arcade-card:hover { transform: translateY(-6px); border-color: rgba(255,136,204,0.7); }
-  .arcade-icon { font-size: 3.5rem; display: block; margin-bottom: 0.7rem; }
-  .arcade-title { font-weight: 900; font-size: 1.05rem; color: #ffd0e8; margin-bottom: 0.4rem; }
-  .arcade-desc { font-size: 0.78rem; color: #b090a0; margin-bottom: 0.8rem; line-height: 1.4; }
-  .arcade-reward { background: rgba(255,220,100,0.15); color: #ffe080; border: 1px solid rgba(255,220,100,0.3); padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 800; font-size: 0.78rem; display: inline-block; margin-bottom: 1rem; }
-  .arcade-btn {
-    background: linear-gradient(135deg,#ff7eb3,#e8527a); color: white;
-    border: none; padding: 0.65rem 1.6rem; border-radius: 20px;
-    font-weight: 800; cursor: pointer; font-size: 0.9rem;
-    transition: all 0.2s; font-family: 'Nunito',sans-serif;
-    box-shadow: 0 4px 15px rgba(232,82,122,0.4);
-  }
-  .arcade-btn:hover { transform: scale(1.06); }
-  .arcade-btn:disabled { background: #6a4060; cursor: not-allowed; transform: none; }
-  .arcade-hiscore { font-size: 0.72rem; color: #a070a0; margin-top: 0.6rem; font-weight: 700; }
-  .game-big-overlay {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.85); z-index: 800;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s; padding: 1rem;
-  }
-  .game-big-overlay.show { opacity: 1; pointer-events: all; }
-  .game-panel {
-    background: white; border-radius: 28px; padding: 1.3rem;
-    max-width: 440px; width: 100%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-    position: relative; text-align: center;
-  }
-  .game-panel canvas { border-radius: 16px; display: block; margin: 0 auto; max-width: 100%; cursor: pointer; }
-  .game-hud { display: flex; justify-content: space-around; font-weight: 800; margin-bottom: 0.5rem; font-size: 0.9rem; }
-  .game-close {
-    position: absolute; top: 0.8rem; right: 0.8rem;
-    background: #f0d0e0; border: none; border-radius: 50%;
-    width: 34px; height: 34px; cursor: pointer; font-size: 1rem;
-    font-weight: 800; z-index: 10; display: flex; align-items: center; justify-content: center;
-  }
-  .game-close:hover { background: #e8527a; color: white; }
-  .catch-game-overlay {
-    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.7); z-index: 800;
-    display: flex; align-items: center; justify-content: center;
-    opacity: 0; pointer-events: none; transition: opacity 0.3s;
-  }
-  .catch-game-overlay.show { opacity: 1; pointer-events: all; }
-  .catch-game-panel {
-    background: white; border-radius: 30px; padding: 1.5rem;
-    max-width: 420px; width: 95%;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.3); position: relative;
-  }
-  #catch-canvas { width: 100%; border-radius: 16px; display: block; cursor: none; }
-  .catch-ui { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-weight: 800; }
-  .catch-close {
-    position: absolute; top: 0.8rem; right: 0.8rem;
-    background: #f0d0e0; border: none; border-radius: 50%;
-    width: 34px; height: 34px; cursor: pointer; font-size: 1rem;
-    font-weight: 800; z-index: 10; display: flex; align-items: center; justify-content: center;
-  }
-  .lucky-card-area { display: flex; gap: 1rem; justify-content: center; margin: 1rem 0; }
-  .lucky-card {
-    width: 80px; height: 110px; border-radius: 14px;
-    background: linear-gradient(135deg,#ff7eb3,#e8527a);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2.5rem; cursor: pointer; border: 3px solid white;
-    box-shadow: 0 4px 16px rgba(232,82,122,0.3);
-    transition: all 0.4s cubic-bezier(0.34,1.56,0.64,1);
-    user-select: none;
-  }
-  .lucky-card.flipped { background: white; border-color: #f0d0e0; }
-  .lucky-card.matched { background: linear-gradient(135deg,#d0ffd8,#a0f0a0); border-color: #50c050; }
-  .lucky-card.miss { background: linear-gradient(135deg,#ffd0d0,#f09090); border-color: #e05050; }
-  .toast {
-    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
-    background: linear-gradient(135deg, #ff7eb3, #e8527a);
-    color: white; padding: 0.8rem 2rem; border-radius: 30px;
-    font-weight: 800; font-size: 0.95rem; z-index: 9999;
-    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
-    box-shadow: 0 8px 25px rgba(255,126,179,0.4); white-space: nowrap;
-  }
-  .toast.show { transform: translateX(-50%) translateY(0); }
-  .confetti-piece {
-    position: fixed; z-index: 9998; border-radius: 3px;
-    animation: confetti-fall 2s ease-out forwards; pointer-events: none;
-  }
-  @keyframes confetti-fall {
-    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
-    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
-  }
-  .coins-display { display: inline-flex; align-items: center; gap: 0.3rem; background: var(--yellow); color: #806000; padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 800; font-size: 0.9rem; }
-  footer { background: linear-gradient(135deg, #e8527a, #ff7eb3); color: white; text-align: center; padding: 2rem; font-weight: 700; font-size: 0.9rem; position: relative; z-index: 1; }
-  @media (max-width: 600px) {
-    nav { padding: 0.6rem 1rem; }
-    .nav-links a { padding: 0.3rem 0.7rem; font-size: 0.75rem; }
-    .hero-melody { font-size: 5rem; }
-    .customizer-wrap { flex-direction: column; align-items: center; }
-    .arcade-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-  }
+  .floaty { position: absolute; animation: float-up linear infinite; opacity: 0.13; }
+  @keyframes float-up { 0%{transform:translateY(100vh) rotate(0deg);opacity:0} 10%{opacity:0.13} 90%{opacity:0.13} 100%{transform:translateY(-10vh) rotate(360deg);opacity:0} }
+
+  /* NAV */
+  nav { position:sticky;top:0;z-index:200;background:linear-gradient(135deg,#ff7eb3,#e8527a);padding:0.8rem 2rem;display:flex;align-items:center;justify-content:space-between;box-shadow:0 4px 20px rgba(255,126,179,0.4); }
+  .nav-logo { font-family:'Pacifico',cursive;color:white;font-size:1.5rem;text-shadow:2px 2px 0 rgba(0,0,0,0.1); }
+  .nav-links { display:flex;gap:0.5rem;flex-wrap:wrap; }
+  .nav-links a,.nav-bag-btn { background:rgba(255,255,255,0.25);color:white;text-decoration:none;padding:0.4rem 1rem;border-radius:20px;font-weight:700;font-size:0.85rem;transition:all 0.2s;border:2px solid rgba(255,255,255,0.3);cursor:pointer; }
+  .nav-links a:hover,.nav-bag-btn:hover { background:white;color:var(--pink-deep); }
+  .nav-bag-btn { background:rgba(255,255,255,0.35);position:relative; }
+  .bag-badge { position:absolute;top:-6px;right:-6px;background:#e8334a;color:white;border-radius:50%;width:18px;height:18px;font-size:0.65rem;font-weight:900;display:flex;align-items:center;justify-content:center;display:none; }
+  .wallet-btn { background:var(--yellow) !important;color:var(--text) !important;border-color:#f0c020 !important; }
+
+  /* SECTIONS */
+  section { position:relative;z-index:1;padding:3rem 1.5rem; }
+  .section-title { font-family:'Pacifico',cursive;font-size:clamp(1.6rem,4vw,2.5rem);color:var(--pink-deep);text-align:center;margin-bottom:2rem;text-shadow:2px 2px 0 rgba(255,126,179,0.2); }
+
+  /* HERO */
+  .hero { position:relative;z-index:1;background:linear-gradient(160deg,#ffe0f0 0%,#fff0f8 40%,#ffd6e8 100%);padding:4rem 2rem 3rem;text-align:center;overflow:hidden; }
+  .hero-melody { font-size:8rem;line-height:1;margin-bottom:1rem;filter:drop-shadow(0 8px 20px rgba(255,126,179,0.5));animation:bounce 2s ease-in-out infinite; }
+  @keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-15px)} }
+  .hero h1 { font-family:'Pacifico',cursive;font-size:clamp(2rem,6vw,4rem);color:var(--pink-deep);margin-bottom:0.5rem; }
+  .hero p { font-size:1.1rem;color:#a05070;font-weight:600; }
+  .ribbon { display:inline-flex;align-items:center;gap:0.5rem;background:var(--red);color:white;padding:0.5rem 1.5rem;border-radius:30px;margin-top:1rem;font-weight:800;font-size:0.95rem; }
+
+  /* CHARACTERS */
+  .characters-section { background:linear-gradient(135deg,#fff0f8,#fce8ff); }
+  .characters-grid { display:flex;flex-wrap:wrap;justify-content:center;gap:1.5rem;max-width:900px;margin:0 auto; }
+  .char-card { background:white;border-radius:24px;padding:1.5rem 1.2rem;text-align:center;width:150px;box-shadow:0 8px 25px rgba(255,126,179,0.2);transition:all 0.3s;cursor:pointer;border:3px solid transparent; }
+  .char-card:hover { transform:translateY(-8px) rotate(-2deg);border-color:var(--pink); }
+  .char-card.featured { border-color:var(--red);background:linear-gradient(135deg,#fff5f8,#ffe8f0);transform:scale(1.08); }
+  .char-emoji { font-size:3.5rem;display:block;margin-bottom:0.5rem; }
+  .char-name { font-weight:800;font-size:0.9rem; }
+  .char-tag { font-size:0.75rem;color:var(--pink);font-weight:600; }
+
+  /* ICE CREAM */
+  .icecream-section { background:linear-gradient(135deg,#e8f8ff,#fff0fa); }
+  .shop-container { max-width:900px;margin:0 auto; }
+  .ice-creams { display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1.2rem;margin-bottom:2rem; }
+  .ic-card { background:white;border-radius:20px;padding:1.5rem 1rem;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,0.08);transition:all 0.3s;border:3px solid #f0e0ea;position:relative;overflow:hidden; }
+  .ic-card::before { content:'';position:absolute;bottom:0;left:0;right:0;height:6px; }
+  .ic-card[data-flavor="strawberry"]::before{background:linear-gradient(90deg,#ff7eb3,#e8527a)}
+  .ic-card[data-flavor="vanilla"]::before{background:linear-gradient(90deg,#ffe8b8,#f0c050)}
+  .ic-card[data-flavor="blueberry"]::before{background:linear-gradient(90deg,#b8b8f8,#8080e8)}
+  .ic-card[data-flavor="matcha"]::before{background:linear-gradient(90deg,#b8f0b8,#50c050)}
+  .ic-card[data-flavor="cherry"]::before{background:linear-gradient(90deg,#e83050,#c01030)}
+  .ic-card[data-flavor="bubblegum"]::before{background:linear-gradient(90deg,#f8b0d8,#e870b8)}
+  .ic-card:hover { transform:translateY(-6px);border-color:var(--pink); }
+  .ic-emoji { font-size:3rem;display:block;margin-bottom:0.5rem; }
+  .ic-name { font-weight:800;font-size:0.95rem;margin-bottom:0.3rem; }
+  .ic-price { color:var(--pink-deep);font-weight:700;font-size:1.1rem; }
+  .ic-desc { font-size:0.75rem;color:#a08090;margin-top:0.3rem; }
+  .buy-btn { background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white;border:none;padding:0.6rem 1.5rem;border-radius:20px;font-weight:700;cursor:pointer;margin-top:0.8rem;font-size:0.85rem;width:100%;transition:all 0.2s;font-family:'Nunito',sans-serif; }
+  .buy-btn:hover { transform:scale(1.05); }
+  .cart-panel { background:white;border-radius:20px;padding:1.5rem;box-shadow:0 6px 20px rgba(255,126,179,0.15);border:2px solid var(--pink-light); }
+  .cart-title { font-weight:800;font-size:1.1rem;margin-bottom:1rem;color:var(--pink-deep); }
+  .cart-items { min-height:60px;max-height:180px;overflow-y:auto;margin-bottom:1rem; }
+  .cart-item { display:flex;justify-content:space-between;align-items:center;padding:0.4rem 0;border-bottom:1px dashed #f0d0e0;font-size:0.9rem; }
+  .cart-total { display:flex;justify-content:space-between;font-weight:800;font-size:1.1rem;padding-top:0.5rem;border-top:2px solid var(--pink-light); }
+  .checkout-btn { width:100%;background:linear-gradient(135deg,#ff3070,#e8334a);color:white;border:none;padding:0.8rem;border-radius:15px;font-weight:800;font-size:1rem;cursor:pointer;margin-top:1rem;transition:all 0.2s;font-family:'Nunito',sans-serif; }
+  .empty-cart { text-align:center;color:#c0a0b0;font-size:0.9rem;padding:1rem 0; }
+
+  /* MARKET */
+  .market-section { background:linear-gradient(135deg,#fff0e8,#ffeef8); }
+  .market-tabs { display:flex;gap:0.6rem;justify-content:center;flex-wrap:wrap;margin-bottom:2rem; }
+  .mtab { padding:0.55rem 1.4rem;border-radius:25px;border:2.5px solid #f0d0e0;background:white;font-weight:800;font-size:0.9rem;cursor:pointer;transition:all 0.2s;font-family:'Nunito',sans-serif;color:var(--text); }
+  .mtab.active { background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white;border-color:transparent; }
+  .mtab:hover:not(.active) { border-color:var(--pink);background:var(--pink-light); }
+  .market-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1.2rem;max-width:960px;margin:0 auto; }
+  .market-card { background:white;border-radius:22px;padding:1.4rem 1rem;text-align:center;border:3px solid #f5e0ee;box-shadow:0 6px 18px rgba(255,126,179,0.12);transition:all 0.25s;display:flex;flex-direction:column;align-items:center; }
+  .market-card:hover { transform:translateY(-6px);border-color:var(--pink); }
+  .mc-emoji { font-size:3.2rem;margin-bottom:0.5rem;display:block; }
+  .mc-name { font-weight:800;font-size:0.92rem;margin-bottom:0.2rem; }
+  .mc-char { font-size:0.72rem;color:var(--pink);font-weight:700;margin-bottom:0.3rem; }
+  .mc-desc { font-size:0.72rem;color:#a08090;margin-bottom:0.8rem;flex:1; }
+  .mc-price { font-weight:900;color:var(--pink-deep);font-size:1rem;margin-bottom:0.6rem; }
+  .mc-owned { font-size:0.72rem;color:#50b870;font-weight:800;margin-bottom:0.4rem;min-height:1em; }
+  .market-buy { background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white;border:none;border-radius:18px;padding:0.5rem 1.2rem;font-weight:800;font-size:0.82rem;cursor:pointer;width:100%;transition:all 0.2s;font-family:'Nunito',sans-serif; }
+  .market-buy:hover { transform:scale(1.04); }
+  .market-buy:disabled { background:#d0c0c8;cursor:not-allowed;transform:none; }
+
+  /* OUTFIT */
+  .outfit-section { background:linear-gradient(135deg,#fff8e8,#ffe8f8); }
+  .customizer-wrap { display:flex;flex-wrap:wrap;gap:2rem;justify-content:center;max-width:900px;margin:0 auto; }
+  .melody-display { flex:0 0 280px;border-radius:30px;padding:1.5rem;text-align:center;box-shadow:0 10px 30px rgba(255,126,179,0.2);border:3px solid var(--pink-light);position:relative;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background 0.5s;background:linear-gradient(135deg,#fff5f8,#ffe8f0);overflow:hidden; }
+  .melody-scene { position:relative;width:180px;height:220px;display:flex;align-items:center;justify-content:center; }
+  .melody-scene .layer { position:absolute;left:50%;transform:translateX(-50%);font-size:1px;line-height:1;transition:all 0.35s cubic-bezier(0.34,1.56,0.64,1);pointer-events:none;user-select:none; }
+  .melody-scene .layer-body { font-size:9rem;top:20px; }
+  .melody-scene .layer-dress { font-size:5rem;bottom:10px;opacity:0; }
+  .melody-scene .layer-dress.show { opacity:1; }
+  .melody-scene .layer-hood { font-size:3.5rem;top:0;opacity:0; }
+  .melody-scene .layer-hood.show { opacity:1; }
+  .melody-scene .layer-acc { font-size:3rem;bottom:15px;right:-10px;left:auto;transform:none;opacity:0; }
+  .melody-scene .layer-acc.show { opacity:1; }
+  .melody-scene .layer-bg-emojis { font-size:1.4rem;position:absolute;top:0;left:0;right:0;bottom:0;display:flex;align-items:center;justify-content:center;gap:0.5rem;flex-wrap:wrap;opacity:0;z-index:-1; }
+  .melody-scene .layer-bg-emojis.show { opacity:0.35; }
+  .outfit-label { font-weight:800;color:var(--pink-deep);margin-top:0.8rem;font-size:0.95rem;min-height:1.4em; }
+  .outfit-hint { font-size:0.78rem;color:#c0a0b0;margin-top:0.3rem; }
+  .options-panel { flex:1;min-width:280px; }
+  .option-group { margin-bottom:1.5rem; }
+  .option-group-title { font-weight:800;color:var(--text);margin-bottom:0.8rem;font-size:0.95rem; }
+  .options-row { display:flex;flex-wrap:wrap;gap:0.5rem; }
+  .opt-btn { background:white;border:2.5px solid #f0d8e8;border-radius:12px;padding:0.5rem 0.9rem;cursor:pointer;font-size:0.85rem;font-weight:700;transition:all 0.2s;font-family:'Nunito',sans-serif; }
+  .opt-btn:hover { border-color:var(--pink);background:var(--pink-light);transform:scale(1.05); }
+  .opt-btn.active { background:var(--pink);border-color:var(--pink-deep);color:white; }
+  .save-outfit { background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white;border:none;padding:0.8rem 2rem;border-radius:20px;font-weight:800;cursor:pointer;margin-top:1rem;font-size:0.95rem;transition:all 0.2s;font-family:'Nunito',sans-serif; }
+
+  /* GACHA */
+  .gacha-section { background:linear-gradient(135deg,#f0e8ff,#ffe8f0); }
+  .gacha-wrap { max-width:900px;margin:0 auto; }
+  .gacha-machine { background:white;border-radius:30px;padding:2rem;text-align:center;margin-bottom:2rem;box-shadow:0 10px 40px rgba(180,100,255,0.2);border:3px solid #e8d8ff;position:relative;overflow:hidden; }
+  .gacha-machine::before { content:'';position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(90deg,#ff7eb3,#a070ff,#70d0ff,#70ff70,#ffd070,#ff7070); }
+  .gacha-orb { width:160px;height:160px;border-radius:50%;background:radial-gradient(circle at 35% 30%,rgba(255,255,255,0.8),rgba(200,150,255,0.6) 40%,#9040e8);margin:1.5rem auto;cursor:pointer;box-shadow:0 10px 40px rgba(144,64,232,0.5);transition:all 0.3s;display:flex;align-items:center;justify-content:center;font-size:4rem;animation:glow-orb 2s ease-in-out infinite; }
+  @keyframes glow-orb { 0%,100%{box-shadow:0 10px 40px rgba(144,64,232,0.5)} 50%{box-shadow:0 10px 60px rgba(144,64,232,0.8),0 0 30px rgba(255,126,179,0.4)} }
+  .gacha-orb:hover { transform:scale(1.08) rotate(5deg); }
+  .gacha-orb.spinning { animation:spin-fast 0.4s linear infinite; }
+  @keyframes spin-fast { 0%{transform:scale(1) rotate(0deg)} 100%{transform:scale(1.1) rotate(360deg)} }
+  .gacha-costs { display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1rem; }
+  .gacha-pull-btn { padding:0.7rem 1.5rem;border-radius:20px;border:none;font-weight:800;cursor:pointer;font-size:0.9rem;transition:all 0.2s;font-family:'Nunito',sans-serif; }
+  .gacha-pull-btn:hover { transform:scale(1.05); }
+  .gacha-pull-btn.single { background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white; }
+  .gacha-pull-btn.multi { background:linear-gradient(135deg,#a070ff,#7040d8);color:white; }
+  .rarity-legend { display:flex;flex-wrap:wrap;justify-content:center;gap:0.6rem;margin:1rem 0; }
+  .rarity-badge { padding:0.3rem 0.8rem;border-radius:20px;font-weight:800;font-size:0.8rem; }
+  .rarity-common { background:#e8e8e8;color:#606060; }
+  .rarity-rare { background:#b8d8ff;color:#2060c0; }
+  .rarity-epic { background:#e8c8ff;color:#7030c0; }
+  .rarity-legendary { background:linear-gradient(135deg,#ffe888,#ffb820);color:#804000; }
+  .rarity-secret { background:linear-gradient(135deg,#ff88d8,#d020a0);color:white; }
+
+  /* COLLECTION */
+  .collection-section { background:linear-gradient(135deg,#f0fff8,#f8f0ff); }
+  .collection-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:1rem;max-width:900px;margin:0 auto; }
+  .col-item { background:white;border-radius:16px;padding:1rem 0.5rem;text-align:center;border:2px solid #f0e0ec;transition:all 0.2s; }
+  .col-item.locked { opacity:0.35;filter:grayscale(0.8); }
+  .col-item:not(.locked):hover { transform:scale(1.08);border-color:var(--pink); }
+  .col-item .emoji { font-size:2rem;display:block; }
+  .col-item .name { font-size:0.7rem;font-weight:700;margin-top:0.3rem; }
+  .col-item .count { font-size:0.65rem;font-weight:800; }
+
+  /* ARCADE */
+  .arcade-section { background:linear-gradient(135deg,#1a0a2e,#2e0a1a); }
+  .arcade-section .section-title { color:#ff88cc;text-shadow:0 0 20px rgba(255,136,204,0.6); }
+  .arcade-subtitle { text-align:center;color:#d090c0;font-weight:600;margin-bottom:2rem;font-size:0.95rem; }
+  .arcade-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;max-width:960px;margin:0 auto; }
+  .arcade-card { background:linear-gradient(135deg,rgba(255,255,255,0.07),rgba(255,255,255,0.03));border-radius:24px;padding:1.8rem 1.4rem;text-align:center;border:2px solid rgba(255,136,204,0.3);box-shadow:0 8px 30px rgba(0,0,0,0.4);transition:all 0.3s;position:relative;overflow:hidden; }
+  .arcade-card::before { content:'';position:absolute;top:-2px;left:0;right:0;height:3px;background:linear-gradient(90deg,#ff7eb3,#a070ff,#70d0ff); }
+  .arcade-card:hover { transform:translateY(-6px);border-color:rgba(255,136,204,0.7); }
+  .arcade-icon { font-size:3.5rem;display:block;margin-bottom:0.7rem; }
+  .arcade-title { font-weight:900;font-size:1.05rem;color:#ffd0e8;margin-bottom:0.4rem; }
+  .arcade-desc { font-size:0.78rem;color:#b090a0;margin-bottom:0.8rem;line-height:1.4; }
+  .arcade-reward { background:rgba(255,220,100,0.15);color:#ffe080;border:1px solid rgba(255,220,100,0.3);padding:0.3rem 0.8rem;border-radius:20px;font-weight:800;font-size:0.78rem;display:inline-block;margin-bottom:1rem; }
+  .arcade-btn { background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white;border:none;padding:0.65rem 1.6rem;border-radius:20px;font-weight:800;cursor:pointer;font-size:0.9rem;transition:all 0.2s;font-family:'Nunito',sans-serif; }
+  .arcade-btn:hover { transform:scale(1.06); }
+  .arcade-btn:disabled { background:#6a4060;cursor:not-allowed;transform:none; }
+  .arcade-hiscore { font-size:0.72rem;color:#a070a0;margin-top:0.6rem;font-weight:700; }
+
+  /* GAME OVERLAYS */
+  .game-big-overlay { position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.85);z-index:800;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;padding:1rem; }
+  .game-big-overlay.show { opacity:1;pointer-events:all; }
+  .game-panel { background:white;border-radius:28px;padding:1.3rem;max-width:440px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,0.5);position:relative;text-align:center; }
+  .game-panel canvas { border-radius:16px;display:block;margin:0 auto;max-width:100%;cursor:pointer; }
+  .game-hud { display:flex;justify-content:space-around;font-weight:800;margin-bottom:0.5rem;font-size:0.9rem; }
+  .game-close { position:absolute;top:0.8rem;right:0.8rem;background:#f0d0e0;border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:1rem;font-weight:800;z-index:10;display:flex;align-items:center;justify-content:center; }
+  .game-close:hover { background:#e8527a;color:white; }
+  .catch-game-overlay { position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:800;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s; }
+  .catch-game-overlay.show { opacity:1;pointer-events:all; }
+  .catch-game-panel { background:white;border-radius:30px;padding:1.5rem;max-width:420px;width:95%;box-shadow:0 20px 60px rgba(0,0,0,0.3);position:relative; }
+  .catch-ui { display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;font-weight:800; }
+  .catch-close { position:absolute;top:0.8rem;right:0.8rem;background:#f0d0e0;border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:1rem;font-weight:800;z-index:10;display:flex;align-items:center;justify-content:center; }
+
+  /* LUCKY CARD */
+  .lucky-card-area { display:flex;gap:1rem;justify-content:center;margin:1rem 0; }
+  .lucky-card { width:80px;height:110px;border-radius:14px;background:linear-gradient(135deg,#ff7eb3,#e8527a);display:flex;align-items:center;justify-content:center;font-size:2.5rem;border:3px solid white;transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);user-select:none; }
+  .lucky-card.flipped { background:white;border-color:#f0d0e0; }
+  .lucky-card.matched { background:linear-gradient(135deg,#d0ffd8,#a0f0a0);border-color:#50c050; }
+  .lucky-card.miss { background:linear-gradient(135deg,#ffd0d0,#f09090);border-color:#e05050; }
+
+  /* ===== BAG OVERLAY ===== */
+  .bag-overlay { position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:1000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;padding:1rem; }
+  .bag-overlay.show { opacity:1;pointer-events:all; }
+  .bag-modal { background:linear-gradient(135deg,#fff5f8,#fff0f0);border-radius:30px;width:100%;max-width:800px;max-height:92vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.4);border:3px solid #f8d0e0; }
+  .bag-header { background:linear-gradient(135deg,#ff7eb3,#e8527a);padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between; }
+  .bag-header-title { font-family:'Pacifico',cursive;color:white;font-size:1.5rem; }
+  .bag-close-btn { background:rgba(255,255,255,0.3);border:none;color:white;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:1.2rem;font-weight:900;display:flex;align-items:center;justify-content:center; }
+  .bag-tabs { display:flex;gap:0.5rem;padding:1rem 1.5rem 0;background:white;border-bottom:2px solid #f8d0e0;flex-wrap:wrap; }
+  .bag-tab { padding:0.5rem 1.2rem;border-radius:15px 15px 0 0;border:2px solid #f0d0e0;border-bottom:none;background:#fff5f8;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.85rem;transition:all 0.2s;color:var(--text); }
+  .bag-tab.active { background:white;border-color:var(--pink);color:var(--pink-deep);border-bottom:2px solid white;margin-bottom:-2px; }
+  .bag-content { flex:1;overflow-y:auto;padding:1.5rem; }
+  .bag-section { display:none; }
+  .bag-section.active { display:block; }
+  .bag-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:1rem; }
+  .bag-item { background:white;border-radius:16px;padding:1rem 0.6rem;text-align:center;border:2px solid #f0dae8;transition:all 0.2s;position:relative; }
+  .bag-item:hover { border-color:var(--pink);transform:scale(1.04); }
+  .bag-item .bi-emoji { font-size:2.2rem;display:block;margin-bottom:0.4rem; }
+  .bag-item .bi-name { font-size:0.72rem;font-weight:700; }
+  .bag-item .bi-qty { font-size:0.65rem;color:var(--pink);font-weight:800;margin-top:0.2rem; }
+  .bag-item .bi-cat { font-size:0.6rem;color:#b090a0;margin-top:0.2rem; }
+  .bag-item.notebook-item { cursor:pointer;border-color:#f0c8e0; }
+  .bag-item.notebook-item:hover { border-color:#ff7eb3;background:#fff5f8; }
+  .bag-item.notebook-item::after { content:'✏️ Write';position:absolute;bottom:0;left:0;right:0;background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white;font-size:0.65rem;font-weight:800;padding:0.25rem;border-radius:0 0 14px 14px;opacity:0;transition:opacity 0.2s; }
+  .bag-item.notebook-item:hover::after { opacity:1; }
+  .empty-bag { text-align:center;padding:3rem;color:#c0a0b0; }
+  .empty-bag .emoji { font-size:4rem;display:block;margin-bottom:1rem; }
+  .bag-gacha-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:0.8rem; }
+  .bag-gacha-item { background:white;border-radius:12px;padding:0.8rem 0.5rem;text-align:center;border:2px solid #f0dae8; }
+  .bag-gacha-item .bgi-emoji { font-size:1.8rem;display:block; }
+  .bag-gacha-item .bgi-name { font-size:0.62rem;font-weight:700;margin-top:0.3rem; }
+  .bag-gacha-item .bgi-rarity { font-size:0.58rem;font-weight:800;margin-top:0.1rem; }
+  .bag-gacha-item .bgi-qty { font-size:0.6rem;color:var(--pink);font-weight:800; }
+
+  /* ===== NOTEBOOK WRITER ===== */
+  .notebook-overlay { position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);z-index:1100;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;padding:1rem; }
+  .notebook-overlay.show { opacity:1;pointer-events:all; }
+  .notebook-modal { background:#fffef8;border-radius:20px;width:100%;max-width:680px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,0.5);position:relative; }
+  .notebook-header { padding:1rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #f0e0d0; }
+  .notebook-title-bar { display:flex;align-items:center;gap:0.8rem; }
+  .notebook-cover-emoji { font-size:2.2rem; }
+  .notebook-name-display { font-family:'Pacifico',cursive;font-size:1.2rem;color:var(--pink-deep); }
+  .notebook-page-info { font-size:0.78rem;color:#b090a0;font-weight:600; }
+  .nb-close-btn { background:#f0d0e0;border:none;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center; }
+  .nb-close-btn:hover { background:var(--pink-deep);color:white; }
+  .notebook-toolbar { padding:0.7rem 1.5rem;background:#fff5f8;border-bottom:2px solid #f0e0d0;display:flex;gap:0.5rem;flex-wrap:wrap;align-items:center; }
+  .nb-tool-btn { background:white;border:2px solid #f0d0e0;border-radius:10px;padding:0.35rem 0.7rem;cursor:pointer;font-size:0.8rem;font-weight:700;transition:all 0.15s;font-family:'Nunito',sans-serif; }
+  .nb-tool-btn:hover { border-color:var(--pink);background:var(--pink-light); }
+  .nb-tool-btn.active { background:var(--pink);color:white;border-color:var(--pink-deep); }
+  .nb-color-btn { width:28px;height:28px;border-radius:50%;border:3px solid #e0d0e0;cursor:pointer;transition:transform 0.15s; }
+  .nb-color-btn:hover,.nb-color-btn.active { transform:scale(1.2);border-color:#ff7eb3; }
+  .nb-font-select { background:white;border:2px solid #f0d0e0;border-radius:10px;padding:0.35rem 0.5rem;font-family:'Nunito',sans-serif;font-size:0.8rem;cursor:pointer; }
+  .nb-font-size { width:50px;background:white;border:2px solid #f0d0e0;border-radius:10px;padding:0.35rem 0.5rem;font-family:'Nunito',sans-serif;font-size:0.8rem;text-align:center; }
+  .notebook-pages { flex:1;overflow-y:auto;padding:0;display:flex;flex-direction:column; }
+  .notebook-page { min-height:420px;padding:1.5rem 2rem;background:#fffef8;position:relative;border-bottom:3px dashed #f0e0d0; }
+  .notebook-page::before { content:'';position:absolute;left:3.5rem;top:0;bottom:0;width:2px;background:rgba(255,180,200,0.5); }
+  .notebook-lines { position:absolute;top:0;left:0;right:0;bottom:0;pointer-events:none;overflow:hidden; }
+  .nb-line { position:absolute;left:0;right:0;height:1px;background:rgba(200,180,220,0.35); }
+  .notebook-editor { width:100%;min-height:380px;border:none;outline:none;background:transparent;font-family:'Caveat',cursive;font-size:1.3rem;color:#4a2a3a;line-height:2.1rem;padding-left:3.5rem;resize:none;position:relative;z-index:2; }
+  .nb-sticker-bar { padding:0.8rem 1.5rem;background:white;border-top:2px solid #f0e0d0;display:flex;gap:0.5rem;align-items:center;flex-wrap:wrap; }
+  .nb-sticker-label { font-size:0.78rem;font-weight:800;color:#b090a0; }
+  .nb-sticker { font-size:1.5rem;cursor:pointer;padding:0.2rem;border-radius:8px;transition:transform 0.15s;background:none;border:none; }
+  .nb-sticker:hover { transform:scale(1.3); }
+  .nb-page-nav { display:flex;align-items:center;justify-content:space-between;padding:0.8rem 1.5rem;background:#fff5f8;border-top:2px solid #f0e0d0; }
+  .nb-nav-btn { background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white;border:none;border-radius:15px;padding:0.5rem 1.2rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.85rem; }
+  .nb-nav-btn:disabled { background:#e0c0d0;cursor:not-allowed; }
+  .nb-save-btn { background:linear-gradient(135deg,#a070ff,#7040d8);color:white;border:none;border-radius:15px;padding:0.5rem 1.2rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.85rem; }
+
+  /* MODALS */
+  .result-overlay { position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.7);z-index:2000;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.3s;padding:1rem; }
+  .result-overlay.show { opacity:1;pointer-events:all; }
+  .result-modal { background:white;border-radius:30px;padding:2rem;text-align:center;max-width:420px;width:100%;transform:scale(0.7);transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);box-shadow:0 20px 60px rgba(0,0,0,0.4);max-height:88vh;overflow-y:auto; }
+  .result-overlay.show .result-modal { transform:scale(1); }
+  .result-item-emoji { font-size:5rem;display:block;animation:pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both; }
+  @keyframes pop-in { 0%{transform:scale(0) rotate(-20deg)} 100%{transform:scale(1) rotate(0deg)} }
+  .result-name { font-size:1.3rem;font-weight:800;margin-bottom:0.3rem; }
+  .result-desc { color:#a08090;font-size:0.9rem;margin-bottom:1.5rem; }
+  .result-close { background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white;border:none;padding:0.8rem 2.5rem;border-radius:25px;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;font-size:1rem;margin-top:1rem; }
+  .multi-results { display:flex;flex-wrap:wrap;justify-content:center;gap:0.8rem;margin:1rem 0;max-height:300px;overflow-y:auto; }
+  .mini-result { background:#f8f0fc;border-radius:12px;padding:0.7rem;text-align:center;width:80px; }
+  .mini-result .emoji { font-size:2rem; }
+  .mini-result .mini-name { font-size:0.65rem;font-weight:700;margin-top:0.2rem; }
+  .mini-result .mini-rarity { font-size:0.65rem;font-weight:800; }
+
+  /* MISC */
+  .coins-display { display:inline-flex;align-items:center;gap:0.3rem;background:var(--yellow);color:#806000;padding:0.3rem 0.8rem;border-radius:20px;font-weight:800;font-size:0.9rem; }
+  .toast { position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(100px);background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white;padding:0.8rem 2rem;border-radius:30px;font-weight:800;font-size:0.95rem;z-index:9999;transition:transform 0.4s cubic-bezier(0.34,1.56,0.64,1);white-space:nowrap; }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+  .confetti-piece { position:fixed;z-index:9998;border-radius:3px;animation:confetti-fall 2s ease-out forwards;pointer-events:none; }
+  @keyframes confetti-fall { 0%{transform:translateY(-20px) rotate(0deg);opacity:1} 100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
+  footer { background:linear-gradient(135deg,#e8527a,#ff7eb3);color:white;text-align:center;padding:2rem;font-weight:700;font-size:0.9rem;position:relative;z-index:1; }
+  @media(max-width:600px) { nav{padding:0.6rem 1rem} .nav-links a,.nav-bag-btn{padding:0.3rem 0.7rem;font-size:0.75rem} .hero-melody{font-size:5rem} .customizer-wrap{flex-direction:column;align-items:center} .arcade-grid{grid-template-columns:1fr 1fr;gap:1rem} }
 </style>
 </head>
 <body>
@@ -451,111 +304,49 @@
     <a href="#gacha">🎰 Gacha</a>
     <a href="#arcade">🕹️ Arcade</a>
     <a href="#collection">⭐ Collection</a>
-    <a href="#" class="wallet" id="nav-wallet">🪙 <span id="nav-coins">100</span></a>
+    <button class="nav-bag-btn" onclick="openBag()">🎒 My Bag<span class="bag-badge" id="bag-badge">0</span></button>
+    <a href="#" class="wallet-btn">🪙 <span id="nav-coins">100</span></a>
   </div>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <div class="hero-melody">🐰</div>
   <h1>My Melody's Magical World</h1>
   <p>Welcome to the most adorable place ever! 🌸✨</p>
   <div class="ribbon">🎀 My Melody is the BEST 🎀</div>
-  <p style="margin-top:1rem; font-size:0.95rem; color:#c06080;">Start with <strong>100 🪙</strong> — play games to earn more!</p>
+  <p style="margin-top:1rem;font-size:0.95rem;color:#c06080;">Start with <strong>100 🪙</strong> — play games to earn more!</p>
 </section>
 
 <!-- CHARACTERS -->
 <section class="characters-section" id="characters">
   <h2 class="section-title"><span>🌸</span> Sanrio Friends <span>🌸</span></h2>
   <div class="characters-grid">
-    <div class="char-card featured" onclick="showCharInfo('mymelody')">
-      <span class="char-emoji">🐰</span>
-      <div class="char-name">My Melody</div>
-      <div class="char-tag">⭐ Fan Favorite!</div>
-    </div>
-    <div class="char-card" onclick="showCharInfo('hellokitty')">
-      <span class="char-emoji">🐱</span>
-      <div class="char-name">Hello Kitty</div>
-      <div class="char-tag">Since 1974</div>
-    </div>
-    <div class="char-card" onclick="showCharInfo('cinnamoroll')">
-      <span class="char-emoji">🐶</span>
-      <div class="char-name">Cinnamoroll</div>
-      <div class="char-tag">Fluffy & Sweet</div>
-    </div>
-    <div class="char-card" onclick="showCharInfo('pompompurin')">
-      <span class="char-emoji">🍮</span>
-      <div class="char-name">Pompompurin</div>
-      <div class="char-tag">Golden Retriever</div>
-    </div>
-    <div class="char-card" onclick="showCharInfo('kuromi')">
-      <span class="char-emoji">🖤</span>
-      <div class="char-name">Kuromi</div>
-      <div class="char-tag">Mischievous!</div>
-    </div>
-    <div class="char-card" onclick="showCharInfo('keroppi')">
-      <span class="char-emoji">🐸</span>
-      <div class="char-name">Keroppi</div>
-      <div class="char-tag">Ribbit~</div>
-    </div>
+    <div class="char-card featured" onclick="showCharInfo('mymelody')"><span class="char-emoji">🐰</span><div class="char-name">My Melody</div><div class="char-tag">⭐ Fan Favorite!</div></div>
+    <div class="char-card" onclick="showCharInfo('hellokitty')"><span class="char-emoji">🐱</span><div class="char-name">Hello Kitty</div><div class="char-tag">Since 1974</div></div>
+    <div class="char-card" onclick="showCharInfo('cinnamoroll')"><span class="char-emoji">🐶</span><div class="char-name">Cinnamoroll</div><div class="char-tag">Fluffy & Sweet</div></div>
+    <div class="char-card" onclick="showCharInfo('pompompurin')"><span class="char-emoji">🍮</span><div class="char-name">Pompompurin</div><div class="char-tag">Golden Retriever</div></div>
+    <div class="char-card" onclick="showCharInfo('kuromi')"><span class="char-emoji">🖤</span><div class="char-name">Kuromi</div><div class="char-tag">Mischievous!</div></div>
+    <div class="char-card" onclick="showCharInfo('keroppi')"><span class="char-emoji">🐸</span><div class="char-name">Keroppi</div><div class="char-tag">Ribbit~</div></div>
   </div>
 </section>
 
-<!-- ICE CREAM SHOP -->
+<!-- ICE CREAM -->
 <section class="icecream-section" id="icecream">
   <h2 class="section-title"><span>🍦</span> My Melody's Ice Cream Shop <span>🍦</span></h2>
   <div class="shop-container">
-    <div style="text-align:center; margin-bottom:1.5rem;">
-      <div class="coins-display">🪙 Your coins: <strong id="shop-coins">100</strong></div>
-    </div>
+    <div style="text-align:center;margin-bottom:1.5rem;"><div class="coins-display">🪙 Your coins: <strong id="shop-coins">100</strong></div></div>
     <div class="ice-creams">
-      <div class="ic-card" data-flavor="strawberry">
-        <span class="ic-emoji">🍓</span>
-        <div class="ic-name">Strawberry Bunny</div>
-        <div class="ic-price">🪙 15</div>
-        <div class="ic-desc">My Melody's favorite! Sweet & pink!</div>
-        <button class="buy-btn" onclick="buyIceCream('Strawberry Bunny',15,'🍓')">Add to Cart</button>
-      </div>
-      <div class="ic-card" data-flavor="vanilla">
-        <span class="ic-emoji">🍦</span>
-        <div class="ic-name">Vanilla Dream</div>
-        <div class="ic-price">🪙 12</div>
-        <div class="ic-desc">Soft & creamy, just like clouds!</div>
-        <button class="buy-btn" onclick="buyIceCream('Vanilla Dream',12,'🍦')">Add to Cart</button>
-      </div>
-      <div class="ic-card" data-flavor="blueberry">
-        <span class="ic-emoji">🫐</span>
-        <div class="ic-name">Blueberry Magic</div>
-        <div class="ic-price">🪙 18</div>
-        <div class="ic-desc">Magical swirls of blueberry!</div>
-        <button class="buy-btn" onclick="buyIceCream('Blueberry Magic',18,'🫐')">Add to Cart</button>
-      </div>
-      <div class="ic-card" data-flavor="matcha">
-        <span class="ic-emoji">🍵</span>
-        <div class="ic-name">Matcha Forest</div>
-        <div class="ic-price">🪙 20</div>
-        <div class="ic-desc">Earthy & sweet, from the forest!</div>
-        <button class="buy-btn" onclick="buyIceCream('Matcha Forest',20,'🍵')">Add to Cart</button>
-      </div>
-      <div class="ic-card" data-flavor="cherry">
-        <span class="ic-emoji">🍒</span>
-        <div class="ic-name">Cherry Blossom</div>
-        <div class="ic-price">🪙 16</div>
-        <div class="ic-desc">Cherry pink & beautiful!</div>
-        <button class="buy-btn" onclick="buyIceCream('Cherry Blossom',16,'🍒')">Add to Cart</button>
-      </div>
-      <div class="ic-card" data-flavor="bubblegum">
-        <span class="ic-emoji">🫧</span>
-        <div class="ic-name">Bubblegum Pop</div>
-        <div class="ic-price">🪙 14</div>
-        <div class="ic-desc">Pop! Goes the bubblegum!</div>
-        <button class="buy-btn" onclick="buyIceCream('Bubblegum Pop',14,'🫧')">Add to Cart</button>
-      </div>
+      <div class="ic-card" data-flavor="strawberry"><span class="ic-emoji">🍓</span><div class="ic-name">Strawberry Bunny</div><div class="ic-price">🪙 15</div><div class="ic-desc">My Melody's favorite!</div><button class="buy-btn" onclick="buyIceCream('Strawberry Bunny',15,'🍓')">Add to Cart</button></div>
+      <div class="ic-card" data-flavor="vanilla"><span class="ic-emoji">🍦</span><div class="ic-name">Vanilla Dream</div><div class="ic-price">🪙 12</div><div class="ic-desc">Soft & creamy, like clouds!</div><button class="buy-btn" onclick="buyIceCream('Vanilla Dream',12,'🍦')">Add to Cart</button></div>
+      <div class="ic-card" data-flavor="blueberry"><span class="ic-emoji">🫐</span><div class="ic-name">Blueberry Magic</div><div class="ic-price">🪙 18</div><div class="ic-desc">Magical blueberry swirls!</div><button class="buy-btn" onclick="buyIceCream('Blueberry Magic',18,'🫐')">Add to Cart</button></div>
+      <div class="ic-card" data-flavor="matcha"><span class="ic-emoji">🍵</span><div class="ic-name">Matcha Forest</div><div class="ic-price">🪙 20</div><div class="ic-desc">Earthy & sweet!</div><button class="buy-btn" onclick="buyIceCream('Matcha Forest',20,'🍵')">Add to Cart</button></div>
+      <div class="ic-card" data-flavor="cherry"><span class="ic-emoji">🍒</span><div class="ic-name">Cherry Blossom</div><div class="ic-price">🪙 16</div><div class="ic-desc">Cherry pink & beautiful!</div><button class="buy-btn" onclick="buyIceCream('Cherry Blossom',16,'🍒')">Add to Cart</button></div>
+      <div class="ic-card" data-flavor="bubblegum"><span class="ic-emoji">🫧</span><div class="ic-name">Bubblegum Pop</div><div class="ic-price">🪙 14</div><div class="ic-desc">Pop! Goes the bubblegum!</div><button class="buy-btn" onclick="buyIceCream('Bubblegum Pop',14,'🫧')">Add to Cart</button></div>
     </div>
     <div class="cart-panel">
       <div class="cart-title">🛒 Your Cart</div>
-      <div class="cart-items" id="cart-items">
-        <div class="empty-cart">🎀 Your cart is empty!<br>Add some yummy ice cream!</div>
-      </div>
+      <div class="cart-items" id="cart-items"><div class="empty-cart">🎀 Your cart is empty!</div></div>
       <div class="cart-total"><span>Total:</span><span>🪙 <span id="cart-total">0</span></span></div>
       <button class="checkout-btn" onclick="checkout()">💝 Buy It All!</button>
     </div>
@@ -565,21 +356,19 @@
 <!-- MARKET -->
 <section class="market-section" id="market">
   <h2 class="section-title"><span>🛍️</span> Sanrio Mini Market <span>🛍️</span></h2>
-  <div style="text-align:center; margin-bottom:1.5rem;">
-    <div class="coins-display">🪙 Your coins: <strong id="market-coins">100</strong></div>
-  </div>
+  <div style="text-align:center;margin-bottom:1.5rem;"><div class="coins-display">🪙 Your coins: <strong id="market-coins">100</strong></div></div>
   <div class="market-tabs">
-    <button class="mtab active" onclick="switchTab('notebooks')">📓 Notebooks</button>
-    <button class="mtab" onclick="switchTab('plushies')">🧸 Plushies</button>
-    <button class="mtab" onclick="switchTab('stationery')">✏️ Stationery</button>
-    <button class="mtab" onclick="switchTab('accessories')">💍 Accessories</button>
-    <button class="mtab" onclick="switchTab('snacks')">🍡 Snack Pack</button>
+    <button class="mtab active" onclick="switchTab('notebooks',event)">📓 Notebooks</button>
+    <button class="mtab" onclick="switchTab('plushies',event)">🧸 Plushies</button>
+    <button class="mtab" onclick="switchTab('stationery',event)">✏️ Stationery</button>
+    <button class="mtab" onclick="switchTab('accessories',event)">💍 Accessories</button>
+    <button class="mtab" onclick="switchTab('snacks',event)">🍡 Snack Pack</button>
   </div>
   <div class="market-grid" id="market-grid"></div>
-  <button class="inventory-btn" onclick="openInventory()">🎒 My Bag (<span id="inv-count">0</span> items)</button>
+  <div style="text-align:center;margin-top:1.5rem;"><button class="save-outfit" style="font-size:0.9rem;" onclick="openBag()">🎒 Open My Bag</button></div>
 </section>
 
-<!-- OUTFIT CUSTOMIZER -->
+<!-- OUTFIT -->
 <section class="outfit-section" id="outfit">
   <h2 class="section-title"><span>🎀</span> Dress Up My Melody <span>🎀</span></h2>
   <div class="customizer-wrap">
@@ -592,59 +381,47 @@
         <div class="layer layer-acc" id="layer-acc"></div>
       </div>
       <div class="outfit-label" id="outfit-label">Classic My Melody</div>
-      <div class="outfit-hint">Mix & match to dress her up! 🎀</div>
+      <div class="outfit-hint">Mix & match! 🎀</div>
     </div>
     <div class="options-panel">
-      <div class="option-group">
-        <div class="option-group-title">🎩 Hood / Hat</div>
-        <div class="options-row" id="hood-opts">
-          <button class="opt-btn active" data-group="hood" data-val="" onclick="setOption('hood',this)">None</button>
-          <button class="opt-btn" data-group="hood" data-val="pink-hood" onclick="setOption('hood',this)">🌸 Pink Hood</button>
-          <button class="opt-btn" data-group="hood" data-val="red-hood" onclick="setOption('hood',this)">❤️ Red Hood</button>
-          <button class="opt-btn" data-group="hood" data-val="star-hood" onclick="setOption('hood',this)">⭐ Star Hat</button>
-          <button class="opt-btn" data-group="hood" data-val="flower-hood" onclick="setOption('hood',this)">🌻 Flower</button>
-          <button class="opt-btn" data-group="hood" data-val="bow-hood" onclick="setOption('hood',this)">🎀 Big Bow</button>
-          <button class="opt-btn" data-group="hood" data-val="crown-hood" onclick="setOption('hood',this)">👑 Crown</button>
-          <button class="opt-btn" data-group="hood" data-val="witch-hood" onclick="setOption('hood',this)">🧙 Witch Hat</button>
-        </div>
-      </div>
-      <div class="option-group">
-        <div class="option-group-title">👗 Outfit / Dress</div>
-        <div class="options-row" id="dress-opts">
-          <button class="opt-btn active" data-group="dress" data-val="" onclick="setOption('dress',this)">Classic</button>
-          <button class="opt-btn" data-group="dress" data-val="princess" onclick="setOption('dress',this)">👸 Princess</button>
-          <button class="opt-btn" data-group="dress" data-val="maid" onclick="setOption('dress',this)">🎀 Maid</button>
-          <button class="opt-btn" data-group="dress" data-val="summer" onclick="setOption('dress',this)">☀️ Summer</button>
-          <button class="opt-btn" data-group="dress" data-val="winter" onclick="setOption('dress',this)">❄️ Winter</button>
-          <button class="opt-btn" data-group="dress" data-val="school" onclick="setOption('dress',this)">📚 School</button>
-          <button class="opt-btn" data-group="dress" data-val="baker" onclick="setOption('dress',this)">🧁 Baker</button>
-          <button class="opt-btn" data-group="dress" data-val="magical" onclick="setOption('dress',this)">✨ Magical Girl</button>
-        </div>
-      </div>
-      <div class="option-group">
-        <div class="option-group-title">🎒 Accessory</div>
-        <div class="options-row" id="acc-opts">
-          <button class="opt-btn active" data-group="acc" data-val="" onclick="setOption('acc',this)">None</button>
-          <button class="opt-btn" data-group="acc" data-val="basket" onclick="setOption('acc',this)">🧺 Basket</button>
-          <button class="opt-btn" data-group="acc" data-val="flowers" onclick="setOption('acc',this)">💐 Flowers</button>
-          <button class="opt-btn" data-group="acc" data-val="guitar" onclick="setOption('acc',this)">🎸 Guitar</button>
-          <button class="opt-btn" data-group="acc" data-val="wand" onclick="setOption('acc',this)">🪄 Magic Wand</button>
-          <button class="opt-btn" data-group="acc" data-val="cake" onclick="setOption('acc',this)">🎂 Cake</button>
-          <button class="opt-btn" data-group="acc" data-val="umbrella" onclick="setOption('acc',this)">☂️ Umbrella</button>
-          <button class="opt-btn" data-group="acc" data-val="bag" onclick="setOption('acc',this)">👜 Cute Bag</button>
-        </div>
-      </div>
-      <div class="option-group">
-        <div class="option-group-title">🌈 Background Vibe</div>
-        <div class="options-row" id="bg-opts">
-          <button class="opt-btn active" data-group="bg" data-val="" onclick="setOption('bg',this)">Default</button>
-          <button class="opt-btn" data-group="bg" data-val="sakura" onclick="setOption('bg',this)">🌸 Sakura</button>
-          <button class="opt-btn" data-group="bg" data-val="rainbow" onclick="setOption('bg',this)">🌈 Rainbow</button>
-          <button class="opt-btn" data-group="bg" data-val="stars" onclick="setOption('bg',this)">✨ Stars</button>
-          <button class="opt-btn" data-group="bg" data-val="forest" onclick="setOption('bg',this)">🌲 Forest</button>
-          <button class="opt-btn" data-group="bg" data-val="ocean" onclick="setOption('bg',this)">🌊 Ocean</button>
-        </div>
-      </div>
+      <div class="option-group"><div class="option-group-title">🎩 Hood / Hat</div><div class="options-row">
+        <button class="opt-btn active" data-group="hood" data-val="" onclick="setOption('hood',this)">None</button>
+        <button class="opt-btn" data-group="hood" data-val="pink-hood" onclick="setOption('hood',this)">🌸 Pink</button>
+        <button class="opt-btn" data-group="hood" data-val="red-hood" onclick="setOption('hood',this)">❤️ Red</button>
+        <button class="opt-btn" data-group="hood" data-val="star-hood" onclick="setOption('hood',this)">⭐ Star</button>
+        <button class="opt-btn" data-group="hood" data-val="flower-hood" onclick="setOption('hood',this)">🌻 Flower</button>
+        <button class="opt-btn" data-group="hood" data-val="bow-hood" onclick="setOption('hood',this)">🎀 Big Bow</button>
+        <button class="opt-btn" data-group="hood" data-val="crown-hood" onclick="setOption('hood',this)">👑 Crown</button>
+        <button class="opt-btn" data-group="hood" data-val="witch-hood" onclick="setOption('hood',this)">🧙 Witch</button>
+      </div></div>
+      <div class="option-group"><div class="option-group-title">👗 Outfit / Dress</div><div class="options-row">
+        <button class="opt-btn active" data-group="dress" data-val="" onclick="setOption('dress',this)">Classic</button>
+        <button class="opt-btn" data-group="dress" data-val="princess" onclick="setOption('dress',this)">👸 Princess</button>
+        <button class="opt-btn" data-group="dress" data-val="maid" onclick="setOption('dress',this)">🎀 Maid</button>
+        <button class="opt-btn" data-group="dress" data-val="summer" onclick="setOption('dress',this)">☀️ Summer</button>
+        <button class="opt-btn" data-group="dress" data-val="winter" onclick="setOption('dress',this)">❄️ Winter</button>
+        <button class="opt-btn" data-group="dress" data-val="school" onclick="setOption('dress',this)">📚 School</button>
+        <button class="opt-btn" data-group="dress" data-val="baker" onclick="setOption('dress',this)">🧁 Baker</button>
+        <button class="opt-btn" data-group="dress" data-val="magical" onclick="setOption('dress',this)">✨ Magical</button>
+      </div></div>
+      <div class="option-group"><div class="option-group-title">🎒 Accessory</div><div class="options-row">
+        <button class="opt-btn active" data-group="acc" data-val="" onclick="setOption('acc',this)">None</button>
+        <button class="opt-btn" data-group="acc" data-val="basket" onclick="setOption('acc',this)">🧺 Basket</button>
+        <button class="opt-btn" data-group="acc" data-val="flowers" onclick="setOption('acc',this)">💐 Flowers</button>
+        <button class="opt-btn" data-group="acc" data-val="guitar" onclick="setOption('acc',this)">🎸 Guitar</button>
+        <button class="opt-btn" data-group="acc" data-val="wand" onclick="setOption('acc',this)">🪄 Wand</button>
+        <button class="opt-btn" data-group="acc" data-val="cake" onclick="setOption('acc',this)">🎂 Cake</button>
+        <button class="opt-btn" data-group="acc" data-val="umbrella" onclick="setOption('acc',this)">☂️ Umbrella</button>
+        <button class="opt-btn" data-group="acc" data-val="bag" onclick="setOption('acc',this)">👜 Bag</button>
+      </div></div>
+      <div class="option-group"><div class="option-group-title">🌈 Background</div><div class="options-row">
+        <button class="opt-btn active" data-group="bg" data-val="" onclick="setOption('bg',this)">Default</button>
+        <button class="opt-btn" data-group="bg" data-val="sakura" onclick="setOption('bg',this)">🌸 Sakura</button>
+        <button class="opt-btn" data-group="bg" data-val="rainbow" onclick="setOption('bg',this)">🌈 Rainbow</button>
+        <button class="opt-btn" data-group="bg" data-val="stars" onclick="setOption('bg',this)">✨ Stars</button>
+        <button class="opt-btn" data-group="bg" data-val="forest" onclick="setOption('bg',this)">🌲 Forest</button>
+        <button class="opt-btn" data-group="bg" data-val="ocean" onclick="setOption('bg',this)">🌊 Ocean</button>
+      </div></div>
       <button class="save-outfit" onclick="saveOutfit()">💾 Save Outfit! 🎀</button>
     </div>
   </div>
@@ -654,9 +431,7 @@
 <section class="gacha-section" id="gacha">
   <h2 class="section-title"><span>🎰</span> Melody's Gacha Machine <span>🎰</span></h2>
   <div class="gacha-wrap">
-    <div style="text-align:center; margin-bottom:1rem;">
-      <div class="coins-display">🪙 Coins: <strong id="gacha-coins">100</strong></div>
-    </div>
+    <div style="text-align:center;margin-bottom:1rem;"><div class="coins-display">🪙 Coins: <strong id="gacha-coins">100</strong></div></div>
     <div class="rarity-legend">
       <span class="rarity-badge rarity-common">⚪ Common (50%)</span>
       <span class="rarity-badge rarity-rare">🔵 Rare (25%)</span>
@@ -665,17 +440,17 @@
       <span class="rarity-badge rarity-secret">💖 SECRET (2%)</span>
     </div>
     <div class="gacha-machine">
-      <div style="font-size:1rem; font-weight:700; color:#9060c0; margin-bottom:0.5rem;">✨ Click the orb to pull! ✨</div>
+      <div style="font-size:1rem;font-weight:700;color:#9060c0;margin-bottom:0.5rem;">✨ Click the orb to pull! ✨</div>
       <div class="gacha-orb" id="gacha-orb" onclick="pullGacha(1)">🎀</div>
       <div class="gacha-costs">
-        <button class="gacha-pull-btn single" onclick="pullGacha(1)">🎰 Single Pull — 🪙 30</button>
-        <button class="gacha-pull-btn multi" onclick="pullGacha(10)">🎰 10x Pull — 🪙 250</button>
+        <button class="gacha-pull-btn single" onclick="pullGacha(1)">🎰 Single — 🪙30</button>
+        <button class="gacha-pull-btn multi" onclick="pullGacha(10)">🎰 10x Pull — 🪙250</button>
       </div>
     </div>
-    <div style="background:white; border-radius:20px; padding:1.5rem; border:2px solid #e8d8ff;">
-      <div style="font-weight:800; margin-bottom:1rem; color:#7040c0;">🗂️ Your Collection Progress</div>
-      <div id="collection-progress" style="font-size:0.9rem; color:#a080c0; margin-bottom:0.5rem;"></div>
-      <div id="collection-mini" style="display:flex; flex-wrap:wrap; gap:0.5rem;"></div>
+    <div style="background:white;border-radius:20px;padding:1.5rem;border:2px solid #e8d8ff;">
+      <div style="font-weight:800;margin-bottom:1rem;color:#7040c0;">🗂️ Collection Progress</div>
+      <div id="collection-progress" style="font-size:0.9rem;color:#a080c0;margin-bottom:0.5rem;"></div>
+      <div id="collection-mini" style="display:flex;flex-wrap:wrap;gap:0.5rem;"></div>
     </div>
   </div>
 </section>
@@ -685,152 +460,161 @@
   <h2 class="section-title"><span>🕹️</span> Melody's Arcade <span>🕹️</span></h2>
   <div class="arcade-subtitle">Play games · Earn 🪙 coins · Buy stuff!</div>
   <div class="arcade-grid">
-    <div class="arcade-card">
-      <span class="arcade-icon">🍦</span>
-      <div class="arcade-title">Ice Cream Catch</div>
-      <div class="arcade-desc">Move your basket to catch falling treats! Speed increases every 5 catches. Don't miss 3!</div>
-      <div class="arcade-reward">🪙 2 coins per catch</div>
-      <button class="arcade-btn" onclick="startCatchGame()">▶ Play</button>
-      <div class="arcade-hiscore">Best: <span id="catch-best">0</span> pts</div>
-    </div>
-    <div class="arcade-card">
-      <span class="arcade-icon">🌸</span>
-      <div class="arcade-title">Petal Memory</div>
-      <div class="arcade-desc">Flip cards to find matching Sanrio character pairs. Clear the board for a coin bonus!</div>
-      <div class="arcade-reward">🪙 10 coins per match</div>
-      <button class="arcade-btn" onclick="startMemoryGame()">▶ Play</button>
-      <div class="arcade-hiscore">Best: <span id="mem-best">0</span> pts</div>
-    </div>
-    <div class="arcade-card">
-      <span class="arcade-icon">🐰</span>
-      <div class="arcade-title">Whack-a-Kuromi</div>
-      <div class="arcade-desc">Kuromi is up to mischief! Tap her before she hides. Don't hit My Melody by mistake!</div>
-      <div class="arcade-reward">🪙 5 coins per hit</div>
-      <button class="arcade-btn" onclick="startWhackGame()">▶ Play</button>
-      <div class="arcade-hiscore">Best: <span id="whack-best">0</span> pts</div>
-    </div>
-    <div class="arcade-card">
-      <span class="arcade-icon">🌟</span>
-      <div class="arcade-title">Star Shooter</div>
-      <div class="arcade-desc">Click falling stars before they vanish! Golden stars give bonus coins!</div>
-      <div class="arcade-reward">🪙 3–8 coins per star</div>
-      <button class="arcade-btn" onclick="startStarGame()">▶ Play</button>
-      <div class="arcade-hiscore">Best: <span id="star-best">0</span> pts</div>
-    </div>
-    <div class="arcade-card">
-      <span class="arcade-icon">🃏</span>
-      <div class="arcade-title">Lucky Card Flip</div>
-      <div class="arcade-desc">Flip 3 cards — match 3 Sanrio icons for the jackpot! Try every 30 seconds.</div>
-      <div class="arcade-reward">🪙 Up to 150 jackpot!</div>
-      <button class="arcade-btn" id="lucky-btn" onclick="startLuckyFlip()">▶ Play</button>
-      <div class="arcade-hiscore" id="lucky-timer">Ready to play!</div>
-    </div>
-    <div class="arcade-card">
-      <span class="arcade-icon">🎯</span>
-      <div class="arcade-title">Daily Login Bonus</div>
-      <div class="arcade-desc">Claim your free coins once a day! Come back tomorrow for more!</div>
-      <div class="arcade-reward">🪙 Free 50 coins!</div>
-      <button class="arcade-btn" id="daily-btn" onclick="claimDaily()">🎁 Claim!</button>
-      <div class="arcade-hiscore" id="streak-display">Streak: 0 days 🔥</div>
-    </div>
+    <div class="arcade-card"><span class="arcade-icon">🍦</span><div class="arcade-title">Ice Cream Catch</div><div class="arcade-desc">Move your basket to catch falling treats!</div><div class="arcade-reward">🪙 2 coins per catch</div><button class="arcade-btn" onclick="startCatchGame()">▶ Play</button><div class="arcade-hiscore">Best: <span id="catch-best">0</span></div></div>
+    <div class="arcade-card"><span class="arcade-icon">🌸</span><div class="arcade-title">Petal Memory</div><div class="arcade-desc">Match Sanrio card pairs to earn coins!</div><div class="arcade-reward">🪙 10 coins per match</div><button class="arcade-btn" onclick="startMemoryGame()">▶ Play</button><div class="arcade-hiscore">Best: <span id="mem-best">0</span></div></div>
+    <div class="arcade-card"><span class="arcade-icon">🐰</span><div class="arcade-title">Whack-a-Kuromi</div><div class="arcade-desc">Tap Kuromi before she hides! Don't hit Melody!</div><div class="arcade-reward">🪙 5 coins per hit</div><button class="arcade-btn" onclick="startWhackGame()">▶ Play</button><div class="arcade-hiscore">Best: <span id="whack-best">0</span></div></div>
+    <div class="arcade-card"><span class="arcade-icon">🌟</span><div class="arcade-title">Star Shooter</div><div class="arcade-desc">Click falling stars — golden = bonus coins!</div><div class="arcade-reward">🪙 3–8 coins per star</div><button class="arcade-btn" onclick="startStarGame()">▶ Play</button><div class="arcade-hiscore">Best: <span id="star-best">0</span></div></div>
+    <div class="arcade-card"><span class="arcade-icon">🃏</span><div class="arcade-title">Lucky Card Flip</div><div class="arcade-desc">Match 3 Sanrio icons for the jackpot!</div><div class="arcade-reward">🪙 Up to 150 jackpot!</div><button class="arcade-btn" id="lucky-btn" onclick="startLuckyFlip()">▶ Play</button><div class="arcade-hiscore" id="lucky-timer">Ready!</div></div>
+    <div class="arcade-card"><span class="arcade-icon">🎯</span><div class="arcade-title">Daily Bonus</div><div class="arcade-desc">Claim your free coins once per day!</div><div class="arcade-reward">🪙 Free 50 coins!</div><button class="arcade-btn" id="daily-btn" onclick="claimDaily()">🎁 Claim!</button><div class="arcade-hiscore" id="streak-display">Streak: 0 🔥</div></div>
   </div>
 </section>
 
 <!-- COLLECTION -->
 <section class="collection-section" id="collection">
   <h2 class="section-title"><span>⭐</span> My Collection <span>⭐</span></h2>
-  <div style="text-align:center; margin-bottom:1.5rem; color:#a08090; font-weight:600;">Pull from the Gacha to unlock items!</div>
+  <div style="text-align:center;margin-bottom:1.5rem;color:#a08090;font-weight:600;">Pull from the Gacha to unlock items!</div>
   <div class="collection-grid" id="full-collection"></div>
 </section>
 
 <footer>
   <p>🐰 Made with love for the most adorable little sister ever! 🌸</p>
-  <p style="margin-top:0.5rem; font-size:0.8rem;">My Melody & Friends © Sanrio 💕</p>
+  <p style="margin-top:0.5rem;font-size:0.8rem;">My Melody & Friends © Sanrio 💕</p>
 </footer>
 
 <!-- RESULT MODAL -->
 <div class="result-overlay" id="result-overlay" onclick="handleOverlayClick(event)">
-  <div class="result-modal" id="result-modal">
-    <div id="result-content"></div>
-    <button class="result-close" onclick="closeResult()">Yay! Close 🎀</button>
-  </div>
+  <div class="result-modal"><div id="result-content"></div><button class="result-close" onclick="closeResult()">Yay! Close 🎀</button></div>
 </div>
 
-<!-- MEMORY GAME OVERLAY -->
+<!-- MEMORY OVERLAY -->
 <div class="catch-game-overlay" id="memory-overlay">
   <div class="catch-game-panel" style="max-width:500px;">
     <button class="catch-close" onclick="closeMemory()">✕</button>
-    <div class="catch-ui">
-      <span>🌸 Memory Game</span>
-      <span>Score: <strong id="mem-score">0</strong></span>
-      <span>Pairs: <strong id="mem-pairs">0</strong>/8</span>
-    </div>
-    <div id="memory-board" style="display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem; padding:0.5rem;"></div>
-    <div id="mem-result" style="text-align:center; font-weight:800; margin-top:0.5rem; min-height:24px;"></div>
+    <div class="catch-ui"><span>🌸 Memory</span><span>Score: <strong id="mem-score">0</strong></span><span>Pairs: <strong id="mem-pairs">0</strong>/8</span></div>
+    <div id="memory-board" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;padding:0.5rem;"></div>
+    <div id="mem-result" style="text-align:center;font-weight:800;margin-top:0.5rem;min-height:24px;"></div>
   </div>
 </div>
 
-<!-- CATCH GAME OVERLAY -->
+<!-- CATCH OVERLAY -->
 <div class="catch-game-overlay" id="catch-overlay">
   <div class="catch-game-panel">
     <button class="catch-close" onclick="closeCatch()">✕</button>
-    <div class="catch-ui">
-      <span>🍦 Ice Cream Catch</span>
-      <span>Score: <strong id="catch-score">0</strong></span>
-      <span>Lives: <strong id="catch-lives">3</strong></span>
-    </div>
-    <canvas id="catch-canvas" width="360" height="380"></canvas>
-    <div id="catch-msg" style="text-align:center; font-weight:700; font-size:0.9rem; margin-top:0.5rem; min-height:24px; color:#e8527a;"></div>
+    <div class="catch-ui"><span>🍦 Ice Cream Catch</span><span>Score: <strong id="catch-score">0</strong></span><span>Lives: <strong id="catch-lives">3</strong></span></div>
+    <canvas id="catch-canvas" width="360" height="380" style="width:100%;border-radius:16px;display:block;cursor:none;"></canvas>
   </div>
 </div>
 
-<!-- WHACK GAME OVERLAY -->
+<!-- WHACK OVERLAY -->
 <div class="game-big-overlay" id="whack-overlay">
   <div class="game-panel">
     <button class="game-close" onclick="closeWhack()">✕</button>
-    <div class="game-hud">
-      <span>🐰 Whack-a-Kuromi</span>
-      <span>Score: <strong id="whack-score">0</strong></span>
-      <span>Time: <strong id="whack-time">30</strong>s</span>
-    </div>
+    <div class="game-hud"><span>🐰 Whack-a-Kuromi</span><span>Score: <strong id="whack-score">0</strong></span><span>Time: <strong id="whack-time">30</strong>s</span></div>
     <canvas id="whack-canvas" width="400" height="360"></canvas>
-    <div id="whack-msg" style="text-align:center; font-weight:700; font-size:0.9rem; margin-top:0.5rem; min-height:24px; color:#e8527a;"></div>
+    <div id="whack-msg" style="text-align:center;font-weight:700;font-size:0.85rem;margin-top:0.5rem;min-height:20px;color:#e8527a;"></div>
   </div>
 </div>
 
-<!-- STAR GAME OVERLAY -->
+<!-- STAR OVERLAY -->
 <div class="game-big-overlay" id="star-overlay">
   <div class="game-panel">
     <button class="game-close" onclick="closeStar()">✕</button>
-    <div class="game-hud">
-      <span>🌟 Star Shooter</span>
-      <span>Score: <strong id="star-score">0</strong></span>
-      <span>Time: <strong id="star-time">30</strong>s</span>
-    </div>
+    <div class="game-hud"><span>🌟 Star Shooter</span><span>Score: <strong id="star-score">0</strong></span><span>Time: <strong id="star-time">30</strong>s</span></div>
     <canvas id="star-canvas" width="400" height="360"></canvas>
-    <div id="star-msg" style="text-align:center; font-weight:700; font-size:0.9rem; margin-top:0.5rem; min-height:24px; color:#e8527a;"></div>
+    <div id="star-msg" style="text-align:center;font-weight:700;font-size:0.85rem;margin-top:0.5rem;min-height:20px;color:#e8527a;"></div>
   </div>
 </div>
 
-<!-- LUCKY CARD OVERLAY -->
+<!-- LUCKY OVERLAY -->
 <div class="game-big-overlay" id="lucky-overlay">
   <div class="game-panel" style="max-width:360px;">
     <button class="game-close" onclick="closeLucky()">✕</button>
-    <div style="font-weight:900; font-size:1.2rem; margin-bottom:1rem; color:var(--pink-deep);">🃏 Lucky Card Flip!</div>
+    <div style="font-weight:900;font-size:1.2rem;margin-bottom:1rem;color:var(--pink-deep);">🃏 Lucky Card Flip!</div>
     <div class="lucky-card-area" id="lucky-cards"></div>
-    <div id="lucky-result" style="font-weight:800; font-size:1rem; margin:1rem 0; min-height:1.5em; color:var(--pink-deep);"></div>
+    <div id="lucky-result" style="font-weight:800;font-size:1rem;margin:1rem 0;min-height:1.5em;color:var(--pink-deep);"></div>
     <button id="lucky-flip-btn" onclick="doLuckyFlip()" style="background:linear-gradient(135deg,#ff7eb3,#e8527a);color:white;border:none;border-radius:20px;padding:0.7rem 2rem;font-weight:800;cursor:pointer;font-family:'Nunito',sans-serif;font-size:0.95rem;">🎴 Flip Cards!</button>
   </div>
 </div>
 
-<!-- INVENTORY DRAWER -->
-<div class="inv-overlay" id="inv-overlay" onclick="handleInvClick(event)">
-  <div class="inv-panel">
-    <div class="inv-title">
-      🎒 My Bag
-      <button class="inv-close" onclick="closeInventory()">✕</button>
+<!-- ===== BAG OVERLAY ===== -->
+<div class="bag-overlay" id="bag-overlay" onclick="handleBagOverlayClick(event)">
+  <div class="bag-modal">
+    <div class="bag-header">
+      <div class="bag-header-title">🎒 My Bag</div>
+      <button class="bag-close-btn" onclick="closeBag()">✕</button>
     </div>
-    <div class="inv-grid" id="inv-grid"></div>
+    <div class="bag-tabs">
+      <button class="bag-tab active" onclick="switchBagTab('all',this)">🌸 All Items</button>
+      <button class="bag-tab" onclick="switchBagTab('notebooks',this)">📓 Notebooks</button>
+      <button class="bag-tab" onclick="switchBagTab('plushies',this)">🧸 Plushies</button>
+      <button class="bag-tab" onclick="switchBagTab('stationery',this)">✏️ Stationery</button>
+      <button class="bag-tab" onclick="switchBagTab('accessories',this)">💍 Accessories</button>
+      <button class="bag-tab" onclick="switchBagTab('snacks',this)">🍡 Snacks</button>
+      <button class="bag-tab" onclick="switchBagTab('gacha',this)">✨ Gacha</button>
+    </div>
+    <div class="bag-content" id="bag-content"></div>
+  </div>
+</div>
+
+<!-- ===== NOTEBOOK WRITER ===== -->
+<div class="notebook-overlay" id="notebook-overlay">
+  <div class="notebook-modal">
+    <div class="notebook-header">
+      <div class="notebook-title-bar">
+        <span class="notebook-cover-emoji" id="nb-cover-emoji">📓</span>
+        <div>
+          <div class="notebook-name-display" id="nb-name-display">My Notebook</div>
+          <div class="notebook-page-info" id="nb-page-info">Page 1</div>
+        </div>
+      </div>
+      <button class="nb-close-btn" onclick="closeNotebook()">✕</button>
+    </div>
+    <div class="notebook-toolbar">
+      <span style="font-size:0.78rem;font-weight:800;color:#b090a0;">Font:</span>
+      <select class="nb-font-select" id="nb-font" onchange="applyFormat()">
+        <option value="'Caveat',cursive">Handwriting</option>
+        <option value="'Nunito',sans-serif">Nunito</option>
+        <option value="'Pacifico',cursive">Pacifico</option>
+        <option value="monospace">Mono</option>
+      </select>
+      <input type="number" class="nb-font-size" id="nb-size" value="20" min="12" max="36" onchange="applyFormat()">
+      <button class="nb-tool-btn" id="btn-bold" onclick="toggleFormat('bold')"><b>B</b></button>
+      <button class="nb-tool-btn" id="btn-italic" onclick="toggleFormat('italic')"><i>I</i></button>
+      <button class="nb-tool-btn" id="btn-underline" onclick="toggleFormat('underline')"><u>U</u></button>
+      <span style="font-size:0.78rem;font-weight:800;color:#b090a0;margin-left:0.3rem;">Color:</span>
+      <button class="nb-color-btn active" style="background:#4a2a3a;" data-color="#4a2a3a" onclick="setTextColor(this)"></button>
+      <button class="nb-color-btn" style="background:#e8527a;" data-color="#e8527a" onclick="setTextColor(this)"></button>
+      <button class="nb-color-btn" style="background:#7040d8;" data-color="#7040d8" onclick="setTextColor(this)"></button>
+      <button class="nb-color-btn" style="background:#1080c0;" data-color="#1080c0" onclick="setTextColor(this)"></button>
+      <button class="nb-color-btn" style="background:#208050;" data-color="#208050" onclick="setTextColor(this)"></button>
+      <button class="nb-color-btn" style="background:#c07000;" data-color="#c07000" onclick="setTextColor(this)"></button>
+    </div>
+    <div class="notebook-pages" id="notebook-pages">
+      <div class="notebook-page" id="current-page">
+        <div class="notebook-lines" id="nb-lines"></div>
+        <div class="notebook-editor" id="nb-editor" contenteditable="true" spellcheck="true" placeholder="Start writing your magical story here... ✨"></div>
+      </div>
+    </div>
+    <div class="nb-sticker-bar">
+      <span class="nb-sticker-label">Add sticker:</span>
+      <button class="nb-sticker" onclick="insertSticker('🌸')">🌸</button>
+      <button class="nb-sticker" onclick="insertSticker('🎀')">🎀</button>
+      <button class="nb-sticker" onclick="insertSticker('🐰')">🐰</button>
+      <button class="nb-sticker" onclick="insertSticker('⭐')">⭐</button>
+      <button class="nb-sticker" onclick="insertSticker('💕')">💕</button>
+      <button class="nb-sticker" onclick="insertSticker('🌷')">🌷</button>
+      <button class="nb-sticker" onclick="insertSticker('✨')">✨</button>
+      <button class="nb-sticker" onclick="insertSticker('🍓')">🍓</button>
+      <button class="nb-sticker" onclick="insertSticker('🌈')">🌈</button>
+      <button class="nb-sticker" onclick="insertSticker('🦋')">🦋</button>
+      <button class="nb-sticker" onclick="insertSticker('🍦')">🍦</button>
+      <button class="nb-sticker" onclick="insertSticker('💖')">💖</button>
+    </div>
+    <div class="nb-page-nav">
+      <button class="nb-nav-btn" id="nb-prev" onclick="changePage(-1)" disabled>◀ Prev</button>
+      <button class="nb-save-btn" onclick="savePage()">💾 Save Page</button>
+      <button class="nb-nav-btn" id="nb-next" onclick="changePage(1)">Next ▶</button>
+    </div>
   </div>
 </div>
 
@@ -840,224 +624,67 @@
 // ========== STATE ==========
 let coins = 100;
 let cart = [];
-let outfit = { hood:'', dress:'', acc:'', bg:'' };
+let outfit = {hood:'',dress:'',acc:'',bg:''};
 let collection = {};
-let inventory = {};
+let inventory = {};   // {itemId: qty}
+let notebookData = {}; // {itemId: {pages: ['content1','content2',...], currentPage: 0}}
 let dailyClaimed = false;
 let luckyOnCooldown = false;
 let luckyTimer = null;
-
-// ========== COINS ==========
-function updateCoins(amt, msg) {
-  coins += amt;
-  document.getElementById('nav-coins').textContent = coins;
-  document.getElementById('shop-coins').textContent = coins;
-  document.getElementById('gacha-coins').textContent = coins;
-  document.getElementById('market-coins').textContent = coins;
-  if (msg) showToast(msg);
-}
-
-// ========== FLOATIES ==========
-const floatEmojis = ['🌸','🎀','💕','⭐','🍓','🌷','✨','🐰','💖','🌼'];
-const fc = document.getElementById('floaties');
-for (let i = 0; i < 20; i++) {
-  const f = document.createElement('div');
-  f.className = 'floaty';
-  f.textContent = floatEmojis[Math.floor(Math.random()*floatEmojis.length)];
-  f.style.left = Math.random()*100 + 'vw';
-  f.style.animationDuration = (8+Math.random()*12) + 's';
-  f.style.animationDelay = (Math.random()*10) + 's';
-  f.style.fontSize = (1+Math.random()) + 'rem';
-  fc.appendChild(f);
-}
-
-// ========== CHARACTERS ==========
-const charInfo = {
-  mymelody:    { name:'My Melody',    desc:'My Melody lives in a magical forest called Mariland in Sanrio World! She loves baking and playing with her friends. Her signature pink hood is the cutest thing ever! 🌸', emoji:'🐰' },
-  hellokitty:  { name:'Hello Kitty',  desc:'Hello Kitty lives in London with her family! She loves cookies, piano, and spending time with friends. No mouth but says everything with her heart! 🍪', emoji:'🐱' },
-  cinnamoroll: { name:'Cinnamoroll',  desc:'Cinnamoroll is a fluffy white puppy with big ears who loves flying through the sky! He lives in a café and loves cinnamon rolls! ☁️', emoji:'🐶' },
-  pompompurin: { name:'Pompompurin',  desc:'Pompompurin is a golden retriever who loves pudding! He always wears his brown beret and naps in the sun! 🍮', emoji:'🍮' },
-  kuromi:      { name:'Kuromi',       desc:'Kuromi is My Melody\'s mischievous rival! Despite her edgy looks, she loves romance and cute things. Best frenemies! 🖤', emoji:'🖤' },
-  keroppi:     { name:'Keroppi',      desc:'Keroppi is a cheerful frog who lives by Donut Pond! He loves singing, swimming, and going on adventures! 🐸', emoji:'🐸' },
-};
-function showCharInfo(id) {
-  const c = charInfo[id];
-  showModal(`<span class="result-item-emoji">${c.emoji}</span><div class="result-name">${c.name}</div><div class="result-desc">${c.desc}</div>`);
-}
-
-// ========== ICE CREAM ==========
-function buyIceCream(name, price, emoji) {
-  cart.push({name,price,emoji});
-  renderCart();
-  showToast(`${emoji} ${name} added to cart!`);
-}
-function renderCart() {
-  const el = document.getElementById('cart-items');
-  const totalEl = document.getElementById('cart-total');
-  if (!cart.length) { el.innerHTML='<div class="empty-cart">🎀 Your cart is empty!<br>Add some yummy ice cream!</div>'; totalEl.textContent='0'; return; }
-  let total = 0;
-  el.innerHTML = cart.map((item,i) => `<div class="cart-item"><span>${item.emoji} ${item.name}</span><span>🪙 ${item.price} <button onclick="removeCartItem(${i})" style="background:none;border:none;cursor:pointer;color:#e8527a;font-size:0.8rem;">✕</button></span></div>`).join('');
-  cart.forEach(i => total += i.price);
-  totalEl.textContent = total;
-}
-function removeCartItem(i) { cart.splice(i,1); renderCart(); }
-function checkout() {
-  if (!cart.length) { showToast('🛒 Add something first!'); return; }
-  const total = cart.reduce((s,i) => s+i.price, 0);
-  if (coins < total) { showToast('🪙 Not enough coins! Play games to earn more!'); return; }
-  updateCoins(-total, `💝 Yum! Spent 🪙${total} on ice cream!`);
-  const items = cart.map(i => i.emoji).join('');
-  cart = []; renderCart(); confetti();
-  showModal(`<span class="result-item-emoji">${items}</span><div class="result-name">Order Complete!</div><div class="result-desc">Enjoy your delicious ice cream! 🍦✨<br>Spent 🪙 ${total} coins</div>`);
-}
+let currentNotebookId = null;
+let currentNbPage = 0;
+let currentBagTab = 'all';
+let nbFormats = {bold:false, italic:false, underline:false, color:'#4a2a3a'};
 
 // ========== MARKET DATA ==========
 const marketItems = {
   notebooks: [
-    { id:'nb1', emoji:'📓', name:'My Melody Notebook',  char:'My Melody', desc:'Pink lined notebook with bow covers!',          price:25 },
-    { id:'nb2', emoji:'📒', name:'Kuromi Sketchbook',   char:'Kuromi',    desc:'Black & purple hardcover sketchbook.',           price:30 },
-    { id:'nb3', emoji:'📔', name:'Cinnamoroll Diary',   char:'Cinnamoroll',desc:'Fluffy cloud-shaped diary with lock!',          price:35 },
-    { id:'nb4', emoji:'📕', name:'Hello Kitty Planner', char:'Hello Kitty',desc:'Monthly planner with sticker sheets!',          price:28 },
-    { id:'nb5', emoji:'📗', name:'Keroppi Journal',     char:'Keroppi',   desc:'Frog-green journal for nature notes!',           price:22 },
-    { id:'nb6', emoji:'📘', name:'Pompompurin Log',     char:'Pompompurin',desc:'Golden diary for golden memories!',             price:27 },
+    {id:'nb1',emoji:'📓',name:'My Melody Notebook',char:'My Melody',desc:'Pink lined notebook with bow covers!',price:25,category:'notebooks'},
+    {id:'nb2',emoji:'📒',name:'Kuromi Sketchbook',char:'Kuromi',desc:'Black & purple hardcover sketchbook.',price:30,category:'notebooks'},
+    {id:'nb3',emoji:'📔',name:'Cinnamoroll Diary',char:'Cinnamoroll',desc:'Fluffy cloud diary with lock!',price:35,category:'notebooks'},
+    {id:'nb4',emoji:'📕',name:'Hello Kitty Planner',char:'Hello Kitty',desc:'Monthly planner with sticker sheets!',price:28,category:'notebooks'},
+    {id:'nb5',emoji:'📗',name:'Keroppi Journal',char:'Keroppi',desc:'Frog-green journal for nature notes!',price:22,category:'notebooks'},
+    {id:'nb6',emoji:'📘',name:'Pompompurin Log',char:'Pompompurin',desc:'Golden diary for golden memories!',price:27,category:'notebooks'},
   ],
   plushies: [
-    { id:'pl1', emoji:'🧸', name:'My Melody Plush',     char:'My Melody',  desc:'Soft 20cm plush with satin ribbon!',            price:60 },
-    { id:'pl2', emoji:'🐱', name:'Hello Kitty Plush',   char:'Hello Kitty',desc:'Classic white plush with red bow!',             price:55 },
-    { id:'pl3', emoji:'🐶', name:'Cinnamoroll Plush',   char:'Cinnamoroll',desc:'Giant fluffy cinnamon-scented puppy!',          price:70 },
-    { id:'pl4', emoji:'🐸', name:'Keroppi Plush',       char:'Keroppi',    desc:'Squishable green froggy friend!',               price:45 },
-    { id:'pl5', emoji:'🍮', name:'Pompompurin Plush',   char:'Pompompurin',desc:'Pudding-shaped golden puppy plush!',            price:58 },
-    { id:'pl6', emoji:'🖤', name:'Kuromi Mini Plush',   char:'Kuromi',     desc:'Tiny Kuromi with devil tail detail!',           price:40 },
+    {id:'pl1',emoji:'🧸',name:'My Melody Plush',char:'My Melody',desc:'Soft 20cm plush with satin ribbon!',price:60,category:'plushies'},
+    {id:'pl2',emoji:'🐱',name:'Hello Kitty Plush',char:'Hello Kitty',desc:'Classic white plush with red bow!',price:55,category:'plushies'},
+    {id:'pl3',emoji:'🐶',name:'Cinnamoroll Plush',char:'Cinnamoroll',desc:'Giant fluffy cinnamon-scented puppy!',price:70,category:'plushies'},
+    {id:'pl4',emoji:'🐸',name:'Keroppi Plush',char:'Keroppi',desc:'Squishable green froggy friend!',price:45,category:'plushies'},
+    {id:'pl5',emoji:'🍮',name:'Pompompurin Plush',char:'Pompompurin',desc:'Pudding-shaped golden puppy plush!',price:58,category:'plushies'},
+    {id:'pl6',emoji:'🖤',name:'Kuromi Mini Plush',char:'Kuromi',desc:'Tiny Kuromi with devil tail detail!',price:40,category:'plushies'},
   ],
   stationery: [
-    { id:'st1', emoji:'✏️', name:'Melody Pencil Set',   char:'My Melody',  desc:'6 pink pencils with eraser toppers!',           price:18 },
-    { id:'st2', emoji:'🖊️', name:'Sanrio Gel Pens',    char:'All',        desc:'12-color gel pen set, glitter ink!',            price:22 },
-    { id:'st3', emoji:'📎', name:'Kitty Paper Clips',   char:'Hello Kitty',desc:'20 metal clips shaped like Hello Kitty!',       price:12 },
-    { id:'st4', emoji:'🗒️', name:'Sticky Note Pack',   char:'All',        desc:'200 pastel sticky notes with characters!',      price:15 },
-    { id:'st5', emoji:'✂️', name:'Melody Scissors',     char:'My Melody',  desc:'Pink safety scissors in bunny shape!',          price:20 },
-    { id:'st6', emoji:'🖍️', name:'Kuromi Crayons',     char:'Kuromi',     desc:'24 colors with spooky-cute packaging!',         price:16 },
+    {id:'st1',emoji:'✏️',name:'Melody Pencil Set',char:'My Melody',desc:'6 pink pencils with eraser toppers!',price:18,category:'stationery'},
+    {id:'st2',emoji:'🖊️',name:'Sanrio Gel Pens',char:'All',desc:'12-color gel pen set, glitter ink!',price:22,category:'stationery'},
+    {id:'st3',emoji:'📎',name:'Kitty Paper Clips',char:'Hello Kitty',desc:'20 metal clips shaped like Hello Kitty!',price:12,category:'stationery'},
+    {id:'st4',emoji:'🗒️',name:'Sticky Note Pack',char:'All',desc:'200 pastel sticky notes with characters!',price:15,category:'stationery'},
+    {id:'st5',emoji:'✂️',name:'Melody Scissors',char:'My Melody',desc:'Pink safety scissors in bunny shape!',price:20,category:'stationery'},
+    {id:'st6',emoji:'🖍️',name:'Kuromi Crayons',char:'Kuromi',desc:'24 colors with spooky-cute packaging!',price:16,category:'stationery'},
   ],
   accessories: [
-    { id:'ac1', emoji:'🎀', name:'Melody Hair Bow',     char:'My Melody',  desc:'Satin bow clip just like My Melody\'s!',        price:20 },
-    { id:'ac2', emoji:'💍', name:'Kitty Ring',          char:'Hello Kitty',desc:'Silver-tone adjustable ring!',                  price:35 },
-    { id:'ac3', emoji:'👛', name:'Melody Coin Purse',   char:'My Melody',  desc:'Pink zip purse with bow charm!',                price:30 },
-    { id:'ac4', emoji:'🌂', name:'Cinnamoroll Umbrella',char:'Cinnamoroll',desc:'Mini folding umbrella, cloud print!',           price:45 },
-    { id:'ac5', emoji:'🧣', name:'Kuromi Headband',     char:'Kuromi',     desc:'Black velvet headband with skull bow!',         price:25 },
-    { id:'ac6', emoji:'👜', name:'Purin Tote Bag',      char:'Pompompurin',desc:'Canvas tote with pudding pattern!',             price:38 },
+    {id:'ac1',emoji:'🎀',name:'Melody Hair Bow',char:'My Melody',desc:'Satin bow clip just like My Melody\'s!',price:20,category:'accessories'},
+    {id:'ac2',emoji:'💍',name:'Kitty Ring',char:'Hello Kitty',desc:'Silver-tone adjustable ring!',price:35,category:'accessories'},
+    {id:'ac3',emoji:'👛',name:'Melody Coin Purse',char:'My Melody',desc:'Pink zip purse with bow charm!',price:30,category:'accessories'},
+    {id:'ac4',emoji:'🌂',name:'Cinnamoroll Umbrella',char:'Cinnamoroll',desc:'Mini folding umbrella, cloud print!',price:45,category:'accessories'},
+    {id:'ac5',emoji:'🧣',name:'Kuromi Headband',char:'Kuromi',desc:'Black velvet headband with skull bow!',price:25,category:'accessories'},
+    {id:'ac6',emoji:'👜',name:'Purin Tote Bag',char:'Pompompurin',desc:'Canvas tote with pudding pattern!',price:38,category:'accessories'},
   ],
   snacks: [
-    { id:'sn1', emoji:'🍡', name:'Sakura Mochi Trio',   char:'My Melody',  desc:'3 pink mochi in bunny wrappers!',               price:15 },
-    { id:'sn2', emoji:'🍫', name:'Kitty Chocolate Box', char:'Hello Kitty',desc:'6 white choc pieces in bow shapes!',            price:20 },
-    { id:'sn3', emoji:'🍬', name:'Kuromi Candy Bag',    char:'Kuromi',     desc:'Black & purple sour gummy skulls!',             price:12 },
-    { id:'sn4', emoji:'🧁', name:'Melody Cupcake Kit',  char:'My Melody',  desc:'DIY cupcake set, pink frosting!',               price:25 },
-    { id:'sn5', emoji:'🍮', name:'Purin Pudding Cup',   char:'Pompompurin',desc:'Ready-to-eat custard pudding!',                 price:10 },
-    { id:'sn6', emoji:'🍩', name:'Cinnamon Donut Box',  char:'Cinnamoroll',desc:'6 cloud-shaped cinnamon donuts!',               price:18 },
+    {id:'sn1',emoji:'🍡',name:'Sakura Mochi Trio',char:'My Melody',desc:'3 pink mochi in bunny wrappers!',price:15,category:'snacks'},
+    {id:'sn2',emoji:'🍫',name:'Kitty Chocolate Box',char:'Hello Kitty',desc:'6 white choc pieces in bow shapes!',price:20,category:'snacks'},
+    {id:'sn3',emoji:'🍬',name:'Kuromi Candy Bag',char:'Kuromi',desc:'Black & purple sour gummy skulls!',price:12,category:'snacks'},
+    {id:'sn4',emoji:'🧁',name:'Melody Cupcake Kit',char:'My Melody',desc:'DIY cupcake set, pink frosting!',price:25,category:'snacks'},
+    {id:'sn5',emoji:'🍮',name:'Purin Pudding Cup',char:'Pompompurin',desc:'Ready-to-eat custard pudding!',price:10,category:'snacks'},
+    {id:'sn6',emoji:'🍩',name:'Cinnamon Donut Box',char:'Cinnamoroll',desc:'6 cloud-shaped cinnamon donuts!',price:18,category:'snacks'},
   ],
 };
+const allMarketItems = {};
+Object.values(marketItems).forEach(cat => cat.forEach(item => { allMarketItems[item.id] = item; }));
 
-let currentTab = 'notebooks';
-function switchTab(tab) {
-  currentTab = tab;
-  document.querySelectorAll('.mtab').forEach(b => b.classList.remove('active'));
-  event.target.classList.add('active');
-  renderMarket();
-}
-function renderMarket() {
-  const grid = document.getElementById('market-grid');
-  const items = marketItems[currentTab] || [];
-  grid.innerHTML = items.map(item => {
-    const owned = inventory[item.id] || 0;
-    return `<div class="market-card">
-      <span class="mc-emoji">${item.emoji}</span>
-      <div class="mc-name">${item.name}</div>
-      <div class="mc-char">${item.char}</div>
-      <div class="mc-desc">${item.desc}</div>
-      <div class="mc-price">🪙 ${item.price}</div>
-      <div class="mc-owned">${owned > 0 ? '✅ Owned ×'+owned : ''}</div>
-      <button class="market-buy" onclick="buyMarketItem('${item.id}')" ${coins < item.price ? 'disabled' : ''}>
-        ${coins < item.price ? '🪙 Need more coins' : '🛍️ Buy!'}
-      </button>
-    </div>`;
-  }).join('');
-}
-function buyMarketItem(id) {
-  let item = null;
-  for (const cat of Object.values(marketItems)) {
-    item = cat.find(i => i.id === id);
-    if (item) break;
-  }
-  if (!item) return;
-  if (coins < item.price) { showToast('🪙 Not enough coins!'); return; }
-  updateCoins(-item.price, `${item.emoji} Bought ${item.name}!`);
-  inventory[item.id] = (inventory[item.id] || 0) + 1;
-  updateInvCount();
-  renderMarket();
-  confetti();
-  showModal(`<span class="result-item-emoji">${item.emoji}</span><div class="result-name">${item.name}</div><div class="result-desc">Added to your bag! 🎒<br>Spent 🪙 ${item.price}</div>`);
-}
-function updateInvCount() {
-  const total = Object.values(inventory).reduce((s,v) => s+v, 0);
-  document.getElementById('inv-count').textContent = total;
-}
-function openInventory() {
-  const grid = document.getElementById('inv-grid');
-  const entries = Object.entries(inventory).filter(([,v]) => v > 0);
-  if (!entries.length) { grid.innerHTML = '<div style="color:#c0a0b0;text-align:center;padding:2rem;">🎒 Your bag is empty!<br>Go buy something cute!</div>'; }
-  else {
-    let allItems = {};
-    for (const cat of Object.values(marketItems)) { for (const item of cat) { allItems[item.id] = item; } }
-    grid.innerHTML = entries.map(([id,qty]) => {
-      const item = allItems[id];
-      if (!item) return '';
-      return `<div class="inv-item"><span class="emoji">${item.emoji}</span><div class="iname">${item.name}</div><div class="iqty">×${qty}</div></div>`;
-    }).join('');
-  }
-  document.getElementById('inv-overlay').classList.add('show');
-}
-function closeInventory() { document.getElementById('inv-overlay').classList.remove('show'); }
-function handleInvClick(e) { if (e.target === document.getElementById('inv-overlay')) closeInventory(); }
-
-// ========== OUTFIT ==========
-const outfitLabels = { '':'Classic My Melody','princess':'Princess Melody ✨','maid':'Maid Melody 🎀','summer':'Summer Melody ☀️','winter':'Winter Melody ❄️','school':'School Melody 📚','baker':'Baker Melody 🧁','magical':'Magical Girl Melody ✨' };
-const dressEmojis  = { princess:'👗', maid:'🥻', summer:'👙', winter:'🧥', school:'🎒', baker:'👔', magical:'🌟' };
-const hoodEmojis   = { 'pink-hood':'🌸','red-hood':'❤️','star-hood':'⭐','flower-hood':'🌻','bow-hood':'🎀','crown-hood':'👑','witch-hood':'🧙' };
-const accEmojis    = { basket:'🧺', flowers:'💐', guitar:'🎸', wand:'🪄', cake:'🎂', umbrella:'☂️', bag:'👜' };
-const bgData = {
-  '':       { style:'background:linear-gradient(135deg,#fff5f8,#ffe8f0)', emojis:[] },
-  sakura:   { style:'background:linear-gradient(135deg,#ffe8f8,#ffd0e8)', emojis:['🌸','🌸','🌸','🌸','🌸'] },
-  rainbow:  { style:'background:linear-gradient(135deg,#ffd0f8,#d0e8ff)', emojis:['🌈','⭐','💫','✨','🌈'] },
-  stars:    { style:'background:linear-gradient(135deg,#1a1040,#3a2060)', emojis:['⭐','🌟','💫','✨','🌙'] },
-  forest:   { style:'background:linear-gradient(135deg,#d0f8e0,#e8f8d0)', emojis:['🌲','🌿','🍀','🌺','🦋'] },
-  ocean:    { style:'background:linear-gradient(135deg,#d0e8ff,#d0fff8)', emojis:['🌊','🐚','🐠','💧','🌊'] },
-};
-function setOption(group, btn) {
-  document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-  outfit[group] = btn.dataset.val;
-  updateMelody();
-}
-function updateMelody() {
-  const display = document.getElementById('melody-display');
-  const hoodEl = document.getElementById('layer-hood');
-  hoodEl.textContent = hoodEmojis[outfit.hood] || '';
-  hoodEl.classList.toggle('show', !!outfit.hood);
-  const dressEl = document.getElementById('layer-dress');
-  dressEl.textContent = dressEmojis[outfit.dress] || '';
-  dressEl.classList.toggle('show', !!outfit.dress);
-  const accEl = document.getElementById('layer-acc');
-  accEl.textContent = accEmojis[outfit.acc] || '';
-  accEl.classList.toggle('show', !!outfit.acc);
-  const bgEl = document.getElementById('layer-bg');
-  const bg = bgData[outfit.bg] || bgData[''];
-  display.setAttribute('style', bg.style + ';border-radius:30px;padding:1.5rem;text-align:center;box-shadow:0 10px 30px rgba(255,126,179,0.2);border:3px solid var(--pink-light);position:relative;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background 0.5s;overflow:hidden;');
-  bgEl.textContent = bg.emojis.join(' ');
-  bgEl.classList.toggle('show', bg.emojis.length > 0);
-  document.getElementById('outfit-label').textContent = outfitLabels[outfit.dress] || 'My Melody ✨';
-}
-function saveOutfit() { confetti(); showToast('💾 Outfit saved! Melody looks amazing! 🎀'); }
-
-// ========== GACHA ITEMS ==========
+// ========== GACHA ITEMS (EXPANDED) ==========
 const gachaItems = [
+  // COMMON (18)
   {id:'c1',name:'Pink Flower',emoji:'🌸',rarity:'common',desc:'A delicate sakura petal.'},
   {id:'c2',name:'Strawberry',emoji:'🍓',rarity:'common',desc:'Sweet and fresh!'},
   {id:'c3',name:'Pink Ribbon',emoji:'🎀',rarity:'common',desc:'My Melody\'s signature ribbon!'},
@@ -1070,6 +697,13 @@ const gachaItems = [
   {id:'c10',name:'Fluffy Cloud',emoji:'☁️',rarity:'common',desc:'Soft like Cinnamoroll!'},
   {id:'c11',name:'Sweet Cupcake',emoji:'🧁',rarity:'common',desc:'From the pink bakery!'},
   {id:'c12',name:'Cherry Blossom',emoji:'🌺',rarity:'common',desc:'A magical bloom.'},
+  {id:'c13',name:'Pink Balloon',emoji:'🎈',rarity:'common',desc:'Floats up to Mariland!'},
+  {id:'c14',name:'Bunny Ears',emoji:'🐰',rarity:'common',desc:'Soft fluffy bunny ears.'},
+  {id:'c15',name:'Pink Heart',emoji:'💗',rarity:'common',desc:'A tiny pink heart.'},
+  {id:'c16',name:'Daisy Flower',emoji:'🌼',rarity:'common',desc:'From My Melody\'s meadow.'},
+  {id:'c17',name:'Soft Pillow',emoji:'🛏️',rarity:'common',desc:'Perfect for napping!'},
+  {id:'c18',name:'Letter Seal',emoji:'📮',rarity:'common',desc:'To seal love letters!'},
+  // RARE (14)
   {id:'r1',name:'Melody\'s Apron',emoji:'🧣',rarity:'rare',desc:'A cute pink apron!'},
   {id:'r2',name:'Magic Wand',emoji:'🪄',rarity:'rare',desc:'Pink fairy dust inside!'},
   {id:'r3',name:'Music Note',emoji:'🎵',rarity:'rare',desc:'From My Melody\'s song~'},
@@ -1080,6 +714,11 @@ const gachaItems = [
   {id:'r8',name:'Love Letter',emoji:'💌',rarity:'rare',desc:'Sealed with a heart!'},
   {id:'r9',name:'Bunny Slippers',emoji:'🩰',rarity:'rare',desc:'Cozy pink slippers!'},
   {id:'r10',name:'Star Clip',emoji:'📎',rarity:'rare',desc:'Golden star paper clip!'},
+  {id:'r11',name:'Melody Music Box',emoji:'🎶',rarity:'rare',desc:'Plays her theme!'},
+  {id:'r12',name:'Flower Crown',emoji:'👑',rarity:'rare',desc:'A crown of pink roses.'},
+  {id:'r13',name:'Strawberry Jam',emoji:'🍯',rarity:'rare',desc:'Made in My Melody\'s kitchen!'},
+  {id:'r14',name:'Puffy Sticker Sheet',emoji:'🗂️',rarity:'rare',desc:'30 Sanrio puffy stickers!'},
+  // EPIC (12)
   {id:'e1',name:'Melody\'s Hood',emoji:'🎭',rarity:'epic',desc:'The iconic pink hood!'},
   {id:'e2',name:'Forest Fairy Wings',emoji:'🧚',rarity:'epic',desc:'Magical enchanted wings!'},
   {id:'e3',name:'Stardust Charm',emoji:'✨',rarity:'epic',desc:'From a shooting star.'},
@@ -1089,404 +728,334 @@ const gachaItems = [
   {id:'e7',name:'Melody\'s Diary',emoji:'📔',rarity:'epic',desc:'Filled with sweet secrets!'},
   {id:'e8',name:'Enchanted Mirror',emoji:'🪞',rarity:'epic',desc:'Shows your most adorable self!'},
   {id:'e9',name:'Kuromi\'s Skull Bow',emoji:'💀',rarity:'epic',desc:'A gift from Kuromi!'},
+  {id:'e10',name:'Fairy Godmother Wand',emoji:'🪄',rarity:'epic',desc:'Grants one pink wish!'},
+  {id:'e11',name:'Blossom Portal',emoji:'🌸',rarity:'epic',desc:'Door to Mariland!'},
+  {id:'e12',name:'Glitter Snowglobe',emoji:'🔮',rarity:'epic',desc:'My Melody inside!'},
+  // LEGENDARY (10)
   {id:'l1',name:'Melody\'s Flower Basket',emoji:'🧺',rarity:'legendary',desc:'My Melody\'s legendary basket!'},
   {id:'l2',name:'Crystal Heart',emoji:'💎',rarity:'legendary',desc:'Glows pink magically!'},
   {id:'l3',name:'Golden Bunny Figurine',emoji:'🏆',rarity:'legendary',desc:'A solid gold statue!'},
-  {id:'l4',name:'Celestial Star Staff',emoji:'⭐',rarity:'legendary',desc:'Made from a fallen star!'},
+  {id:'l4',name:'Celestial Star Staff',emoji:'🌠',rarity:'legendary',desc:'Made from a fallen star!'},
   {id:'l5',name:'Pink Unicorn',emoji:'🦄',rarity:'legendary',desc:'From Mariland!'},
   {id:'l6',name:'Melody\'s Music Box',emoji:'🎁',rarity:'legendary',desc:'Plays her theme when opened!'},
   {id:'l7',name:'Time Capsule Ribbon',emoji:'🎀',rarity:'legendary',desc:'My Melody\'s first ribbon!'},
-  {id:'s1',name:'MY MELODY HERSELF',emoji:'🐰✨🌸',rarity:'secret',desc:'The rarest of all! So lucky!'},
+  {id:'l8',name:'Starlight Carriage',emoji:'🚗',rarity:'legendary',desc:'Pink carriage made of moonlight!'},
+  {id:'l9',name:'The Pink Library',emoji:'📚',rarity:'legendary',desc:'Every Sanrio story ever!'},
+  {id:'l10',name:'Magical Forest Deed',emoji:'🌲',rarity:'legendary',desc:'You own a piece of Mariland!'},
+  // SECRET (7)
+  {id:'s1',name:'MY MELODY HERSELF',emoji:'🐰✨🌸',rarity:'secret',desc:'The rarest of all! Congratulations, so lucky!'},
   {id:'s2',name:'Mariland Treasure Map',emoji:'🗺️💖',rarity:'secret',desc:'Map to the secret garden!'},
   {id:'s3',name:'Legendary Pink Cape',emoji:'🦸‍♀️🎀',rarity:'secret',desc:'My Melody\'s superhero cape!'},
   {id:'s4',name:'Cosmos Bunny Crown',emoji:'👑🌸✨',rarity:'secret',desc:'Crown of the Queen of Mariland!'},
   {id:'s5',name:'Friendship Locket',emoji:'💝🐰💝',rarity:'secret',desc:'All Sanrio friends together forever!'},
+  {id:'s6',name:'Eternal Sakura Tree',emoji:'🌸🌳🌸',rarity:'secret',desc:'A magical tree that blooms forever!'},
+  {id:'s7',name:'Melody\'s Soul Star',emoji:'⭐💗⭐',rarity:'secret',desc:'The actual star My Melody was born under!'},
 ];
-const rarityColors = { common:'#909090', rare:'#2060c0', epic:'#8030c0', legendary:'#c07000', secret:'#c020a0' };
-const rarityEmoji = { common:'⚪', rare:'🔵', epic:'💜', legendary:'🌟', secret:'💖' };
+const rarityColors = {common:'#909090',rare:'#2060c0',epic:'#8030c0',legendary:'#c07000',secret:'#c020a0'};
+const rarityEmoji = {common:'⚪',rare:'🔵',epic:'💜',legendary:'🌟',secret:'💖'};
 
-function rollRarity() {
-  const r = Math.random()*100;
-  if (r < 2) return 'secret';
-  if (r < 10) return 'legendary';
-  if (r < 25) return 'epic';
-  if (r < 50) return 'rare';
-  return 'common';
+// ========== COINS ==========
+function updateCoins(amt, msg) {
+  coins += amt;
+  document.getElementById('nav-coins').textContent = coins;
+  document.getElementById('shop-coins').textContent = coins;
+  document.getElementById('gacha-coins').textContent = coins;
+  document.getElementById('market-coins').textContent = coins;
+  if (msg) showToast(msg);
 }
-function getItemByRarity(rarity) {
-  const pool = gachaItems.filter(i => i.rarity === rarity);
-  return pool[Math.floor(Math.random()*pool.length)];
-}
-function addToCollection(item) {
-  if (!collection[item.id]) collection[item.id] = {...item, count:0};
-  collection[item.id].count++;
-  updateCollectionUI();
-}
-function pullGacha(times) {
-  const cost = times === 1 ? 30 : 250;
-  if (coins < cost) { showToast('🪙 Not enough coins! Play mini games first!'); return; }
-  updateCoins(-cost);
-  const orb = document.getElementById('gacha-orb');
-  orb.classList.add('spinning');
-  setTimeout(() => {
-    orb.classList.remove('spinning');
-    if (times === 1) {
-      const rarity = rollRarity();
-      const item = getItemByRarity(rarity);
-      addToCollection(item);
-      if (rarity === 'secret') confetti();
-      showModal(`<div style="font-size:0.8rem;font-weight:800;color:${rarityColors[rarity]};margin-bottom:0.5rem;">${rarityEmoji[rarity]} ${rarity.toUpperCase()}</div><span class="result-item-emoji">${item.emoji}</span><div class="result-name">${item.name}</div><div class="result-desc">${item.desc}</div>`);
-    } else {
-      const pulled = [];
-      for (let i=0;i<10;i++) { const r=rollRarity(); const it=getItemByRarity(r); addToCollection(it); pulled.push({...it,rarity:r}); }
-      if (pulled.some(p=>p.rarity==='secret')) confetti();
-      showModal(`<div style="font-weight:800;font-size:1.1rem;margin-bottom:1rem;color:var(--pink-deep);">🎰 10x Pull Results!</div><div class="multi-results">${pulled.map(p=>`<div class="mini-result" style="border:2px solid ${rarityColors[p.rarity]}"><div class="emoji">${p.emoji}</div><div class="mini-name">${p.name}</div><div class="mini-rarity" style="color:${rarityColors[p.rarity]}">${rarityEmoji[p.rarity]} ${p.rarity}</div></div>`).join('')}</div>`);
-    }
-  }, 800);
-}
-function updateCollectionUI() {
-  const total = gachaItems.length, owned = Object.keys(collection).length;
-  document.getElementById('collection-progress').textContent = `${owned}/${total} items unlocked`;
-  document.getElementById('collection-mini').innerHTML = gachaItems.map(item => `<div title="${item.name}" style="font-size:1.5rem;opacity:${collection[item.id]?1:0.2};">${item.emoji}</div>`).join('');
-  document.getElementById('full-collection').innerHTML = gachaItems.map(item => {
-    const own = collection[item.id];
-    return `<div class="col-item ${own?'':'locked'}" style="${own?'border-color:'+rarityColors[item.rarity]:''}"><span class="emoji">${item.emoji}</span><div class="name">${item.name}</div><div class="count" style="color:${rarityColors[item.rarity]}">${own?`x${own.count} ${rarityEmoji[item.rarity]}`:'???'}</div></div>`;
+
+// ========== FLOATIES ==========
+const floatEmojis=['🌸','🎀','💕','⭐','🍓','🌷','✨','🐰','💖','🌼'];
+const fc=document.getElementById('floaties');
+for(let i=0;i<20;i++){const f=document.createElement('div');f.className='floaty';f.textContent=floatEmojis[Math.floor(Math.random()*floatEmojis.length)];f.style.left=Math.random()*100+'vw';f.style.animationDuration=(8+Math.random()*12)+'s';f.style.animationDelay=(Math.random()*10)+'s';f.style.fontSize=(1+Math.random())+'rem';fc.appendChild(f);}
+
+// ========== CHARACTERS ==========
+const charInfo={mymelody:{name:'My Melody',desc:'My Melody lives in a magical forest called Mariland! She loves baking and playing with friends. Her signature pink hood is the cutest thing ever! 🌸',emoji:'🐰'},hellokitty:{name:'Hello Kitty',desc:'Hello Kitty lives in London with her family! She loves cookies, piano, and friends. No mouth but says everything with her heart! 🍪',emoji:'🐱'},cinnamoroll:{name:'Cinnamoroll',desc:'Cinnamoroll is a fluffy white puppy who loves flying! He lives in a café and loves cinnamon rolls! ☁️',emoji:'🐶'},pompompurin:{name:'Pompompurin',desc:'Pompompurin is a golden retriever who loves pudding! He always wears his brown beret! 🍮',emoji:'🍮'},kuromi:{name:'Kuromi',desc:'Kuromi is My Melody\'s mischievous rival! Despite her edgy looks, she loves romance and cute things. Best frenemies! 🖤',emoji:'🖤'},keroppi:{name:'Keroppi',desc:'Keroppi is a cheerful frog who lives by Donut Pond! He loves singing and adventures! 🐸',emoji:'🐸'}};
+function showCharInfo(id){const c=charInfo[id];showModal(`<span class="result-item-emoji">${c.emoji}</span><div class="result-name">${c.name}</div><div class="result-desc">${c.desc}</div>`);}
+
+// ========== ICE CREAM ==========
+function buyIceCream(name,price,emoji){cart.push({name,price,emoji});renderCart();showToast(`${emoji} ${name} added!`);}
+function renderCart(){const el=document.getElementById('cart-items');const tot=document.getElementById('cart-total');if(!cart.length){el.innerHTML='<div class="empty-cart">🎀 Your cart is empty!</div>';tot.textContent='0';return;}let total=0;el.innerHTML=cart.map((item,i)=>`<div class="cart-item"><span>${item.emoji} ${item.name}</span><span>🪙${item.price} <button onclick="removeCartItem(${i})" style="background:none;border:none;cursor:pointer;color:#e8527a;font-size:0.8rem;">✕</button></span></div>`).join('');cart.forEach(i=>total+=i.price);tot.textContent=total;}
+function removeCartItem(i){cart.splice(i,1);renderCart();}
+function checkout(){if(!cart.length){showToast('🛒 Add something first!');return;}const total=cart.reduce((s,i)=>s+i.price,0);if(coins<total){showToast('🪙 Not enough coins!');return;}updateCoins(-total,`💝 Yum! Spent 🪙${total}!`);const items=cart.map(i=>i.emoji).join('');cart=[];renderCart();confetti();showModal(`<span class="result-item-emoji">${items}</span><div class="result-name">Order Complete!</div><div class="result-desc">Enjoy your ice cream! 🍦✨<br>Spent 🪙 ${total}</div>`);}
+
+// ========== MARKET ==========
+let currentTab='notebooks';
+function switchTab(tab,event){currentTab=tab;document.querySelectorAll('.mtab').forEach(b=>b.classList.remove('active'));if(event&&event.target)event.target.classList.add('active');renderMarket();}
+function renderMarket(){
+  const grid=document.getElementById('market-grid');
+  const items=marketItems[currentTab]||[];
+  grid.innerHTML=items.map(item=>{
+    const owned=inventory[item.id]||0;
+    return `<div class="market-card"><span class="mc-emoji">${item.emoji}</span><div class="mc-name">${item.name}</div><div class="mc-char">${item.char}</div><div class="mc-desc">${item.desc}</div><div class="mc-price">🪙 ${item.price}</div><div class="mc-owned">${owned>0?'✅ Owned ×'+owned:''}</div><button class="market-buy" onclick="buyMarketItem('${item.id}')" ${coins<item.price?'disabled':''}>🛍️ Buy!</button></div>`;
   }).join('');
+}
+function buyMarketItem(id){
+  const item=allMarketItems[id];if(!item)return;
+  if(coins<item.price){showToast('🪙 Not enough coins!');return;}
+  updateCoins(-item.price,`${item.emoji} Bought ${item.name}!`);
+  inventory[item.id]=(inventory[item.id]||0)+1;
+  updateBagBadge();renderMarket();confetti();
+  showModal(`<span class="result-item-emoji">${item.emoji}</span><div class="result-name">${item.name}</div><div class="result-desc">Added to your bag! 🎒<br>Spent 🪙 ${item.price}</div>`);
+}
+function updateBagBadge(){
+  const total=Object.values(inventory).reduce((s,v)=>s+v,0)+Object.keys(collection).length;
+  const badge=document.getElementById('bag-badge');
+  if(total>0){badge.textContent=total;badge.style.display='flex';}else{badge.style.display='none';}
+}
+
+// ========== OUTFIT ==========
+const outfitLabels={'':'Classic My Melody',princess:'Princess Melody ✨',maid:'Maid Melody 🎀',summer:'Summer Melody ☀️',winter:'Winter Melody ❄️',school:'School Melody 📚',baker:'Baker Melody 🧁',magical:'Magical Girl Melody ✨'};
+const dressEmojis={princess:'👗',maid:'🥻',summer:'👙',winter:'🧥',school:'🎒',baker:'👔',magical:'🌟'};
+const hoodEmojis={'pink-hood':'🌸','red-hood':'❤️','star-hood':'⭐','flower-hood':'🌻','bow-hood':'🎀','crown-hood':'👑','witch-hood':'🧙'};
+const accEmojis={basket:'🧺',flowers:'💐',guitar:'🎸',wand:'🪄',cake:'🎂',umbrella:'☂️',bag:'👜'};
+const bgData={'':{ style:'background:linear-gradient(135deg,#fff5f8,#ffe8f0)',emojis:[]},sakura:{style:'background:linear-gradient(135deg,#ffe8f8,#ffd0e8)',emojis:['🌸','🌸','🌸','🌸','🌸']},rainbow:{style:'background:linear-gradient(135deg,#ffd0f8,#d0e8ff)',emojis:['🌈','⭐','💫','✨','🌈']},stars:{style:'background:linear-gradient(135deg,#1a1040,#3a2060)',emojis:['⭐','🌟','💫','✨','🌙']},forest:{style:'background:linear-gradient(135deg,#d0f8e0,#e8f8d0)',emojis:['🌲','🌿','🍀','🌺','🦋']},ocean:{style:'background:linear-gradient(135deg,#d0e8ff,#d0fff8)',emojis:['🌊','🐚','🐠','💧','🌊']}};
+function setOption(group,btn){document.querySelectorAll(`[data-group="${group}"]`).forEach(b=>b.classList.remove('active'));btn.classList.add('active');outfit[group]=btn.dataset.val;updateMelody();}
+function updateMelody(){const display=document.getElementById('melody-display');const hoodEl=document.getElementById('layer-hood');hoodEl.textContent=hoodEmojis[outfit.hood]||'';hoodEl.classList.toggle('show',!!outfit.hood);const dressEl=document.getElementById('layer-dress');dressEl.textContent=dressEmojis[outfit.dress]||'';dressEl.classList.toggle('show',!!outfit.dress);const accEl=document.getElementById('layer-acc');accEl.textContent=accEmojis[outfit.acc]||'';accEl.classList.toggle('show',!!outfit.acc);const bgEl=document.getElementById('layer-bg');const bg=bgData[outfit.bg]||bgData[''];display.setAttribute('style',bg.style+';border-radius:30px;padding:1.5rem;text-align:center;box-shadow:0 10px 30px rgba(255,126,179,0.2);border:3px solid var(--pink-light);position:relative;min-height:320px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:background 0.5s;overflow:hidden;');bgEl.textContent=bg.emojis.join(' ');bgEl.classList.toggle('show',bg.emojis.length>0);document.getElementById('outfit-label').textContent=outfitLabels[outfit.dress]||'My Melody ✨';}
+function saveOutfit(){confetti();showToast('💾 Outfit saved! 🎀');}
+
+// ========== GACHA ==========
+function rollRarity(){const r=Math.random()*100;if(r<2)return'secret';if(r<10)return'legendary';if(r<25)return'epic';if(r<50)return'rare';return'common';}
+function getItemByRarity(rarity){const pool=gachaItems.filter(i=>i.rarity===rarity);return pool[Math.floor(Math.random()*pool.length)];}
+function addToCollection(item){if(!collection[item.id])collection[item.id]={...item,count:0};collection[item.id].count++;updateCollectionUI();updateBagBadge();}
+function pullGacha(times){
+  const cost=times===1?30:250;
+  if(coins<cost){showToast('🪙 Not enough coins!');return;}
+  updateCoins(-cost);
+  const orb=document.getElementById('gacha-orb');orb.classList.add('spinning');
+  setTimeout(()=>{
+    orb.classList.remove('spinning');
+    if(times===1){
+      const rarity=rollRarity();const item=getItemByRarity(rarity);addToCollection(item);
+      if(rarity==='secret')confetti();
+      showModal(`<div style="font-size:0.8rem;font-weight:800;color:${rarityColors[rarity]};margin-bottom:0.5rem;">${rarityEmoji[rarity]} ${rarity.toUpperCase()}</div><span class="result-item-emoji">${item.emoji}</span><div class="result-name">${item.name}</div><div class="result-desc">${item.desc}</div>`);
+    }else{
+      const pulled=[];for(let i=0;i<10;i++){const r=rollRarity();const it=getItemByRarity(r);addToCollection(it);pulled.push({...it,rarity:r});}
+      if(pulled.some(p=>p.rarity==='secret'))confetti();
+      showModal(`<div style="font-weight:800;font-size:1.1rem;margin-bottom:1rem;color:var(--pink-deep);">🎰 10x Pull Results!</div><div class="multi-results">${pulled.map(p=>`<div class="mini-result" style="border:2px solid ${rarityColors[p.rarity]}"><div class="emoji">${p.emoji}</div><div class="mini-name">${p.name}</div><div class="mini-rarity" style="color:${rarityColors[p.rarity]}">${rarityEmoji[p.rarity]}</div></div>`).join('')}</div>`);
+    }
+  },800);
+}
+function updateCollectionUI(){
+  const total=gachaItems.length,owned=Object.keys(collection).length;
+  document.getElementById('collection-progress').textContent=`${owned}/${total} items unlocked`;
+  document.getElementById('collection-mini').innerHTML=gachaItems.map(item=>`<div title="${item.name}" style="font-size:1.5rem;opacity:${collection[item.id]?1:0.2};">${item.emoji}</div>`).join('');
+  document.getElementById('full-collection').innerHTML=gachaItems.map(item=>{const own=collection[item.id];return`<div class="col-item ${own?'':'locked'}" style="${own?'border-color:'+rarityColors[item.rarity]:''}"><span class="emoji">${item.emoji}</span><div class="name">${item.name}</div><div class="count" style="color:${rarityColors[item.rarity]}">${own?`x${own.count} ${rarityEmoji[item.rarity]}`:'???'}</div></div>`;}).join('');
 }
 updateCollectionUI();
 
-// ========== DAILY BONUS ==========
-function claimDaily() {
-  if (dailyClaimed) { showToast('✅ Already claimed today! Come back tomorrow!'); return; }
-  dailyClaimed = true;
-  document.getElementById('daily-btn').textContent = '✅ Claimed!';
-  document.getElementById('daily-btn').disabled = true;
-  updateCoins(50, '🎁 Daily bonus! +50 🪙');
-  confetti();
-}
+// ========== DAILY ==========
+function claimDaily(){if(dailyClaimed){showToast('✅ Already claimed today!');return;}dailyClaimed=true;document.getElementById('daily-btn').textContent='✅ Claimed!';document.getElementById('daily-btn').disabled=true;updateCoins(50,'🎁 Daily bonus! +50 🪙');confetti();}
 
 // ========== CATCH GAME ==========
-let catchRunning = false, catchAnimFrame;
-function startCatchGame() { document.getElementById('catch-overlay').classList.add('show'); runCatchGame(); }
-function closeCatch() { catchRunning=false; cancelAnimationFrame(catchAnimFrame); document.getElementById('catch-overlay').classList.remove('show'); }
-function runCatchGame() {
-  const canvas = document.getElementById('catch-canvas');
-  const ctx = canvas.getContext('2d');
-  const W = canvas.width, H = canvas.height;
-  let score=0, lives=3, gameOver=false;
-  let basketX = W/2;
-  const items = [];
-  let lastSpawn = 0;
-  const icEmojis = ['🍦','🍓','🍒','🍮','🧁','🍭'];
-  canvas.onmousemove = e => { const r=canvas.getBoundingClientRect(); basketX=(e.clientX-r.left)*(W/r.width); };
-  canvas.ontouchmove = e => { e.preventDefault(); const r=canvas.getBoundingClientRect(); basketX=(e.touches[0].clientX-r.left)*(W/r.width); };
-  catchRunning = true;
-  function loop(ts) {
-    if (!catchRunning) return;
-    ctx.clearRect(0,0,W,H);
-    const grad = ctx.createLinearGradient(0,0,0,H);
-    grad.addColorStop(0,'#ffe8f8'); grad.addColorStop(1,'#ffd0e8');
-    ctx.fillStyle = grad; ctx.fillRect(0,0,W,H);
-    if (ts - lastSpawn > 800 - Math.min(score*5,500)) {
-      items.push({x:30+Math.random()*(W-60), y:-20, speed:2+Math.random()*2+score*0.05, emoji:icEmojis[Math.floor(Math.random()*icEmojis.length)]});
-      lastSpawn = ts;
-    }
-    for (let i=items.length-1;i>=0;i--) {
-      const it = items[i]; it.y += it.speed;
-      ctx.font='28px serif'; ctx.fillText(it.emoji,it.x-14,it.y);
-      const bx = basketX-35;
-      if (it.y>H-40&&it.y<H&&it.x>bx&&it.x<bx+70) {
-        items.splice(i,1); score++; updateCoins(2);
-        document.getElementById('catch-score').textContent=score;
-        const best = parseInt(document.getElementById('catch-best').textContent)||0;
-        if (score>best) document.getElementById('catch-best').textContent=score;
-      } else if (it.y>H+10) {
-        items.splice(i,1); lives--;
-        document.getElementById('catch-lives').textContent=lives;
-        if (lives<=0) gameOver=true;
-      }
-    }
-    ctx.fillStyle='#ff7eb3'; ctx.beginPath();
-    if (ctx.roundRect) ctx.roundRect(basketX-35,H-30,70,30,8); else ctx.rect(basketX-35,H-30,70,30);
-    ctx.fill(); ctx.font='20px serif'; ctx.fillText('🧺',basketX-14,H-5);
-    if (gameOver) {
-      ctx.fillStyle='rgba(0,0,0,0.5)'; ctx.fillRect(0,0,W,H);
-      ctx.fillStyle='white'; ctx.font='bold 24px Nunito,sans-serif'; ctx.textAlign='center';
-      ctx.fillText('Game Over! 🎀',W/2,H/2-20);
-      ctx.font='18px Nunito,sans-serif';
-      ctx.fillText(`Score: ${score} | Earned: 🪙${score*2}`,W/2,H/2+15);
-      ctx.fillText('Tap to play again!',W/2,H/2+45);
-      canvas.onclick = ()=>{ canvas.onclick=null; runCatchGame(); };
-      catchRunning=false; return;
-    }
-    catchAnimFrame = requestAnimationFrame(loop);
+let catchRunning=false,catchAnimFrame;
+function startCatchGame(){document.getElementById('catch-overlay').classList.add('show');runCatchGame();}
+function closeCatch(){catchRunning=false;cancelAnimationFrame(catchAnimFrame);document.getElementById('catch-overlay').classList.remove('show');}
+function runCatchGame(){
+  const canvas=document.getElementById('catch-canvas');const ctx=canvas.getContext('2d');const W=canvas.width,H=canvas.height;
+  let score=0,lives=3,gameOver=false,basketX=W/2,items=[],lastSpawn=0;
+  const icEmojis=['🍦','🍓','🍒','🍮','🧁','🍭'];
+  canvas.onmousemove=e=>{const r=canvas.getBoundingClientRect();basketX=(e.clientX-r.left)*(W/r.width);};
+  canvas.ontouchmove=e=>{e.preventDefault();const r=canvas.getBoundingClientRect();basketX=(e.touches[0].clientX-r.left)*(W/r.width);};
+  catchRunning=true;
+  function loop(ts){
+    if(!catchRunning)return;
+    ctx.clearRect(0,0,W,H);const bg=ctx.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#ffe8f8');bg.addColorStop(1,'#ffd0e8');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+    if(ts-lastSpawn>800-Math.min(score*5,500)){items.push({x:30+Math.random()*(W-60),y:-20,speed:2+Math.random()*2+score*0.05,emoji:icEmojis[Math.floor(Math.random()*icEmojis.length)]});lastSpawn=ts;}
+    for(let i=items.length-1;i>=0;i--){const it=items[i];it.y+=it.speed;ctx.font='28px serif';ctx.fillText(it.emoji,it.x-14,it.y);const bx=basketX-35;if(it.y>H-40&&it.y<H&&it.x>bx&&it.x<bx+70){items.splice(i,1);score++;updateCoins(2);document.getElementById('catch-score').textContent=score;const b=parseInt(document.getElementById('catch-best').textContent)||0;if(score>b)document.getElementById('catch-best').textContent=score;}else if(it.y>H+10){items.splice(i,1);lives--;document.getElementById('catch-lives').textContent=lives;if(lives<=0)gameOver=true;}}
+    ctx.fillStyle='#ff7eb3';ctx.beginPath();if(ctx.roundRect)ctx.roundRect(basketX-35,H-30,70,30,8);else ctx.rect(basketX-35,H-30,70,30);ctx.fill();ctx.font='20px serif';ctx.fillText('🧺',basketX-14,H-5);
+    if(gameOver){ctx.fillStyle='rgba(0,0,0,0.5)';ctx.fillRect(0,0,W,H);ctx.fillStyle='white';ctx.font='bold 24px Nunito,sans-serif';ctx.textAlign='center';ctx.fillText('Game Over! 🎀',W/2,H/2-20);ctx.font='18px Nunito,sans-serif';ctx.fillText(`Score: ${score} | Earned: 🪙${score*2}`,W/2,H/2+15);ctx.fillText('Tap to play again!',W/2,H/2+45);canvas.onclick=()=>{canvas.onclick=null;runCatchGame();};catchRunning=false;return;}
+    catchAnimFrame=requestAnimationFrame(loop);
   }
   requestAnimationFrame(loop);
 }
 
 // ========== MEMORY GAME ==========
-const memCards = ['🐰','🐱','🐶','🍮','🖤','🐸','🌸','🎀'];
-let memFlipped=[], memMatched=[], memLocked=false, memScore=0, memBest=0;
-function startMemoryGame() { document.getElementById('memory-overlay').classList.add('show'); buildMemoryBoard(); }
-function closeMemory() { document.getElementById('memory-overlay').classList.remove('show'); }
-function buildMemoryBoard() {
-  memFlipped=[]; memMatched=[]; memLocked=false; memScore=0;
-  document.getElementById('mem-score').textContent=0;
-  document.getElementById('mem-pairs').textContent=0;
-  document.getElementById('mem-result').textContent='';
-  const cards = [...memCards,...memCards].sort(()=>Math.random()-0.5);
-  document.getElementById('memory-board').innerHTML = cards.map((c,i) =>
-    `<div onclick="flipCard(${i})" id="mc${i}" data-val="${c}" data-flipped="false" style="height:70px;background:linear-gradient(135deg,#ff7eb3,#e8527a);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 10px rgba(255,126,179,0.3);">❓</div>`
-  ).join('');
-}
-function flipCard(i) {
-  if (memLocked) return;
-  const card = document.getElementById('mc'+i);
-  if (card.dataset.flipped==='true' || memMatched.includes(i)) return;
-  card.textContent=card.dataset.val; card.dataset.flipped='true';
-  card.style.background='white'; card.style.border='2px solid #ff7eb3';
-  memFlipped.push(i);
-  if (memFlipped.length===2) {
-    memLocked=true;
-    const [a,b]=memFlipped, ca=document.getElementById('mc'+a), cb=document.getElementById('mc'+b);
-    if (ca.dataset.val===cb.dataset.val) {
-      memMatched.push(a,b);
-      ca.style.background='linear-gradient(135deg,#d0ffd8,#a0f0a0)';
-      cb.style.background='linear-gradient(135deg,#d0ffd8,#a0f0a0)';
-      memFlipped=[]; memLocked=false; memScore+=10; updateCoins(10);
-      document.getElementById('mem-score').textContent=memScore;
-      document.getElementById('mem-pairs').textContent=memMatched.length/2;
-      if (memScore>memBest) { memBest=memScore; document.getElementById('mem-best').textContent=memBest; }
-      if (memMatched.length===16) { confetti(); document.getElementById('mem-result').textContent=`🎉 You won! +🪙${memScore} total!`; showToast(`🌸 Memory done! +🪙${memScore}`); }
-    } else {
-      setTimeout(()=>{ ca.textContent='❓'; ca.dataset.flipped='false'; ca.style.background='linear-gradient(135deg,#ff7eb3,#e8527a)'; ca.style.border='none'; cb.textContent='❓'; cb.dataset.flipped='false'; cb.style.background='linear-gradient(135deg,#ff7eb3,#e8527a)'; cb.style.border='none'; memFlipped=[]; memLocked=false; }, 800);
-    }
-  }
-}
+const memCards=['🐰','🐱','🐶','🍮','🖤','🐸','🌸','🎀'];
+let memFlipped=[],memMatched=[],memLocked=false,memScore=0,memBest=0;
+function startMemoryGame(){document.getElementById('memory-overlay').classList.add('show');buildMemoryBoard();}
+function closeMemory(){document.getElementById('memory-overlay').classList.remove('show');}
+function buildMemoryBoard(){memFlipped=[];memMatched=[];memLocked=false;memScore=0;document.getElementById('mem-score').textContent=0;document.getElementById('mem-pairs').textContent=0;document.getElementById('mem-result').textContent='';const cards=[...memCards,...memCards].sort(()=>Math.random()-0.5);document.getElementById('memory-board').innerHTML=cards.map((c,i)=>`<div onclick="flipCard(${i})" id="mc${i}" data-val="${c}" data-flipped="false" style="height:70px;background:linear-gradient(135deg,#ff7eb3,#e8527a);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;transition:all 0.3s;">❓</div>`).join('');}
+function flipCard(i){if(memLocked)return;const card=document.getElementById('mc'+i);if(card.dataset.flipped==='true'||memMatched.includes(i))return;card.textContent=card.dataset.val;card.dataset.flipped='true';card.style.background='white';card.style.border='2px solid #ff7eb3';memFlipped.push(i);if(memFlipped.length===2){memLocked=true;const[a,b]=memFlipped,ca=document.getElementById('mc'+a),cb=document.getElementById('mc'+b);if(ca.dataset.val===cb.dataset.val){memMatched.push(a,b);ca.style.background='linear-gradient(135deg,#d0ffd8,#a0f0a0)';cb.style.background='linear-gradient(135deg,#d0ffd8,#a0f0a0)';memFlipped=[];memLocked=false;memScore+=10;updateCoins(10);document.getElementById('mem-score').textContent=memScore;document.getElementById('mem-pairs').textContent=memMatched.length/2;if(memScore>memBest){memBest=memScore;document.getElementById('mem-best').textContent=memBest;}if(memMatched.length===16){confetti();document.getElementById('mem-result').textContent=`🎉 You won! +🪙${memScore}!`;}}else{setTimeout(()=>{ca.textContent='❓';ca.dataset.flipped='false';ca.style.background='linear-gradient(135deg,#ff7eb3,#e8527a)';ca.style.border='none';cb.textContent='❓';cb.dataset.flipped='false';cb.style.background='linear-gradient(135deg,#ff7eb3,#e8527a)';cb.style.border='none';memFlipped=[];memLocked=false;},800);}}}
 
-// ========== WHACK-A-KUROMI ==========
-let whackRunning=false, whackAnimFrame, whackScore=0, whackBestScore=0, whackTimeLeft=30, whackHoles=[], whackInterval=null, whackCountdown=null;
-function startWhackGame() {
-  document.getElementById('whack-overlay').classList.add('show');
-  whackScore=0; whackTimeLeft=30;
-  document.getElementById('whack-score').textContent=0;
-  document.getElementById('whack-time').textContent=30;
-  document.getElementById('whack-msg').textContent='Click Kuromi (🖤) — Not Melody (🐰)!';
-  runWhackGame();
-}
-function closeWhack() {
-  whackRunning=false; cancelAnimationFrame(whackAnimFrame);
-  clearInterval(whackInterval); clearInterval(whackCountdown);
-  document.getElementById('whack-overlay').classList.remove('show');
-}
-function runWhackGame() {
-  const canvas = document.getElementById('whack-canvas');
-  const ctx = canvas.getContext('2d');
-  const W=canvas.width, H=canvas.height;
-  const cols=3, rows=3, holeW=110, holeH=80;
-  const holes = [];
-  for (let r=0;r<rows;r++) for (let c=0;c<cols;c++) {
-    const x = (W/cols)*c + (W/cols)/2;
-    const y = (H/rows)*r + (H/rows)/2 + 20;
-    holes.push({x, y, char:'', visible:false, timer:0, hit:false});
-  }
-  whackHoles = holes;
-  function spawnChar() {
-    const free = holes.filter(h=>!h.visible);
-    if (!free.length) return;
-    const h = free[Math.floor(Math.random()*free.length)];
-    h.char = Math.random()<0.65 ? '🖤' : '🐰';
-    h.visible=true; h.hit=false; h.timer=0;
-  }
-  function drawHole(h) {
-    ctx.fillStyle='rgba(0,0,0,0.18)';
-    ctx.beginPath(); ctx.ellipse(h.x,h.y+10,40,18,0,0,Math.PI*2); ctx.fill();
-    if (h.visible) { ctx.font='46px serif'; ctx.fillText(h.char,h.x-23,h.y+18); }
-  }
-  let last=0;
-  whackRunning=true;
-  function loop(ts) {
-    if (!whackRunning) return;
-    const dt = ts-last; last=ts;
-    ctx.clearRect(0,0,W,H);
-    const bg=ctx.createLinearGradient(0,0,0,H);
-    bg.addColorStop(0,'#ffe8f8'); bg.addColorStop(1,'#f8e0f0');
-    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-    holes.forEach(h=>{
-      if (h.visible) { h.timer+=dt; if (h.timer>1400) { h.visible=false; h.char=''; } }
-      drawHole(h);
-    });
-    whackAnimFrame=requestAnimationFrame(loop);
-  }
+// ========== WHACK GAME ==========
+let whackRunning=false,whackAnimFrame,whackScore=0,whackBestScore=0,whackTimeLeft=30,whackHoles=[],whackInterval=null,whackCountdown=null;
+function startWhackGame(){document.getElementById('whack-overlay').classList.add('show');whackScore=0;whackTimeLeft=30;document.getElementById('whack-score').textContent=0;document.getElementById('whack-time').textContent=30;document.getElementById('whack-msg').textContent='Click Kuromi (🖤) — Not Melody (🐰)!';runWhackGame();}
+function closeWhack(){whackRunning=false;cancelAnimationFrame(whackAnimFrame);clearInterval(whackInterval);clearInterval(whackCountdown);document.getElementById('whack-overlay').classList.remove('show');}
+function runWhackGame(){
+  const canvas=document.getElementById('whack-canvas');const ctx=canvas.getContext('2d');const W=canvas.width,H=canvas.height;
+  const holes=[];for(let r=0;r<3;r++)for(let c=0;c<3;c++){const x=(W/3)*c+(W/3)/2,y=(H/3)*r+(H/3)/2+20;holes.push({x,y,char:'',visible:false,timer:0,hit:false});}
+  whackHoles=holes;
+  function spawnChar(){const free=holes.filter(h=>!h.visible);if(!free.length)return;const h=free[Math.floor(Math.random()*free.length)];h.char=Math.random()<0.65?'🖤':'🐰';h.visible=true;h.hit=false;h.timer=0;}
+  let last=0;whackRunning=true;
+  function loop(ts){if(!whackRunning)return;const dt=ts-last;last=ts;ctx.clearRect(0,0,W,H);const bg=ctx.createLinearGradient(0,0,0,H);bg.addColorStop(0,'#ffe8f8');bg.addColorStop(1,'#f8e0f0');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);holes.forEach(h=>{if(h.visible){h.timer+=dt;if(h.timer>1400){h.visible=false;h.char='';}}ctx.fillStyle='rgba(0,0,0,0.18)';ctx.beginPath();ctx.ellipse(h.x,h.y+10,40,18,0,0,Math.PI*2);ctx.fill();if(h.visible){ctx.font='46px serif';ctx.fillText(h.char,h.x-23,h.y+18);}});whackAnimFrame=requestAnimationFrame(loop);}
   requestAnimationFrame(loop);
-  whackInterval=setInterval(spawnChar, 900);
-  whackCountdown=setInterval(()=>{
-    whackTimeLeft--;
-    document.getElementById('whack-time').textContent=whackTimeLeft;
-    if (whackTimeLeft<=0) {
-      clearInterval(whackInterval); clearInterval(whackCountdown); whackRunning=false;
-      cancelAnimationFrame(whackAnimFrame);
-      if (whackScore>whackBestScore) { whackBestScore=whackScore; document.getElementById('whack-best').textContent=whackBestScore; }
-      document.getElementById('whack-msg').textContent=`Game Over! Score: ${whackScore} | Earned: 🪙${whackScore*5}`;
-      showToast(`🐰 Whack done! Earned 🪙${whackScore*5}`);
-    }
-  },1000);
-  canvas.onclick = e => {
-    if (!whackRunning) return;
-    const r=canvas.getBoundingClientRect();
-    const mx=(e.clientX-r.left)*(W/r.width), my=(e.clientY-r.top)*(H/r.height);
-    holes.forEach(h=>{
-      if (!h.visible||h.hit) return;
-      const dx=mx-h.x, dy=my-(h.y+10);
-      if (Math.sqrt(dx*dx+dy*dy)<40) {
-        h.hit=true; h.visible=false;
-        if (h.char==='🖤') { whackScore++; updateCoins(5); document.getElementById('whack-score').textContent=whackScore; showToast('🖤 Got Kuromi! +🪙5'); }
-        else { showToast('😱 That was Melody! -3🪙'); updateCoins(-3); }
-      }
-    });
-  };
+  whackInterval=setInterval(spawnChar,900);
+  whackCountdown=setInterval(()=>{whackTimeLeft--;document.getElementById('whack-time').textContent=whackTimeLeft;if(whackTimeLeft<=0){clearInterval(whackInterval);clearInterval(whackCountdown);whackRunning=false;cancelAnimationFrame(whackAnimFrame);if(whackScore>whackBestScore){whackBestScore=whackScore;document.getElementById('whack-best').textContent=whackBestScore;}document.getElementById('whack-msg').textContent=`Done! Score: ${whackScore} | Earned: 🪙${whackScore*5}`;showToast(`🐰 Whack done! Earned 🪙${whackScore*5}`);}},1000);
+  canvas.onclick=e=>{if(!whackRunning)return;const r=canvas.getBoundingClientRect();const mx=(e.clientX-r.left)*(W/r.width),my=(e.clientY-r.top)*(H/r.height);holes.forEach(h=>{if(!h.visible||h.hit)return;const dx=mx-h.x,dy=my-(h.y+10);if(Math.sqrt(dx*dx+dy*dy)<40){h.hit=true;h.visible=false;if(h.char==='🖤'){whackScore++;updateCoins(5);document.getElementById('whack-score').textContent=whackScore;showToast('🖤 Got Kuromi! +🪙5');}else{showToast('😱 That was Melody! -3🪙');updateCoins(-3);}}});};
 }
 
-// ========== STAR SHOOTER ==========
-let starRunning=false, starAnimFrame, starScore=0, starBestScore=0, starTimeLeft=30, starItems=[], starCountdown=null;
-function startStarGame() {
-  document.getElementById('star-overlay').classList.add('show');
-  starScore=0; starTimeLeft=30; starItems=[];
-  document.getElementById('star-score').textContent=0;
-  document.getElementById('star-time').textContent=30;
-  document.getElementById('star-msg').textContent='Click stars before they vanish!';
-  runStarGame();
-}
-function closeStar() {
-  starRunning=false; cancelAnimationFrame(starAnimFrame); clearInterval(starCountdown);
-  document.getElementById('star-overlay').classList.remove('show');
-}
-function runStarGame() {
-  const canvas=document.getElementById('star-canvas');
-  const ctx=canvas.getContext('2d');
-  const W=canvas.width, H=canvas.height;
-  let lastSpawn=0;
-  starRunning=true;
-  starCountdown=setInterval(()=>{
-    starTimeLeft--;
-    document.getElementById('star-time').textContent=starTimeLeft;
-    if (starTimeLeft<=0) {
-      clearInterval(starCountdown); starRunning=false; cancelAnimationFrame(starAnimFrame);
-      const total=starScore;
-      if (total>starBestScore) { starBestScore=total; document.getElementById('star-best').textContent=starBestScore; }
-      document.getElementById('star-msg').textContent=`Time's up! Score: ${total}`;
-      showToast(`🌟 Star Shooter done! Score ${total}`);
-    }
-  },1000);
-  function loop(ts) {
-    if (!starRunning) return;
-    ctx.clearRect(0,0,W,H);
-    const bg=ctx.createLinearGradient(0,0,W,H);
-    bg.addColorStop(0,'#1a0a2e'); bg.addColorStop(1,'#2e0a1a');
-    ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
-    if (ts-lastSpawn>600) {
-      const isGold=Math.random()<0.25;
-      starItems.push({x:30+Math.random()*(W-60), y:20+Math.random()*(H-40), life:2000, maxLife:2000, emoji:isGold?'🌟':'⭐', gold:isGold});
-      lastSpawn=ts;
-    }
-    starItems=starItems.filter(s=>s.life>0);
-    starItems.forEach(s=>{
-      s.life-=16;
-      const alpha=s.life/s.maxLife;
-      ctx.globalAlpha=alpha;
-      ctx.font=s.gold?'40px serif':'32px serif';
-      ctx.fillText(s.emoji,s.x-16,s.y+16);
-    });
-    ctx.globalAlpha=1;
-    starAnimFrame=requestAnimationFrame(loop);
-  }
+// ========== STAR GAME ==========
+let starRunning=false,starAnimFrame,starScore=0,starBestScore=0,starTimeLeft=30,starItems=[],starCountdown=null;
+function startStarGame(){document.getElementById('star-overlay').classList.add('show');starScore=0;starTimeLeft=30;starItems=[];document.getElementById('star-score').textContent=0;document.getElementById('star-time').textContent=30;document.getElementById('star-msg').textContent='Click stars before they vanish!';runStarGame();}
+function closeStar(){starRunning=false;cancelAnimationFrame(starAnimFrame);clearInterval(starCountdown);document.getElementById('star-overlay').classList.remove('show');}
+function runStarGame(){
+  const canvas=document.getElementById('star-canvas');const ctx=canvas.getContext('2d');const W=canvas.width,H=canvas.height;let lastSpawn=0;starRunning=true;
+  starCountdown=setInterval(()=>{starTimeLeft--;document.getElementById('star-time').textContent=starTimeLeft;if(starTimeLeft<=0){clearInterval(starCountdown);starRunning=false;cancelAnimationFrame(starAnimFrame);if(starScore>starBestScore){starBestScore=starScore;document.getElementById('star-best').textContent=starBestScore;}document.getElementById('star-msg').textContent=`Time\'s up! Score: ${starScore}`;showToast(`🌟 Star done! Score ${starScore}`);}},1000);
+  function loop(ts){if(!starRunning)return;ctx.clearRect(0,0,W,H);const bg=ctx.createLinearGradient(0,0,W,H);bg.addColorStop(0,'#1a0a2e');bg.addColorStop(1,'#2e0a1a');ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);if(ts-lastSpawn>600){const isGold=Math.random()<0.25;starItems.push({x:30+Math.random()*(W-60),y:20+Math.random()*(H-40),life:2000,maxLife:2000,emoji:isGold?'🌟':'⭐',gold:isGold});lastSpawn=ts;}starItems=starItems.filter(s=>s.life>0);starItems.forEach(s=>{s.life-=16;const alpha=s.life/s.maxLife;ctx.globalAlpha=alpha;ctx.font=s.gold?'40px serif':'32px serif';ctx.fillText(s.emoji,s.x-16,s.y+16);});ctx.globalAlpha=1;starAnimFrame=requestAnimationFrame(loop);}
   requestAnimationFrame(loop);
-  canvas.onclick=e=>{
-    if (!starRunning) return;
-    const r=canvas.getBoundingClientRect();
-    const mx=(e.clientX-r.left)*(W/r.width), my=(e.clientY-r.top)*(H/r.height);
-    for (let i=starItems.length-1;i>=0;i--) {
-      const s=starItems[i];
-      if (Math.abs(mx-s.x)<24&&Math.abs(my-s.y)<24) {
-        const earn=s.gold?8:3; starItems.splice(i,1); starScore+=earn; updateCoins(earn);
-        document.getElementById('star-score').textContent=starScore;
-        showToast(s.gold?`🌟 Golden star! +🪙8`:`⭐ Star! +🪙3`);
-        break;
-      }
-    }
-  };
+  canvas.onclick=e=>{if(!starRunning)return;const r=canvas.getBoundingClientRect();const mx=(e.clientX-r.left)*(W/r.width),my=(e.clientY-r.top)*(H/r.height);for(let i=starItems.length-1;i>=0;i--){const s=starItems[i];if(Math.abs(mx-s.x)<24&&Math.abs(my-s.y)<24){const earn=s.gold?8:3;starItems.splice(i,1);starScore+=earn;updateCoins(earn);document.getElementById('star-score').textContent=starScore;showToast(s.gold?'🌟 Golden! +🪙8':'⭐ Star! +🪙3');break;}}};
 }
 
-// ========== LUCKY CARD FLIP ==========
-const luckySymbols = ['🐰','🐱','🐶','🍮','🖤','🐸','🌸','🎀','🍓','🌷'];
-function startLuckyFlip() {
-  if (luckyOnCooldown) { showToast('⏳ Wait for the timer!'); return; }
-  document.getElementById('lucky-overlay').classList.add('show');
-  const cards = document.getElementById('lucky-cards');
-  cards.innerHTML = [0,1,2].map(i=>`<div class="lucky-card" id="lc${i}">🎴</div>`).join('');
-  document.getElementById('lucky-result').textContent='';
-  document.getElementById('lucky-flip-btn').style.display='inline-block';
-  document.getElementById('lucky-flip-btn').disabled=false;
-}
-function closeLucky() { document.getElementById('lucky-overlay').classList.remove('show'); }
-function doLuckyFlip() {
+// ========== LUCKY CARD ==========
+const luckySymbols=['🐰','🐱','🐶','🍮','🖤','🐸','🌸','🎀','🍓','🌷'];
+function startLuckyFlip(){if(luckyOnCooldown){showToast('⏳ Wait for the timer!');return;}document.getElementById('lucky-overlay').classList.add('show');document.getElementById('lucky-cards').innerHTML=[0,1,2].map(i=>`<div class="lucky-card" id="lc${i}">🎴</div>`).join('');document.getElementById('lucky-result').textContent='';document.getElementById('lucky-flip-btn').style.display='inline-block';document.getElementById('lucky-flip-btn').disabled=false;}
+function closeLucky(){document.getElementById('lucky-overlay').classList.remove('show');}
+function doLuckyFlip(){
   document.getElementById('lucky-flip-btn').disabled=true;
-  const picked = [0,1,2].map(()=>luckySymbols[Math.floor(Math.random()*luckySymbols.length)]);
-  [0,1,2].forEach((i,idx)=>{
-    setTimeout(()=>{
-      const card=document.getElementById('lc'+i);
-      card.classList.add('flipped'); card.textContent=picked[idx];
-    }, idx*300+200);
-  });
+  const picked=[0,1,2].map(()=>luckySymbols[Math.floor(Math.random()*luckySymbols.length)]);
+  [0,1,2].forEach((i,idx)=>{setTimeout(()=>{const card=document.getElementById('lc'+i);card.classList.add('flipped');card.textContent=picked[idx];},idx*300+200);});
   setTimeout(()=>{
-    const allMatch = picked[0]===picked[1]&&picked[1]===picked[2];
-    const twoMatch = picked[0]===picked[1]||picked[1]===picked[2]||picked[0]===picked[2];
-    let earn=0, msg='', cls='miss';
-    if (allMatch) { earn=150; msg=`🎉 JACKPOT! All 3 match! +🪙150`; cls='matched'; confetti(); }
-    else if (twoMatch) { earn=20; msg=`🌸 Two match! +🪙20`; cls='matched'; }
-    else { earn=5; msg=`💫 No match, but here's 🪙5 for trying!`; }
+    const allMatch=picked[0]===picked[1]&&picked[1]===picked[2];const twoMatch=picked[0]===picked[1]||picked[1]===picked[2]||picked[0]===picked[2];
+    let earn=0,cls='miss';
+    if(allMatch){earn=150;cls='matched';confetti();}else if(twoMatch){earn=20;cls='matched';}else{earn=5;}
     [0,1,2].forEach(i=>document.getElementById('lc'+i).classList.add(cls));
-    document.getElementById('lucky-result').textContent=msg;
-    updateCoins(earn, msg);
-    luckyOnCooldown=true;
-    document.getElementById('lucky-btn').disabled=true;
+    const msg=allMatch?`🎉 JACKPOT! +🪙150`:twoMatch?`🌸 Two match! +🪙20`:`💫 No match, consolation +🪙5`;
+    document.getElementById('lucky-result').textContent=msg;updateCoins(earn,msg);
+    luckyOnCooldown=true;document.getElementById('lucky-btn').disabled=true;
     document.getElementById('lucky-flip-btn').style.display='none';
-    let secs=30;
-    luckyTimer=setInterval(()=>{
-      secs--;
-      document.getElementById('lucky-timer').textContent=`Next play in ${secs}s...`;
-      if (secs<=0) {
-        clearInterval(luckyTimer); luckyOnCooldown=false;
-        document.getElementById('lucky-btn').disabled=false;
-        document.getElementById('lucky-timer').textContent='Ready to play!';
-      }
-    },1000);
-  }, 1200);
+    let secs=30;luckyTimer=setInterval(()=>{secs--;document.getElementById('lucky-timer').textContent=`Next in ${secs}s...`;if(secs<=0){clearInterval(luckyTimer);luckyOnCooldown=false;document.getElementById('lucky-btn').disabled=false;document.getElementById('lucky-timer').textContent='Ready!';}},1000);
+  },1200);
 }
 
-// ========== MODAL / TOAST / CONFETTI ==========
-function showModal(html) {
-  document.getElementById('result-content').innerHTML=html;
-  document.getElementById('result-overlay').classList.add('show');
-}
-function closeResult() { document.getElementById('result-overlay').classList.remove('show'); }
-function handleOverlayClick(e) { if (e.target===document.getElementById('result-overlay')) closeResult(); }
-let toastTimer;
-function showToast(msg) {
-  const t=document.getElementById('toast');
-  t.textContent=msg; t.classList.add('show');
-  clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
-}
-function confetti() {
-  const colors=['#ff7eb3','#e8527a','#ffd700','#a070ff','#70d0ff','#ff9040'];
-  for (let i=0;i<60;i++) {
-    const el=document.createElement('div');
-    el.className='confetti-piece';
-    el.style.cssText=`left:${Math.random()*100}vw;top:0;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*0.5}s;animation-duration:${1.5+Math.random()}s;`;
-    document.body.appendChild(el);
-    setTimeout(()=>el.remove(),3000);
+// ========== BAG ==========
+function openBag(){renderBag();document.getElementById('bag-overlay').classList.add('show');}
+function closeBag(){document.getElementById('bag-overlay').classList.remove('show');}
+function handleBagOverlayClick(e){if(e.target===document.getElementById('bag-overlay'))closeBag();}
+function switchBagTab(tab,btn){currentBagTab=tab;document.querySelectorAll('.bag-tab').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');renderBag();}
+
+function renderBag(){
+  const content=document.getElementById('bag-content');
+  const hasInventory=Object.keys(inventory).some(k=>inventory[k]>0);
+  const hasGacha=Object.keys(collection).length>0;
+  if(!hasInventory&&!hasGacha){content.innerHTML='<div class="empty-bag"><span class="emoji">🎒</span><div style="font-weight:800;font-size:1.1rem;margin-bottom:0.5rem;">Your bag is empty!</div><div style="font-size:0.9rem;">Buy things from the Market or pull the Gacha!</div></div>';return;}
+
+  let html='';
+  if(currentBagTab==='gacha'){
+    const gachaOwned=Object.values(collection).filter(i=>i.count>0);
+    if(!gachaOwned.length){html='<div class="empty-bag"><span class="emoji">✨</span><div style="font-weight:800;">No gacha items yet!</div><div style="font-size:0.9rem;">Try pulling from the Gacha machine!</div></div>';}
+    else{html=`<div style="font-weight:800;color:var(--pink-deep);margin-bottom:1rem;">✨ Gacha Collection (${gachaOwned.length} items)</div><div class="bag-gacha-grid">`+gachaOwned.map(item=>`<div class="bag-gacha-item" style="border-color:${rarityColors[item.rarity]}"><span class="bgi-emoji">${item.emoji}</span><div class="bgi-name">${item.name}</div><div class="bgi-rarity" style="color:${rarityColors[item.rarity]}">${rarityEmoji[item.rarity]} ${item.rarity}</div><div class="bgi-qty">×${item.count}</div></div>`).join('')+'</div>';}
+  } else {
+    const categories = currentBagTab==='all'?['notebooks','plushies','stationery','accessories','snacks']:[currentBagTab];
+    let totalItems=0;
+    categories.forEach(cat=>{
+      const items=marketItems[cat]||[];
+      const ownedItems=items.filter(item=>(inventory[item.id]||0)>0);
+      if(!ownedItems.length)return;
+      if(currentBagTab==='all'){html+=`<div style="font-weight:800;color:var(--pink-deep);margin-bottom:0.8rem;margin-top:${totalItems>0?'1.5rem':'0'};">${cat==='notebooks'?'📓':cat==='plushies'?'🧸':cat==='stationery'?'✏️':cat==='accessories'?'💍':'🍡'} ${cat.charAt(0).toUpperCase()+cat.slice(1)}</div>`;}
+      html+='<div class="bag-grid">';
+      ownedItems.forEach(item=>{
+        const qty=inventory[item.id]||0;
+        const isNotebook=cat==='notebooks';
+        html+=`<div class="bag-item${isNotebook?' notebook-item':''}" ${isNotebook?`onclick="openNotebook('${item.id}')"`:''}><span class="bi-emoji">${item.emoji}</span><div class="bi-name">${item.name}</div><div class="bi-qty">×${qty}</div>${isNotebook?'<div style="font-size:0.6rem;color:#e8527a;font-weight:700;margin-top:0.2rem;">✏️ Write in it!</div>':''}</div>`;
+        totalItems++;
+      });
+      html+='</div>';
+    });
+    if(!totalItems){html=`<div class="empty-bag"><span class="emoji">🛍️</span><div style="font-weight:800;">Nothing here yet!</div><div style="font-size:0.9rem;">Shop in the ${currentBagTab} section!</div></div>`;}
   }
+  content.innerHTML=html;
 }
+
+// ========== NOTEBOOK ==========
+let notebookPages={};  // {notebookId: {pages:['','',''], currentPage:0}}
+
+function openNotebook(itemId){
+  const item=allMarketItems[itemId];if(!item)return;
+  if(!notebookPages[itemId]){notebookPages[itemId]={pages:['','','','',''],currentPage:0};}
+  currentNotebookId=itemId;currentNbPage=notebookPages[itemId].currentPage;
+  document.getElementById('nb-cover-emoji').textContent=item.emoji;
+  document.getElementById('nb-name-display').textContent=item.name;
+  closeBag();
+  loadNotebookPage();
+  buildNbLines();
+  document.getElementById('notebook-overlay').classList.add('show');
+}
+
+function buildNbLines(){
+  const linesEl=document.getElementById('nb-lines');linesEl.innerHTML='';
+  for(let y=80;y<600;y+=33.6){const line=document.createElement('div');line.className='nb-line';line.style.top=y+'px';linesEl.appendChild(line);}
+}
+
+function loadNotebookPage(){
+  const nb=notebookPages[currentNotebookId];
+  const totalPages=nb.pages.length;
+  document.getElementById('nb-page-info').textContent=`Page ${currentNbPage+1} of ${totalPages}`;
+  const editor=document.getElementById('nb-editor');
+  editor.innerHTML=nb.pages[currentNbPage]||'';
+  editor.style.fontFamily=document.getElementById('nb-font').value;
+  editor.style.fontSize=(document.getElementById('nb-size').value||20)+'px';
+  editor.style.color=nbFormats.color;
+  document.getElementById('nb-prev').disabled=currentNbPage===0;
+  document.getElementById('nb-next').disabled=currentNbPage===totalPages-1;
+}
+
+function savePage(){
+  if(!currentNotebookId)return;
+  const editor=document.getElementById('nb-editor');
+  notebookPages[currentNotebookId].pages[currentNbPage]=editor.innerHTML;
+  showToast('💾 Page saved! 🌸');
+}
+
+function changePage(dir){
+  savePage();
+  currentNbPage+=dir;
+  notebookPages[currentNotebookId].currentPage=currentNbPage;
+  loadNotebookPage();
+}
+
+function closeNotebook(){
+  savePage();
+  document.getElementById('notebook-overlay').classList.remove('show');
+  // Reopen bag
+  setTimeout(()=>openBag(),200);
+}
+
+function applyFormat(){
+  const editor=document.getElementById('nb-editor');
+  editor.style.fontFamily=document.getElementById('nb-font').value;
+  editor.style.fontSize=(document.getElementById('nb-size').value||20)+'px';
+  editor.style.color=nbFormats.color;
+  editor.focus();
+}
+
+function toggleFormat(cmd){
+  document.execCommand(cmd,false,null);
+  nbFormats[cmd]=!nbFormats[cmd];
+  document.getElementById('btn-'+cmd).classList.toggle('active',nbFormats[cmd]);
+  document.getElementById('nb-editor').focus();
+}
+
+function setTextColor(btn){
+  document.querySelectorAll('.nb-color-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  nbFormats.color=btn.dataset.color;
+  document.execCommand('foreColor',false,btn.dataset.color);
+  document.getElementById('nb-editor').focus();
+}
+
+function insertSticker(emoji){
+  const editor=document.getElementById('nb-editor');editor.focus();
+  document.execCommand('insertText',false,emoji);
+}
+
+// ========== MODAL/TOAST/CONFETTI ==========
+function showModal(html){document.getElementById('result-content').innerHTML=html;document.getElementById('result-overlay').classList.add('show');}
+function closeResult(){document.getElementById('result-overlay').classList.remove('show');}
+function handleOverlayClick(e){if(e.target===document.getElementById('result-overlay'))closeResult();}
+let toastTimer;
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),2500);}
+function confetti(){const colors=['#ff7eb3','#e8527a','#ffd700','#a070ff','#70d0ff','#ff9040'];for(let i=0;i<60;i++){const el=document.createElement('div');el.className='confetti-piece';el.style.cssText=`left:${Math.random()*100}vw;top:0;width:${6+Math.random()*8}px;height:${6+Math.random()*8}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-delay:${Math.random()*0.5}s;animation-duration:${1.5+Math.random()}s;`;document.body.appendChild(el);setTimeout(()=>el.remove(),3000);}}
 
 // ========== INIT ==========
 renderMarket();
