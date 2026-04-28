@@ -1,561 +1,1165 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Melody's Magical World</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap');
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Melody's Magical World 🎀</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #ff7eb3;
+    --pink-light: #ffd6e8;
+    --pink-deep: #e8527a;
+    --cream: #fff8f5;
+    --red: #e8334a;
+    --red-light: #ffb3be;
+    --mint: #b8f0e8;
+    --yellow: #ffe88a;
+    --purple: #d4b8f0;
+    --white: #ffffff;
+    --text: #5a3a4a;
+  }
 
-        body {
-            font-family: 'Comic Neue', cursive;
-            background: linear-gradient(135deg, #ffb3d9 0%, #ff99cc 25%, #ff66b2 50%, #ff3399 75%, #cc0066 100%);
-            min-height: 100vh;
-            overflow-x: hidden;
-            position: relative;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Floating hearts animation */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #ff69b4, transparent),
-                radial-gradient(2px 2px at 40px 70px, #ff1493, transparent),
-                radial-gradient(1px 1px at 90px 40px, #ff69b4, transparent),
-                radial-gradient(1px 1px at 130px 80px, #ff1493, transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: float 20s infinite linear;
-            pointer-events: none;
-            z-index: 1;
-        }
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    overflow-x: hidden;
+    cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='10' fill='%23ff7eb3' opacity='0.8'/%3E%3Ccircle cx='13' cy='14' r='2' fill='%23e8334a'/%3E%3Ccircle cx='19' cy='14' r='2' fill='%23e8334a'/%3E%3C/svg%3E"), auto;
+  }
 
-        @keyframes float {
-            0% { transform: translateY(0px) rotate(0deg); }
-            100% { transform: translateY(-1000px) rotate(360deg); }
-        }
+  /* FLOATING ELEMENTS */
+  .floaties { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: hidden; }
+  .floaty { position: absolute; font-size: 1.5rem; animation: float-up linear infinite; opacity: 0.15; }
+  @keyframes float-up {
+    0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.15; }
+    90% { opacity: 0.15; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+  }
 
-        .header {
-            text-align: center;
-            padding: 20px;
-            position: relative;
-            z-index: 10;
-        }
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: linear-gradient(135deg, #ff7eb3, #e8527a);
+    padding: 0.8rem 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    box-shadow: 0 4px 20px rgba(255,126,179,0.4);
+  }
+  .nav-logo { font-family: 'Pacifico', cursive; color: white; font-size: 1.5rem; text-shadow: 2px 2px 0 rgba(0,0,0,0.1); }
+  .nav-links { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .nav-links a {
+    background: rgba(255,255,255,0.25); color: white; text-decoration: none;
+    padding: 0.4rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.85rem;
+    transition: all 0.2s; border: 2px solid rgba(255,255,255,0.3);
+  }
+  .nav-links a:hover { background: white; color: var(--pink-deep); }
+  .wallet { background: var(--yellow) !important; color: var(--text) !important; border-color: #f0c020 !important; }
 
-        .logo {
-            width: 150px;
-            height: 150px;
-            background: radial-gradient(circle, #ff69b4, #ff1493);
-            border-radius: 50%;
-            margin: 0 auto 10px;
-            position: relative;
-            animation: bounce 2s infinite;
-            box-shadow: 0 10px 30px rgba(255, 105, 180, 0.5);
-        }
+  /* HERO */
+  .hero {
+    position: relative; z-index: 1;
+    background: linear-gradient(160deg, #ffe0f0 0%, #fff0f8 40%, #ffd6e8 100%);
+    padding: 4rem 2rem 3rem;
+    text-align: center; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -50px; left: -50px;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(255,126,179,0.3), transparent);
+    border-radius: 50%;
+  }
+  .hero-melody { font-size: 8rem; line-height: 1; margin-bottom: 1rem; filter: drop-shadow(0 8px 20px rgba(255,126,179,0.5)); animation: bounce 2s ease-in-out infinite; }
+  @keyframes bounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+  .hero h1 { font-family: 'Pacifico', cursive; font-size: clamp(2rem, 6vw, 4rem); color: var(--pink-deep); text-shadow: 3px 3px 0 rgba(255,126,179,0.3); margin-bottom: 0.5rem; }
+  .hero p { font-size: 1.1rem; color: #a05070; font-weight: 600; }
+  .ribbon { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--red); color: white; padding: 0.5rem 1.5rem; border-radius: 30px; margin-top: 1rem; font-weight: 800; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(232,51,74,0.3); }
 
-        .logo::before {
-            content: '🎀';
-            position: absolute;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 60px;
-        }
+  /* SECTION STYLES */
+  section { position: relative; z-index: 1; padding: 3rem 1.5rem; }
+  .section-title {
+    font-family: 'Pacifico', cursive;
+    font-size: clamp(1.6rem, 4vw, 2.5rem);
+    color: var(--pink-deep);
+    text-align: center; margin-bottom: 2rem;
+    text-shadow: 2px 2px 0 rgba(255,126,179,0.2);
+  }
+  .section-title span { font-size: 1.5em; }
 
-        .logo::after {
-            content: 'My Melody';
-            position: absolute;
-            bottom: -30px;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 24px;
-            font-weight: 700;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+  /* CHARACTERS SHOWCASE */
+  .characters-section { background: linear-gradient(135deg, #fff0f8, #fce8ff); }
+  .characters-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; max-width: 900px; margin: 0 auto; }
+  .char-card {
+    background: white; border-radius: 24px; padding: 1.5rem 1.2rem;
+    text-align: center; width: 150px;
+    box-shadow: 0 8px 25px rgba(255,126,179,0.2);
+    transition: all 0.3s; cursor: pointer;
+    border: 3px solid transparent;
+  }
+  .char-card:hover { transform: translateY(-8px) rotate(-2deg); border-color: var(--pink); box-shadow: 0 15px 35px rgba(255,126,179,0.35); }
+  .char-card.featured { border-color: var(--red); background: linear-gradient(135deg, #fff5f8, #ffe8f0); transform: scale(1.08); }
+  .char-emoji { font-size: 3.5rem; display: block; margin-bottom: 0.5rem; }
+  .char-name { font-weight: 800; font-size: 0.9rem; color: var(--text); }
+  .char-tag { font-size: 0.75rem; color: var(--pink); font-weight: 600; }
 
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
+  /* ICE CREAM SHOP */
+  .icecream-section { background: linear-gradient(135deg, #e8f8ff, #fff0fa); }
+  .shop-container { max-width: 900px; margin: 0 auto; }
+  .ice-creams { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+  .ic-card {
+    background: white; border-radius: 20px; padding: 1.5rem 1rem;
+    text-align: center; cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s; border: 3px solid #f0e0ea;
+    position: relative; overflow: hidden;
+  }
+  .ic-card::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 6px; }
+  .ic-card[data-flavor="strawberry"]::before { background: linear-gradient(90deg, #ff7eb3, #e8527a); }
+  .ic-card[data-flavor="vanilla"]::before { background: linear-gradient(90deg, #ffe8b8, #f0c050); }
+  .ic-card[data-flavor="blueberry"]::before { background: linear-gradient(90deg, #b8b8f8, #8080e8); }
+  .ic-card[data-flavor="matcha"]::before { background: linear-gradient(90deg, #b8f0b8, #50c050); }
+  .ic-card[data-flavor="cherry"]::before { background: linear-gradient(90deg, #e83050, #c01030); }
+  .ic-card[data-flavor="bubblegum"]::before { background: linear-gradient(90deg, #f8b0d8, #e870b8); }
+  .ic-card:hover { transform: translateY(-6px); box-shadow: 0 12px 30px rgba(255,126,179,0.25); border-color: var(--pink); }
+  .ic-emoji { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+  .ic-name { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.3rem; }
+  .ic-price { color: var(--pink-deep); font-weight: 700; font-size: 1.1rem; }
+  .ic-desc { font-size: 0.75rem; color: #a08090; margin-top: 0.3rem; }
+  .buy-btn {
+    background: linear-gradient(135deg, #ff7eb3, #e8527a);
+    color: white; border: none; padding: 0.6rem 1.5rem;
+    border-radius: 20px; font-weight: 700; cursor: pointer;
+    margin-top: 0.8rem; font-size: 0.85rem; width: 100%;
+    transition: all 0.2s; font-family: 'Nunito', sans-serif;
+  }
+  .buy-btn:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(232,82,122,0.4); }
+  .buy-btn:active { transform: scale(0.97); }
 
-        h1 {
-            color: #fff;
-            font-size: 2.5em;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
-            margin-bottom: 10px;
-        }
+  .cart-panel {
+    background: white; border-radius: 20px; padding: 1.5rem;
+    box-shadow: 0 6px 20px rgba(255,126,179,0.15);
+    border: 2px solid var(--pink-light);
+  }
+  .cart-title { font-weight: 800; font-size: 1.1rem; margin-bottom: 1rem; color: var(--pink-deep); }
+  .cart-items { min-height: 60px; max-height: 180px; overflow-y: auto; margin-bottom: 1rem; }
+  .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 0.4rem 0; border-bottom: 1px dashed #f0d0e0; font-size: 0.9rem; }
+  .cart-item span:last-child { color: var(--pink-deep); font-weight: 700; }
+  .cart-total { display: flex; justify-content: space-between; font-weight: 800; font-size: 1.1rem; padding-top: 0.5rem; border-top: 2px solid var(--pink-light); }
+  .checkout-btn {
+    width: 100%; background: linear-gradient(135deg, #ff3070, #e8334a);
+    color: white; border: none; padding: 0.8rem; border-radius: 15px;
+    font-weight: 800; font-size: 1rem; cursor: pointer; margin-top: 1rem;
+    transition: all 0.2s; font-family: 'Nunito', sans-serif;
+    box-shadow: 0 4px 15px rgba(232,51,74,0.3);
+  }
+  .checkout-btn:hover { transform: scale(1.03); }
+  .empty-cart { text-align: center; color: #c0a0b0; font-size: 0.9rem; padding: 1rem 0; }
 
-        .subtitle {
-            color: #ff69b4;
-            font-size: 1.2em;
-            font-weight: 700;
-        }
+  /* OUTFIT CUSTOMIZER */
+  .outfit-section { background: linear-gradient(135deg, #fff8e8, #ffe8f8); }
+  .customizer-wrap { display: flex; flex-wrap: wrap; gap: 2rem; justify-content: center; max-width: 900px; margin: 0 auto; }
+  .melody-display {
+    flex: 0 0 260px;
+    background: white; border-radius: 30px;
+    padding: 2rem; text-align: center;
+    box-shadow: 0 10px 30px rgba(255,126,179,0.2);
+    border: 3px solid var(--pink-light);
+    position: relative;
+  }
+  .melody-base { font-size: 9rem; display: block; transition: all 0.4s; filter: drop-shadow(0 6px 15px rgba(255,126,179,0.4)); }
+  .outfit-layers { font-size: 2.5rem; margin-top: -1rem; display: flex; justify-content: center; flex-wrap: wrap; gap: 0.3rem; }
+  .outfit-label { font-weight: 800; color: var(--pink-deep); margin-top: 0.5rem; font-size: 0.9rem; }
 
-        .nav {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-            flex-wrap: wrap;
-        }
+  .options-panel { flex: 1; min-width: 280px; }
+  .option-group { margin-bottom: 1.5rem; }
+  .option-group-title { font-weight: 800; color: var(--text); margin-bottom: 0.8rem; font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; }
+  .options-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .opt-btn {
+    background: white; border: 2.5px solid #f0d8e8;
+    border-radius: 12px; padding: 0.5rem 0.9rem;
+    cursor: pointer; font-size: 0.85rem; font-weight: 700;
+    transition: all 0.2s; font-family: 'Nunito', sans-serif;
+    display: flex; align-items: center; gap: 0.3rem;
+  }
+  .opt-btn:hover { border-color: var(--pink); background: var(--pink-light); transform: scale(1.05); }
+  .opt-btn.active { background: var(--pink); border-color: var(--pink-deep); color: white; }
+  .save-outfit {
+    background: linear-gradient(135deg, #ff7eb3, #e8527a);
+    color: white; border: none; padding: 0.8rem 2rem;
+    border-radius: 20px; font-weight: 800; cursor: pointer;
+    margin-top: 1rem; font-size: 0.95rem;
+    transition: all 0.2s; font-family: 'Nunito', sans-serif;
+    box-shadow: 0 4px 15px rgba(255,126,179,0.35);
+  }
+  .save-outfit:hover { transform: scale(1.05); }
 
-        .nav-btn {
-            background: linear-gradient(45deg, #ff69b4, #ff1493);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 1.1em;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(255, 105, 180, 0.4);
-            position: relative;
-            overflow: hidden;
-        }
+  /* GACHA */
+  .gacha-section { background: linear-gradient(135deg, #f0e8ff, #ffe8f0); }
+  .gacha-wrap { max-width: 900px; margin: 0 auto; }
+  .gacha-machine {
+    background: white; border-radius: 30px; padding: 2rem;
+    text-align: center; margin-bottom: 2rem;
+    box-shadow: 0 10px 40px rgba(180,100,255,0.2);
+    border: 3px solid #e8d8ff;
+    position: relative; overflow: hidden;
+  }
+  .gacha-machine::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 8px;
+    background: linear-gradient(90deg, #ff7eb3, #a070ff, #70d0ff, #70ff70, #ffd070, #ff7070);
+  }
+  .gacha-orb {
+    width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, rgba(255,255,255,0.8), rgba(200,150,255,0.6) 40%, #9040e8);
+    margin: 1.5rem auto; cursor: pointer;
+    box-shadow: 0 10px 40px rgba(144,64,232,0.5), inset 0 -6px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s; display: flex; align-items: center; justify-content: center;
+    font-size: 4rem; position: relative; overflow: hidden;
+    animation: glow-orb 2s ease-in-out infinite;
+  }
+  @keyframes glow-orb {
+    0%,100% { box-shadow: 0 10px 40px rgba(144,64,232,0.5), inset 0 -6px 20px rgba(0,0,0,0.1); }
+    50% { box-shadow: 0 10px 60px rgba(144,64,232,0.8), 0 0 30px rgba(255,126,179,0.4), inset 0 -6px 20px rgba(0,0,0,0.1); }
+  }
+  .gacha-orb:hover { transform: scale(1.08) rotate(5deg); }
+  .gacha-orb.spinning { animation: spin-fast 0.4s linear infinite; }
+  @keyframes spin-fast { 0% { transform: scale(1) rotate(0deg); } 100% { transform: scale(1.1) rotate(360deg); } }
 
-        .nav-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.6);
-        }
+  .gacha-costs { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+  .gacha-pull-btn {
+    padding: 0.7rem 1.5rem; border-radius: 20px; border: none;
+    font-weight: 800; cursor: pointer; font-size: 0.9rem;
+    transition: all 0.2s; font-family: 'Nunito', sans-serif;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  .gacha-pull-btn:hover { transform: scale(1.05); }
+  .gacha-pull-btn.single { background: linear-gradient(135deg, #ff7eb3, #e8527a); color: white; }
+  .gacha-pull-btn.multi { background: linear-gradient(135deg, #a070ff, #7040d8); color: white; }
 
-        .nav-btn:active {
-            transform: translateY(-1px);
-        }
+  .rarity-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem; margin: 1rem 0; }
+  .rarity-badge {
+    padding: 0.3rem 0.8rem; border-radius: 20px;
+    font-weight: 800; font-size: 0.8rem;
+  }
+  .rarity-common { background: #e8e8e8; color: #606060; }
+  .rarity-rare { background: #b8d8ff; color: #2060c0; }
+  .rarity-epic { background: #e8c8ff; color: #7030c0; }
+  .rarity-legendary { background: linear-gradient(135deg, #ffe888, #ffb820); color: #804000; }
+  .rarity-secret { background: linear-gradient(135deg, #ff88d8, #d020a0); color: white; }
 
-        .main-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 10;
-        }
+  /* RESULT MODAL */
+  .result-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.6); z-index: 1000;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .result-overlay.show { opacity: 1; pointer-events: all; }
+  .result-modal {
+    background: white; border-radius: 30px; padding: 2.5rem;
+    text-align: center; max-width: 380px; width: 90%;
+    transform: scale(0.7); transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    position: relative; overflow: hidden;
+  }
+  .result-overlay.show .result-modal { transform: scale(1); }
+  .result-item-emoji { font-size: 5rem; display: block; animation: pop-in 0.5s cubic-bezier(0.34,1.56,0.64,1) 0.2s both; }
+  @keyframes pop-in { 0% { transform: scale(0) rotate(-20deg); } 100% { transform: scale(1) rotate(0deg); } }
+  .result-rarity { font-weight: 900; font-size: 1.1rem; margin: 0.5rem 0; }
+  .result-name { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.3rem; }
+  .result-desc { color: #a08090; font-size: 0.9rem; margin-bottom: 1.5rem; }
+  .result-close {
+    background: linear-gradient(135deg, #ff7eb3, #e8527a);
+    color: white; border: none; padding: 0.7rem 2rem;
+    border-radius: 20px; font-weight: 800; cursor: pointer;
+    font-family: 'Nunito', sans-serif; font-size: 0.95rem;
+  }
+  .multi-results { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; margin: 1rem 0; max-height: 300px; overflow-y: auto; }
+  .mini-result { background: #f8f0fc; border-radius: 12px; padding: 0.7rem; text-align: center; width: 80px; }
+  .mini-result .emoji { font-size: 2rem; }
+  .mini-result .mini-name { font-size: 0.65rem; font-weight: 700; margin-top: 0.2rem; }
+  .mini-result .mini-rarity { font-size: 0.65rem; font-weight: 800; }
 
-        .game-container {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 30px;
-            padding: 30px;
-            margin: 20px 0;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            backdrop-filter: blur(10px);
-            border: 3px solid #ff69b4;
-            animation: slideIn 0.8s ease-out;
-        }
+  /* COLLECTION */
+  .collection-section { background: linear-gradient(135deg, #f0fff8, #f8f0ff); }
+  .collection-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 1rem; max-width: 900px; margin: 0 auto; }
+  .col-item {
+    background: white; border-radius: 16px; padding: 1rem 0.5rem;
+    text-align: center; border: 2px solid #f0e0ec;
+    transition: all 0.2s;
+  }
+  .col-item.locked { opacity: 0.35; filter: grayscale(0.8); }
+  .col-item:not(.locked):hover { transform: scale(1.08); border-color: var(--pink); }
+  .col-item .emoji { font-size: 2rem; display: block; }
+  .col-item .name { font-size: 0.7rem; font-weight: 700; margin-top: 0.3rem; }
+  .col-item .count { font-size: 0.65rem; color: var(--pink); font-weight: 800; }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+  /* MINI GAMES */
+  .minigame-section { background: linear-gradient(135deg, #fff8e8, #e8f0ff); }
+  .minigames-wrap { display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: center; max-width: 900px; margin: 0 auto; }
+  .minigame-card {
+    background: white; border-radius: 24px; padding: 1.5rem;
+    flex: 1; min-width: 240px; max-width: 280px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    border: 3px solid var(--pink-light);
+    text-align: center; transition: all 0.3s;
+  }
+  .minigame-card:hover { transform: translateY(-5px); border-color: var(--pink); }
+  .mg-icon { font-size: 3rem; display: block; margin-bottom: 0.5rem; }
+  .mg-title { font-weight: 800; font-size: 1rem; margin-bottom: 0.3rem; }
+  .mg-desc { font-size: 0.8rem; color: #a08090; margin-bottom: 1rem; }
+  .mg-reward { background: var(--yellow); color: #806000; padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 800; font-size: 0.8rem; display: inline-block; margin-bottom: 1rem; }
+  .mg-btn {
+    background: linear-gradient(135deg, #ff7eb3, #e8527a);
+    color: white; border: none; padding: 0.6rem 1.5rem;
+    border-radius: 15px; font-weight: 800; cursor: pointer;
+    font-family: 'Nunito', sans-serif; font-size: 0.9rem;
+    transition: all 0.2s;
+  }
+  .mg-btn:hover { transform: scale(1.05); }
 
-        .game-title {
-            text-align: center;
-            font-size: 2em;
-            color: #ff1493;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(255,255,255,0.8);
-        }
+  /* CATCH GAME */
+  .catch-game-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7); z-index: 500;
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0; pointer-events: none; transition: opacity 0.3s;
+  }
+  .catch-game-overlay.show { opacity: 1; pointer-events: all; }
+  .catch-game-panel {
+    background: white; border-radius: 30px; padding: 1.5rem;
+    max-width: 400px; width: 95%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    position: relative;
+  }
+  #catch-canvas { width: 100%; border-radius: 16px; display: block; cursor: none; }
+  .catch-ui { display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; font-weight: 800; }
+  .catch-close { position: absolute; top: 1rem; right: 1rem; background: #f0d0e0; border: none; border-radius: 50%; width: 30px; height: 30px; cursor: pointer; font-size: 1rem; }
 
-        /* Memory Game */
-        .memory-board {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            max-width: 400px;
-            margin: 0 auto;
-        }
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(100px);
+    background: linear-gradient(135deg, #ff7eb3, #e8527a);
+    color: white; padding: 0.8rem 2rem; border-radius: 30px;
+    font-weight: 800; font-size: 0.95rem; z-index: 999;
+    transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    box-shadow: 0 8px 25px rgba(255,126,179,0.4); white-space: nowrap;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); }
 
-        .memory-card {
-            aspect-ratio: 1;
-            background: linear-gradient(45deg, #ff69b4, #ffb3d9);
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5em;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            position: relative;
-            user-select: none;
-        }
+  /* CONFETTI */
+  .confetti-piece {
+    position: fixed; z-index: 998; border-radius: 3px;
+    animation: confetti-fall 2s ease-out forwards;
+    pointer-events: none;
+  }
+  @keyframes confetti-fall {
+    0% { transform: translateY(-20px) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+  }
 
-        .memory-card.flipped {
-            transform: rotateY(180deg);
-            background: linear-gradient(45deg, #fff, #ffe4e1);
-        }
+  /* UTILS */
+  .coins-display { display: inline-flex; align-items: center; gap: 0.3rem; background: var(--yellow); color: #806000; padding: 0.3rem 0.8rem; border-radius: 20px; font-weight: 800; font-size: 0.9rem; }
 
-        .memory-card.matched {
-            transform: scale(0.9);
-            background: linear-gradient(45deg, #90ee90, #98fb98);
-            cursor: default;
-        }
+  footer {
+    background: linear-gradient(135deg, #e8527a, #ff7eb3);
+    color: white; text-align: center; padding: 2rem;
+    font-weight: 700; font-size: 0.9rem; position: relative; z-index: 1;
+  }
+  footer p { opacity: 0.9; }
 
-        /* Whack-a-Mole */
-        .mole-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            max-width: 300px;
-            margin: 0 auto;
-        }
-
-        .mole-hole {
-            aspect-ratio: 1;
-            background: radial-gradient(circle, #8b4513, #654321);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3em;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            box-shadow: inset 0 10px 20px rgba(0,0,0,0.3);
-        }
-
-        .mole-hole:hover {
-            transform: scale(1.05);
-        }
-
-        .mole-up {
-            animation: pop 0.3s ease-out;
-        }
-
-        @keyframes pop {
-            0% { transform: translateY(100%); }
-            50% { transform: translateY(-20%); }
-            100% { transform: translateY(0); }
-        }
-
-        /* Drawing Canvas */
-        .drawing-area {
-            border: 5px solid #ff69b4;
-            border-radius: 20px;
-            background: #fff;
-            margin: 20px auto;
-            display: block;
-            cursor: crosshair;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .controls {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .color-btn {
-            width: 40px;
-            height: 40px;
-            border: none;
-            border-radius: 50%;
-            margin: 0 5px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .color-btn:hover {
-            transform: scale(1.2);
-        }
-
-        .score {
-            font-size: 1.5em;
-            font-weight: 700;
-            color: #ff1493;
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        /* Rainbow effect */
-        .rainbow {
-            animation: rainbow 3s infinite;
-        }
-
-        @keyframes rainbow {
-            0% { filter: hue-rotate(0deg); }
-            100% { filter: hue-rotate(360deg); }
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .memory-board {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 10px;
-                max-width: 320px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-        }
-    </style>
+  @media (max-width: 600px) {
+    nav { padding: 0.6rem 1rem; }
+    .nav-links a { padding: 0.3rem 0.7rem; font-size: 0.75rem; }
+    .hero-melody { font-size: 5rem; }
+    .customizer-wrap { flex-direction: column; align-items: center; }
+  }
+</style>
 </head>
 <body>
-    <div class="header">
-        <div class="logo"></div>
-        <h1>My Melody's Magical World! 🌸💕</h1>
-        <p class="subtitle">For my super special little sister! 🎀</p>
-        <nav class="nav">
-            <button class="nav-btn" onclick="showGame('memory')">Memory Game</button>
-            <button class="nav-btn" onclick="showGame('whack')">Whack-a-Mole</button>
-            <button class="nav-btn" onclick="showGame('draw')">Draw Time!</button>
-            <button class="nav-btn rainbow" onclick="showAllGames()">All Games 🎮</button>
-        </nav>
+
+<!-- FLOATING DECORATIONS -->
+<div class="floaties" id="floaties"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">🎀 My Melody</div>
+  <div class="nav-links">
+    <a href="#characters">Characters</a>
+    <a href="#icecream">🍦 Shop</a>
+    <a href="#outfit">👗 Dress Up</a>
+    <a href="#gacha">🎰 Gacha</a>
+    <a href="#minigames">🎮 Games</a>
+    <a href="#collection">⭐ Collection</a>
+    <a href="#" class="wallet" id="nav-wallet">🪙 <span id="nav-coins">0</span></a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-melody">🐰</div>
+  <h1>My Melody's Magical World</h1>
+  <p>Welcome to the most adorable place ever! 🌸✨</p>
+  <div class="ribbon">🎀 My Melody is the BEST 🎀</div>
+  <p style="margin-top:1rem; font-size:0.95rem; color:#c06080;">Start with <strong>100 🪙</strong> — play games to earn more!</p>
+</section>
+
+<!-- CHARACTERS -->
+<section class="characters-section" id="characters">
+  <h2 class="section-title"><span>🌸</span> Sanrio Friends <span>🌸</span></h2>
+  <div class="characters-grid">
+    <div class="char-card featured" onclick="showCharInfo('mymelody')">
+      <span class="char-emoji">🐰</span>
+      <div class="char-name">My Melody</div>
+      <div class="char-tag">⭐ Fan Favorite!</div>
+    </div>
+    <div class="char-card" onclick="showCharInfo('hellokitty')">
+      <span class="char-emoji">🐱</span>
+      <div class="char-name">Hello Kitty</div>
+      <div class="char-tag">Since 1974</div>
+    </div>
+    <div class="char-card" onclick="showCharInfo('cinnamoroll')">
+      <span class="char-emoji">🐶</span>
+      <div class="char-name">Cinnamoroll</div>
+      <div class="char-tag">Fluffy & Sweet</div>
+    </div>
+    <div class="char-card" onclick="showCharInfo('pompompurin')">
+      <span class="char-emoji">🍮</span>
+      <div class="char-name">Pompompurin</div>
+      <div class="char-tag">Golden Retriever</div>
+    </div>
+    <div class="char-card" onclick="showCharInfo('kuromi')">
+      <span class="char-emoji">🖤</span>
+      <div class="char-name">Kuromi</div>
+      <div class="char-tag">Mischievous!</div>
+    </div>
+    <div class="char-card" onclick="showCharInfo('keroppi')">
+      <span class="char-emoji">🐸</span>
+      <div class="char-name">Keroppi</div>
+      <div class="char-tag">Ribbit~</div>
+    </div>
+  </div>
+</section>
+
+<!-- ICE CREAM SHOP -->
+<section class="icecream-section" id="icecream">
+  <h2 class="section-title"><span>🍦</span> My Melody's Ice Cream Shop <span>🍦</span></h2>
+  <div class="shop-container">
+    <div style="text-align:center; margin-bottom:1.5rem;">
+      <div class="coins-display">🪙 Your coins: <strong id="shop-coins">0</strong></div>
+    </div>
+    <div class="ice-creams">
+      <div class="ic-card" data-flavor="strawberry">
+        <span class="ic-emoji">🍓</span>
+        <div class="ic-name">Strawberry Bunny</div>
+        <div class="ic-price">🪙 15</div>
+        <div class="ic-desc">My Melody's favorite! Sweet & pink!</div>
+        <button class="buy-btn" onclick="buyIceCream('Strawberry Bunny', 15, '🍓')">Add to Cart</button>
+      </div>
+      <div class="ic-card" data-flavor="vanilla">
+        <span class="ic-emoji">🍦</span>
+        <div class="ic-name">Vanilla Dream</div>
+        <div class="ic-price">🪙 12</div>
+        <div class="ic-desc">Soft & creamy, just like clouds!</div>
+        <button class="buy-btn" onclick="buyIceCream('Vanilla Dream', 12, '🍦')">Add to Cart</button>
+      </div>
+      <div class="ic-card" data-flavor="blueberry">
+        <span class="ic-emoji">🫐</span>
+        <div class="ic-name">Blueberry Magic</div>
+        <div class="ic-price">🪙 18</div>
+        <div class="ic-desc">Magical swirls of blueberry!</div>
+        <button class="buy-btn" onclick="buyIceCream('Blueberry Magic', 18, '🫐')">Add to Cart</button>
+      </div>
+      <div class="ic-card" data-flavor="matcha">
+        <span class="ic-emoji">🍵</span>
+        <div class="ic-name">Matcha Forest</div>
+        <div class="ic-price">🪙 20</div>
+        <div class="ic-desc">Earthy & sweet, from the forest!</div>
+        <button class="buy-btn" onclick="buyIceCream('Matcha Forest', 20, '🍵')">Add to Cart</button>
+      </div>
+      <div class="ic-card" data-flavor="cherry">
+        <span class="ic-emoji">🍒</span>
+        <div class="ic-name">Cherry Blossom</div>
+        <div class="ic-price">🪙 16</div>
+        <div class="ic-desc">Cherry pink & beautiful!</div>
+        <button class="buy-btn" onclick="buyIceCream('Cherry Blossom', 16, '🍒')">Add to Cart</button>
+      </div>
+      <div class="ic-card" data-flavor="bubblegum">
+        <span class="ic-emoji">🫧</span>
+        <div class="ic-name">Bubblegum Pop</div>
+        <div class="ic-price">🪙 14</div>
+        <div class="ic-desc">Pop! Goes the bubblegum!</div>
+        <button class="buy-btn" onclick="buyIceCream('Bubblegum Pop', 14, '🫧')">Add to Cart</button>
+      </div>
     </div>
 
-    <div class="main-content">
-        <!-- Memory Game -->
-        <div id="memory-game" class="game-container hidden">
-            <h2 class="game-title">🎀 My Melody Memory Match 🎀</h2>
-            <div class="score" id="memory-score">Score: 0</div>
-            <div class="memory-board" id="memory-board"></div>
-            <div style="text-align: center; margin-top: 20px;">
-                <button class="nav-btn" onclick="newMemoryGame()">New Game</button>
-            </div>
-        </div>
+    <!-- CART -->
+    <div class="cart-panel">
+      <div class="cart-title">🛒 Your Cart</div>
+      <div class="cart-items" id="cart-items">
+        <div class="empty-cart">🎀 Your cart is empty!<br>Add some yummy ice cream!</div>
+      </div>
+      <div class="cart-total">
+        <span>Total:</span>
+        <span>🪙 <span id="cart-total">0</span></span>
+      </div>
+      <button class="checkout-btn" onclick="checkout()">💝 Buy It All!</button>
+    </div>
+  </div>
+</section>
 
-        <!-- Whack-a-Mole -->
-        <div id="whack-game" class="game-container hidden">
-            <h2 class="game-title">🐰 Whack-a-Mole Bunny! 🐰</h2>
-            <div class="score" id="whack-score">Score: 0 | Time: 30</div>
-            <div class="mole-grid" id="mole-grid"></div>
-            <div style="text-align: center; margin-top: 20px;">
-                <button class="nav-btn" onclick="startWhackGame()">Start Game (30s)</button>
-            </div>
+<!-- OUTFIT CUSTOMIZER -->
+<section class="outfit-section" id="outfit">
+  <h2 class="section-title"><span>🎀</span> Dress Up My Melody <span>🎀</span></h2>
+  <div class="customizer-wrap">
+    <div class="melody-display">
+      <span class="melody-base" id="melody-base">🐰</span>
+      <div class="outfit-layers" id="outfit-layers"></div>
+      <div class="outfit-label" id="outfit-label">Classic My Melody</div>
+      <div style="margin-top:1rem; font-size:0.8rem; color:#c0a0b0;">Click options to dress her up!</div>
+    </div>
+    <div class="options-panel">
+      <div class="option-group">
+        <div class="option-group-title">🎩 Hood / Hat</div>
+        <div class="options-row" id="hood-opts">
+          <button class="opt-btn active" data-group="hood" data-val="" data-emoji="" onclick="setOption('hood',this)">None</button>
+          <button class="opt-btn" data-group="hood" data-val="pink-hood" data-emoji="🌸" onclick="setOption('hood',this)">🌸 Pink Hood</button>
+          <button class="opt-btn" data-group="hood" data-val="red-hood" data-emoji="❤️" onclick="setOption('hood',this)">❤️ Red Hood</button>
+          <button class="opt-btn" data-group="hood" data-val="star-hood" data-emoji="⭐" onclick="setOption('hood',this)">⭐ Star Hat</button>
+          <button class="opt-btn" data-group="hood" data-val="flower-hood" data-emoji="🌻" onclick="setOption('hood',this)">🌻 Flower</button>
+          <button class="opt-btn" data-group="hood" data-val="bow-hood" data-emoji="🎀" onclick="setOption('hood',this)">🎀 Big Bow</button>
+          <button class="opt-btn" data-group="hood" data-val="crown-hood" data-emoji="👑" onclick="setOption('hood',this)">👑 Crown</button>
+          <button class="opt-btn" data-group="hood" data-val="witch-hood" data-emoji="🧙‍♀️" onclick="setOption('hood',this)">🧙 Witch Hat</button>
         </div>
+      </div>
+      <div class="option-group">
+        <div class="option-group-title">👗 Outfit / Dress</div>
+        <div class="options-row" id="dress-opts">
+          <button class="opt-btn active" data-group="dress" data-val="" data-emoji="" onclick="setOption('dress',this)">Classic</button>
+          <button class="opt-btn" data-group="dress" data-val="princess" data-emoji="👸" onclick="setOption('dress',this)">👸 Princess</button>
+          <button class="opt-btn" data-group="dress" data-val="maid" data-emoji="🎀" onclick="setOption('dress',this)">🎀 Maid</button>
+          <button class="opt-btn" data-group="dress" data-val="summer" data-emoji="☀️" onclick="setOption('dress',this)">☀️ Summer</button>
+          <button class="opt-btn" data-group="dress" data-val="winter" data-emoji="❄️" onclick="setOption('dress',this)">❄️ Winter</button>
+          <button class="opt-btn" data-group="dress" data-val="school" data-emoji="📚" onclick="setOption('dress',this)">📚 School</button>
+          <button class="opt-btn" data-group="dress" data-val="baker" data-emoji="🧁" onclick="setOption('dress',this)">🧁 Baker</button>
+          <button class="opt-btn" data-group="dress" data-val="magical" data-emoji="✨" onclick="setOption('dress',this)">✨ Magical Girl</button>
+        </div>
+      </div>
+      <div class="option-group">
+        <div class="option-group-title">🎒 Accessory</div>
+        <div class="options-row" id="acc-opts">
+          <button class="opt-btn active" data-group="acc" data-val="" data-emoji="" onclick="setOption('acc',this)">None</button>
+          <button class="opt-btn" data-group="acc" data-val="basket" data-emoji="🧺" onclick="setOption('acc',this)">🧺 Basket</button>
+          <button class="opt-btn" data-group="acc" data-val="flowers" data-emoji="💐" onclick="setOption('acc',this)">💐 Flowers</button>
+          <button class="opt-btn" data-group="acc" data-val="guitar" data-emoji="🎸" onclick="setOption('acc',this)">🎸 Guitar</button>
+          <button class="opt-btn" data-group="acc" data-val="wand" data-emoji="🪄" onclick="setOption('acc',this)">🪄 Magic Wand</button>
+          <button class="opt-btn" data-group="acc" data-val="cake" data-emoji="🎂" onclick="setOption('acc',this)">🎂 Cake</button>
+          <button class="opt-btn" data-group="acc" data-val="umbrella" data-emoji="☂️" onclick="setOption('acc',this)">☂️ Umbrella</button>
+          <button class="opt-btn" data-group="acc" data-val="bag" data-emoji="👜" onclick="setOption('acc',this)">👜 Cute Bag</button>
+        </div>
+      </div>
+      <div class="option-group">
+        <div class="option-group-title">🌈 Background Vibe</div>
+        <div class="options-row" id="bg-opts">
+          <button class="opt-btn active" data-group="bg" data-val="" data-emoji="" onclick="setOption('bg',this)">Default</button>
+          <button class="opt-btn" data-group="bg" data-val="sakura" data-emoji="🌸" onclick="setOption('bg',this)">🌸 Sakura</button>
+          <button class="opt-btn" data-group="bg" data-val="rainbow" data-emoji="🌈" onclick="setOption('bg',this)">🌈 Rainbow</button>
+          <button class="opt-btn" data-group="bg" data-val="stars" data-emoji="✨" onclick="setOption('bg',this)">✨ Stars</button>
+          <button class="opt-btn" data-group="bg" data-val="forest" data-emoji="🌲" onclick="setOption('bg',this)">🌲 Forest</button>
+          <button class="opt-btn" data-group="bg" data-val="ocean" data-emoji="🌊" onclick="setOption('bg',this)">🌊 Ocean</button>
+        </div>
+      </div>
+      <button class="save-outfit" onclick="saveOutfit()">💾 Save Outfit! 🎀</button>
+    </div>
+  </div>
+</section>
 
-        <!-- Drawing Game -->
-        <div id="draw-game" class="game-container hidden">
-            <h2 class="game-title">✨ Draw with My Melody! ✨</h2>
-            <div class="controls">
-                <button class="color-btn" style="background: #ff69b4;" onclick="setColor('#ff69b4')"></button>
-                <button class="color-btn" style="background: #ff1493;" onclick="setColor('#ff1493')"></button>
-                <button class="color-btn" style="background: #ffb3d9;" onclick="setColor('#ffb3d9')"></button>
-                <button class="color-btn" style="background: #fff;" onclick="setColor('#fff')" title="Eraser"></button>
-                <button class="nav-btn" onclick="clearCanvas()" style="margin-left: 20px;">Clear Canvas 🧹</button>
-                <button class="nav-btn" onclick="downloadDrawing()">Download Drawing 💾</button>
-            </div>
-            <canvas id="drawing-canvas" class="drawing-area" width="600" height="400"></canvas>
-        </div>
+<!-- GACHA -->
+<section class="gacha-section" id="gacha">
+  <h2 class="section-title"><span>🎰</span> Melody's Gacha Machine <span>🎰</span></h2>
+  <div class="gacha-wrap">
+    <div style="text-align:center; margin-bottom:1rem;">
+      <div class="coins-display">🪙 Coins: <strong id="gacha-coins">0</strong></div>
+    </div>
+    <div class="rarity-legend">
+      <span class="rarity-badge rarity-common">⚪ Common (50%)</span>
+      <span class="rarity-badge rarity-rare">🔵 Rare (25%)</span>
+      <span class="rarity-badge rarity-epic">💜 Epic (15%)</span>
+      <span class="rarity-badge rarity-legendary">🌟 Legendary (8%)</span>
+      <span class="rarity-badge rarity-secret">💖 SECRET (2%)</span>
+    </div>
+    <div class="gacha-machine">
+      <div style="font-size:1rem; font-weight:700; color:#9060c0; margin-bottom:0.5rem;">✨ Click the orb to pull! ✨</div>
+      <div class="gacha-orb" id="gacha-orb" onclick="pullGacha(1)">🎀</div>
+      <div class="gacha-costs">
+        <button class="gacha-pull-btn single" onclick="pullGacha(1)">🎰 Single Pull — 🪙 30</button>
+        <button class="gacha-pull-btn multi" onclick="pullGacha(10)">🎰 10x Pull — 🪙 250</button>
+      </div>
     </div>
 
-    <script>
-        let currentGame = '';
-        let memoryScore = 0;
-        let whackScore = 0;
-        let whackTime = 30;
-        let whackTimer;
-        let drawingCtx;
-        let currentColor = '#ff69b4';
-        let isDrawing = false;
+    <!-- COLLECTION PREVIEW IN GACHA -->
+    <div style="background:white; border-radius:20px; padding:1.5rem; border:2px solid #e8d8ff;">
+      <div style="font-weight:800; margin-bottom:1rem; color:#7040c0;">🗂️ Your Collection Progress</div>
+      <div id="collection-progress" style="font-size:0.9rem; color:#a080c0; margin-bottom:0.5rem;"></div>
+      <div id="collection-mini" style="display:flex; flex-wrap:wrap; gap:0.5rem;"></div>
+    </div>
+  </div>
+</section>
 
-        // Show specific game
-        function showGame(game) {
-            document.querySelectorAll('.game-container').forEach(el => el.classList.add('hidden'));
-            document.getElementById(game + '-game').classList.remove('hidden');
-            currentGame = game;
-        }
+<!-- MINI GAMES -->
+<section class="minigame-section" id="minigames">
+  <h2 class="section-title"><span>🎮</span> Earn Coins! <span>🎮</span></h2>
+  <div class="minigames-wrap">
+    <div class="minigame-card">
+      <span class="mg-icon">🍦</span>
+      <div class="mg-title">Ice Cream Catch</div>
+      <div class="mg-desc">Catch falling ice creams with My Melody's basket! Don't miss!</div>
+      <div class="mg-reward">🪙 Earn up to 50 coins!</div>
+      <button class="mg-btn" onclick="startCatchGame()">Play Now!</button>
+    </div>
+    <div class="minigame-card">
+      <span class="mg-icon">🌸</span>
+      <div class="mg-title">Petal Memory</div>
+      <div class="mg-desc">Match the Sanrio character pairs! Train your memory!</div>
+      <div class="mg-reward">🪙 Earn up to 40 coins!</div>
+      <button class="mg-btn" onclick="startMemoryGame()">Play Now!</button>
+    </div>
+    <div class="minigame-card">
+      <span class="mg-icon">🎯</span>
+      <div class="mg-title">Daily Bonus</div>
+      <div class="mg-desc">Claim your free daily coins! Come back every day!</div>
+      <div class="mg-reward">🪙 Free 50 coins daily!</div>
+      <button class="mg-btn" id="daily-btn" onclick="claimDaily()">Claim!</button>
+    </div>
+  </div>
+</section>
 
-        // Show all games
-        function showAllGames() {
-            document.querySelectorAll('.game-container').forEach(el => el.classList.remove('hidden'));
-        }
+<!-- COLLECTION -->
+<section class="collection-section" id="collection">
+  <h2 class="section-title"><span>⭐</span> My Collection <span>⭐</span></h2>
+  <div style="text-align:center; margin-bottom:1.5rem; color:#a08090; font-weight:600;">Pull from the Gacha to unlock items!</div>
+  <div class="collection-grid" id="full-collection"></div>
+</section>
 
-        // Memory Game
-        const emojis = ['🎀', '🐰', '🌸', '💕', '⭐', '🍓', '🌈', '🧸'].flatMap(x => [x, x]);
-        
-        function newMemoryGame() {
-            memoryScore = 0;
-            document.getElementById('memory-score').textContent = 'Score: 0';
-            const board = document.getElementById('memory-board');
-            board.innerHTML = '';
-            
-            // Shuffle emojis
-            const shuffled = emojis.sort(() => Math.random() - 0.5);
-            
-            shuffled.forEach((emoji, index) => {
-                const card = document.createElement('div');
-                card.className = 'memory-card';
-                card.dataset.emoji = emoji;
-                card.dataset.index = index;
-                card.addEventListener('click', flipCard);
-                board.appendChild(card);
-            });
-        }
+<footer>
+  <p>🐰 Made with love for the most adorable little sister ever! 🌸</p>
+  <p style="margin-top:0.5rem; font-size:0.8rem;">My Melody & Friends © Sanrio 💕</p>
+</footer>
 
-        let flippedCards = [];
-        function flipCard() {
-            if (flippedCards.length >= 2 || this.classList.contains('flipped') || this.classList.contains('matched')) return;
-            
-            this.classList.add('flipped');
-            this.textContent = this.dataset.emoji;
-            flippedCards.push(this);
+<!-- RESULT MODAL -->
+<div class="result-overlay" id="result-overlay">
+  <div class="result-modal" id="result-modal">
+    <div id="result-content"></div>
+    <button class="result-close" onclick="closeResult()">Yay! Close 🎀</button>
+  </div>
+</div>
 
-            if (flippedCards.length === 2) {
-                setTimeout(checkMatch, 1000);
-            }
-        }
+<!-- MEMORY GAME OVERLAY -->
+<div class="catch-game-overlay" id="memory-overlay">
+  <div class="catch-game-panel" style="max-width:500px;">
+    <button class="catch-close" onclick="closeMemory()">✕</button>
+    <div class="catch-ui">
+      <span>🌸 Memory Game</span>
+      <span>Score: <strong id="mem-score">0</strong></span>
+      <span>Pairs: <strong id="mem-pairs">0</strong>/8</span>
+    </div>
+    <div id="memory-board" style="display:grid; grid-template-columns:repeat(4,1fr); gap:0.5rem; padding:0.5rem;"></div>
+    <div id="mem-result" style="text-align:center; font-weight:800; margin-top:0.5rem; min-height:24px;"></div>
+  </div>
+</div>
 
-        function checkMatch() {
-            if (flippedCards[0].dataset.emoji === flippedCards[1].dataset.emoji) {
-                flippedCards.forEach(card => card.classList.add('matched'));
-                memoryScore += 10;
-                document.getElementById('memory-score').textContent = `Score: ${memoryScore}`;
-            } else {
-                flippedCards.forEach(card => {
-                    card.classList.remove('flipped');
-                    card.textContent = '';
-                });
-            }
-            flippedCards = [];
-            
-            // Check win
-            if (document.querySelectorAll('.matched').length === emojis.length) {
-                setTimeout(() => alert('🎉 You won! Perfect memory! 🎉'), 500);
-            }
-        }
+<!-- CATCH GAME OVERLAY -->
+<div class="catch-game-overlay" id="catch-overlay">
+  <div class="catch-game-panel">
+    <button class="catch-close" onclick="closeCatch()">✕</button>
+    <div class="catch-ui">
+      <span>🍦 Ice Cream Catch</span>
+      <span>Score: <strong id="catch-score">0</strong></span>
+      <span>Lives: <strong id="catch-lives">3</strong></span>
+    </div>
+    <canvas id="catch-canvas" width="360" height="380"></canvas>
+    <div id="catch-msg" style="text-align:center; font-weight:700; font-size:0.9rem; margin-top:0.5rem; min-height:24px; color:#e8527a;"></div>
+  </div>
+</div>
 
-        // Whack-a-Mole
-        function startWhackGame() {
-            whackScore = 0;
-            whackTime = 30;
-            document.getElementById('whack-score').textContent = `Score: 0 | Time: 30`;
-            
-            const grid = document.getElementById('mole-grid');
-            grid.innerHTML = '';
-            for (let i = 0; i < 9; i++) {
-                const hole = document.createElement('div');
-                hole.className = 'mole-hole';
-                hole.dataset.index = i;
-                hole.addEventListener('click', whackMole);
-                grid.appendChild(hole);
-            }
-            
-            whackTimer = setInterval(() => {
-                whackTime--;
-                document.getElementById('whack-score').textContent = `Score: ${whackScore} | Time: ${whackTime}`;
-                if (whackTime <= 0) {
-                    clearInterval(whackTimer);
-                    alert(`🎉 Game Over! Final Score: ${whackScore} 🐰`);
-                }
-            }, 1000);
-            
-            moleInterval = setInterval(popMole, 800);
-        }
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
 
-        let moleInterval;
-        function popMole() {
-            document.querySelectorAll('.mole-up').forEach(hole => {
-                hole.classList.remove('mole-up');
-                hole.textContent = '';
-            });
-            
-            const holes = document.querySelectorAll('.mole-hole');
-            const randomHole = holes[Math.floor(Math.random() * holes.length)];
-            randomHole.textContent = '🐰';
-            randomHole.classList.add('mole-up');
-        }
+<script>
+// ============ STATE ============
+let coins = 100;
+let cart = [];
+let outfit = { hood: '', dress: '', acc: '', bg: '' };
+let collection = {};
+let dailyClaimed = false;
 
-        function whackMole(e) {
-            if (e.target.classList.contains('mole-up')) {
-                whackScore += 10;
-                e.target.textContent = '💥';
-                e.target.classList.remove('mole-up');
-                document.getElementById('whack-score').textContent = `Score: ${whackScore} | Time: ${whackTime}`;
-                setTimeout(() => {
-                    e.target.textContent = '';
-                }, 200);
-            }
-        }
+// ============ GACHA ITEMS ============
+const gachaItems = [
+  // Common
+  { id:'c1', name:'Pink Flower', emoji:'🌸', rarity:'common', desc:'A delicate sakura petal from My Melody\'s garden.' },
+  { id:'c2', name:'Strawberry', emoji:'🍓', rarity:'common', desc:'Sweet and fresh from the forest!' },
+  { id:'c3', name:'Pink Ribbon', emoji:'🎀', rarity:'common', desc:'My Melody\'s signature ribbon!' },
+  { id:'c4', name:'Heart Cookie', emoji:'🍪', rarity:'common', desc:'Baked with love in the pink kitchen.' },
+  { id:'c5', name:'Tulip', emoji:'🌷', rarity:'common', desc:'A lovely pink tulip.' },
+  { id:'c6', name:'Lollipop', emoji:'🍭', rarity:'common', desc:'Rainbow swirl candy!' },
+  // Rare
+  { id:'r1', name:'Melody\'s Apron', emoji:'👘', rarity:'rare', desc:'A cute pink apron from the bakery!' },
+  { id:'r2', name:'Magic Wand', emoji:'🪄', rarity:'rare', desc:'Sparkling with pink fairy dust!' },
+  { id:'r3', name:'Music Note', emoji:'🎵', rarity:'rare', desc:'From My Melody\'s favorite song!' },
+  { id:'r4', name:'Rainbow Umbrella', emoji:'🌂', rarity:'rare', desc:'Opens to reveal rainbows!' },
+  // Epic
+  { id:'e1', name:'Melody\'s Hood', emoji:'🐰', rarity:'epic', desc:'The iconic pink hood from My Melody herself!' },
+  { id:'e2', name:'Forest Fairy Wings', emoji:'🧚', rarity:'epic', desc:'Magical wings from the enchanted forest!' },
+  { id:'e3', name:'Stardust Charm', emoji:'✨', rarity:'epic', desc:'Collected from a shooting star at midnight.' },
+  // Legendary
+  { id:'l1', name:'Melody\'s Basket', emoji:'🧺', rarity:'legendary', desc:'The legendary pink flower basket from My Melody!' },
+  { id:'l2', name:'Crystal Heart', emoji:'💎', rarity:'legendary', desc:'A magical crystal heart that glows pink!' },
+  // Secret
+  { id:'s1', name:'MY MELODY HERSELF', emoji:'🎀🐰🎀', rarity:'secret', desc:'The rarest of all — My Melody in her most magical form! So lucky!' },
+];
 
-        // Drawing Canvas
-        const canvas = document.getElementById('drawing-canvas');
-        drawingCtx = canvas.getContext('2d');
-        drawingCtx.lineWidth = 5;
-        drawingCtx.lineCap = 'round';
-        drawingCtx.lineJoin = 'round';
+const rarityWeights = { common: 50, rare: 25, epic: 15, legendary: 8, secret: 2 };
+const rarityColors = { common: '#909090', rare: '#2060c0', epic: '#8030c0', legendary: '#c07000', secret: '#c020a0' };
+const rarityBg = { common: '#e8e8e8', rare: '#c0d8ff', epic: '#e8c8ff', legendary: '#ffe888', secret: 'linear-gradient(135deg,#ff88d8,#d020a0)' };
+const rarityEmoji = { common: '⚪', rare: '🔵', epic: '💜', legendary: '🌟', secret: '💖' };
 
-        canvas.addEventListener('mousedown', () => isDrawing = true);
-        canvas.addEventListener('mouseup', () => isDrawing = false);
-        canvas.addEventListener('mouseout', () => isDrawing = false);
+// ============ COINS ============
+function updateCoins(amt, msg) {
+  coins += amt;
+  document.getElementById('nav-coins').textContent = coins;
+  document.getElementById('shop-coins').textContent = coins;
+  document.getElementById('gacha-coins').textContent = coins;
+  if (msg) showToast(msg);
+}
 
-        canvas.addEventListener('mousemove', draw);
+// ============ FLOATIES ============
+const floatEmojis = ['🌸','🎀','💕','⭐','🍓','🌷','✨','🐰','💖','🌼'];
+const fc = document.getElementById('floaties');
+for (let i = 0; i < 20; i++) {
+  const f = document.createElement('div');
+  f.className = 'floaty';
+  f.textContent = floatEmojis[Math.floor(Math.random() * floatEmojis.length)];
+  f.style.left = Math.random() * 100 + 'vw';
+  f.style.animationDuration = (8 + Math.random() * 12) + 's';
+  f.style.animationDelay = (Math.random() * 10) + 's';
+  f.style.fontSize = (1 + Math.random()) + 'rem';
+  fc.appendChild(f);
+}
 
-        function draw(e) {
-            if (!isDrawing) return;
-            const rect = canvas.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            drawingCtx.lineTo(x, y);
-            drawingCtx.stroke();
-            drawingCtx.beginPath();
-            drawingCtx.moveTo(x, y);
-        }
+// ============ CHARACTERS ============
+const charInfo = {
+  mymelody: { name:'My Melody', desc:'My Melody lives in a magical forest called Mariland in Sanrio World! She loves baking and playing with her friends. Her signature pink hood is the cutest thing ever! 🌸', emoji:'🐰' },
+  hellokitty: { name:'Hello Kitty', desc:'Hello Kitty lives in London with her family! She loves cookies, piano, and spending time with friends. No mouth but says everything with her heart! 🍪', emoji:'🐱' },
+  cinnamoroll: { name:'Cinnamoroll', desc:'Cinnamoroll is a fluffy white puppy with big ears who loves flying through the sky! He lives in a café and loves cinnamon rolls! ☁️', emoji:'🐶' },
+  pompompurin: { name:'Pompompurin', desc:'Pompompurin is a golden retriever who loves pudding! He always wears his brown beret and naps in the sun! 🍮', emoji:'🍮' },
+  kuromi: { name:'Kuromi', desc:'Kuromi is My Melody\'s mischievous rival! Despite her edgy looks, she loves romance and cute things. Best frenemies! 🖤', emoji:'🖤' },
+  keroppi: { name:'Keroppi', desc:'Keroppi is a cheerful frog who lives by Donut Pond! He loves singing, swimming, and going on adventures! 🐸', emoji:'🐸' },
+};
 
-        function setColor(color) {
-            currentColor = color;
-            drawingCtx.strokeStyle = color;
-            if (color === '#fff') {
-                drawingCtx.lineWidth = 20;
-            } else {
-                drawingCtx.lineWidth = 5;
-            }
-        }
+function showCharInfo(id) {
+  const c = charInfo[id];
+  const html = `<span class="result-item-emoji">${c.emoji}</span><div class="result-name">${c.name}</div><div class="result-desc">${c.desc}</div>`;
+  showModal(html);
+}
 
-        function clearCanvas() {
-            drawingCtx.clearRect(0, 0, canvas.width, canvas.height);
-        }
+// ============ ICE CREAM SHOP ============
+function buyIceCream(name, price, emoji) {
+  cart.push({ name, price, emoji });
+  renderCart();
+  showToast(`${emoji} ${name} added to cart!`);
+}
 
-        function downloadDrawing() {
-            const link = document.createElement('a');
-            link.download = 'my-melody-drawing.png';
-            link.href = canvas.toDataURL();
-            link.click();
-        }
+function renderCart() {
+  const el = document.getElementById('cart-items');
+  const totalEl = document.getElementById('cart-total');
+  if (cart.length === 0) {
+    el.innerHTML = '<div class="empty-cart">🎀 Your cart is empty!<br>Add some yummy ice cream!</div>';
+    totalEl.textContent = '0';
+    return;
+  }
+  let total = 0;
+  el.innerHTML = cart.map((item, i) =>
+    `<div class="cart-item"><span>${item.emoji} ${item.name}</span><span>🪙 ${item.price} <button onclick="removeCartItem(${i})" style="background:none;border:none;cursor:pointer;color:#e8527a;font-size:0.8rem;">✕</button></span></div>`
+  ).join('');
+  cart.forEach(i => total += i.price);
+  totalEl.textContent = total;
+}
 
-        // Touch support for mobile
-        canvas.addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            isDrawing = true;
-        });
+function removeCartItem(i) {
+  cart.splice(i, 1);
+  renderCart();
+}
 
-        canvas.addEventListener('touchend', (e) => {
-            e.preventDefault();
-            isDrawing = false;
-            drawingCtx.beginPath();
-        });
+function checkout() {
+  if (cart.length === 0) { showToast('🛒 Add something first!'); return; }
+  const total = cart.reduce((s, i) => s + i.price, 0);
+  if (coins < total) { showToast('🪙 Not enough coins! Play mini games to earn more!'); return; }
+  updateCoins(-total, `💝 Bought ${cart.length} ice cream${cart.length>1?'s':''}! Yum!`);
+  const items = cart.map(i => i.emoji).join('');
+  cart = [];
+  renderCart();
+  confetti();
+  showModal(`<span class="result-item-emoji">${items}</span><div class="result-name">Order Complete!</div><div class="result-desc">Enjoy your delicious ice cream! 🍦✨<br>Spent 🪙 ${total} coins</div>`);
+}
 
-        canvas.addEventListener('touchmove', (e) => {
-            e.preventDefault();
-            const rect = canvas.getBoundingClientRect();
-            const touch = e.touches[0];
-            const x = touch.clientX - rect.left;
-            const y = touch.clientY - rect.top;
-            
-            drawingCtx.lineTo(x, y);
-            drawingCtx.stroke();
-            drawingCtx.beginPath();
-            drawingCtx.moveTo(x, y);
-        });
+// ============ OUTFIT CUSTOMIZER ============
+const outfitLabels = {
+  '': 'Classic My Melody',
+  'princess': 'Princess Melody ✨',
+  'maid': 'Maid Melody 🎀',
+  'summer': 'Summer Melody ☀️',
+  'winter': 'Winter Melody ❄️',
+  'school': 'School Melody 📚',
+  'baker': 'Baker Melody 🧁',
+  'magical': 'Magical Girl Melody ✨',
+};
+const bgStyles = {
+  '': 'background: linear-gradient(135deg,#fff5f8,#ffe8f0)',
+  'sakura': 'background: linear-gradient(135deg,#ffe8f8,#ffd0e8)',
+  'rainbow': 'background: linear-gradient(135deg,#ffd0f8,#d0e8ff)',
+  'stars': 'background: linear-gradient(135deg,#e8e0ff,#fff0e8)',
+  'forest': 'background: linear-gradient(135deg,#d0f8e0,#e8f8d0)',
+  'ocean': 'background: linear-gradient(135deg,#d0e8ff,#d0fff8)',
+};
 
-        // Initialize
-        newMemoryGame();
-    </script>
+function setOption(group, btn) {
+  document.querySelectorAll(`[data-group="${group}"]`).forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  outfit[group] = btn.dataset.val;
+  updateMelody();
+}
+
+function updateMelody() {
+  const layers = document.getElementById('outfit-layers');
+  const label = document.getElementById('outfit-label');
+  const display = document.querySelector('.melody-display');
+  const emojis = [];
+  if (outfit.hood) emojis.push(document.querySelector(`[data-group="hood"][data-val="${outfit.hood}"]`)?.dataset.emoji || '');
+  if (outfit.dress) emojis.push(document.querySelector(`[data-group="dress"][data-val="${outfit.dress}"]`)?.dataset.emoji || '');
+  if (outfit.acc) emojis.push(document.querySelector(`[data-group="acc"][data-val="${outfit.acc}"]`)?.dataset.emoji || '');
+  layers.textContent = emojis.join(' ');
+  label.textContent = outfitLabels[outfit.dress] || 'My Melody ✨';
+  display.setAttribute('style', bgStyles[outfit.bg] || '');
+  display.style.borderRadius = '30px';
+  display.style.padding = '2rem';
+  display.style.textAlign = 'center';
+  display.style.boxShadow = '0 10px 30px rgba(255,126,179,0.2)';
+  display.style.border = '3px solid var(--pink-light)';
+}
+
+function saveOutfit() {
+  confetti();
+  showToast('💾 Outfit saved! Melody looks amazing! 🎀');
+}
+
+// ============ GACHA ============
+function rollRarity() {
+  const r = Math.random() * 100;
+  if (r < 2) return 'secret';
+  if (r < 10) return 'legendary';
+  if (r < 25) return 'epic';
+  if (r < 50) return 'rare';
+  return 'common';
+}
+
+function getItemByRarity(rarity) {
+  const pool = gachaItems.filter(i => i.rarity === rarity);
+  return pool[Math.floor(Math.random() * pool.length)];
+}
+
+function addToCollection(item) {
+  if (!collection[item.id]) collection[item.id] = { ...item, count: 0 };
+  collection[item.id].count++;
+  updateCollectionUI();
+}
+
+function pullGacha(times) {
+  const cost = times === 1 ? 30 : 250;
+  if (coins < cost) { showToast('🪙 Not enough coins! Play mini games first!'); return; }
+  updateCoins(-cost);
+
+  const orb = document.getElementById('gacha-orb');
+  orb.classList.add('spinning');
+
+  setTimeout(() => {
+    orb.classList.remove('spinning');
+    if (times === 1) {
+      const rarity = rollRarity();
+      const item = getItemByRarity(rarity);
+      addToCollection(item);
+      const isSec = rarity === 'secret';
+      if (isSec) confetti();
+      const html = `
+        <div style="position:absolute;top:0;left:0;right:0;bottom:0;${isSec?'background:linear-gradient(135deg,rgba(255,136,216,0.2),rgba(208,32,160,0.2));':''}" ></div>
+        <div style="font-size:0.8rem;font-weight:800;color:${rarityColors[rarity]};margin-bottom:0.5rem;">${rarityEmoji[rarity]} ${rarity.toUpperCase()}</div>
+        <span class="result-item-emoji">${item.emoji}</span>
+        <div class="result-name">${item.name}</div>
+        <div class="result-desc">${item.desc}</div>
+      `;
+      showModal(html);
+    } else {
+      const pulled = [];
+      for (let i = 0; i < 10; i++) {
+        const rarity = rollRarity();
+        const item = getItemByRarity(rarity);
+        addToCollection(item);
+        pulled.push({ ...item, rarity });
+      }
+      const hasSecret = pulled.some(p => p.rarity === 'secret');
+      if (hasSecret) confetti();
+      const html = `
+        <div style="font-weight:800;font-size:1.1rem;margin-bottom:1rem;color:var(--pink-deep);">🎰 10x Pull Results!</div>
+        <div class="multi-results">
+          ${pulled.map(p => `<div class="mini-result" style="border:2px solid ${rarityColors[p.rarity]}">
+            <div class="emoji">${p.emoji}</div>
+            <div class="mini-name">${p.name}</div>
+            <div class="mini-rarity" style="color:${rarityColors[p.rarity]}">${rarityEmoji[p.rarity]} ${p.rarity}</div>
+          </div>`).join('')}
+        </div>
+      `;
+      showModal(html);
+    }
+  }, 800);
+}
+
+// ============ COLLECTION UI ============
+function updateCollectionUI() {
+  const total = gachaItems.length;
+  const owned = Object.keys(collection).length;
+  document.getElementById('collection-progress').textContent = `${owned}/${total} items unlocked`;
+
+  const mini = document.getElementById('collection-mini');
+  mini.innerHTML = gachaItems.map(item => {
+    const own = collection[item.id];
+    return `<div title="${item.name}" style="font-size:1.5rem;opacity:${own?1:0.2};cursor:default;">${item.emoji}</div>`;
+  }).join('');
+
+  const full = document.getElementById('full-collection');
+  full.innerHTML = gachaItems.map(item => {
+    const own = collection[item.id];
+    return `<div class="col-item ${own?'':'locked'}" style="${own?'border-color:'+rarityColors[item.rarity]:''}">
+      <span class="emoji">${item.emoji}</span>
+      <div class="name">${item.name}</div>
+      <div class="count" style="color:${rarityColors[item.rarity]}">${own ? `x${own.count} ${rarityEmoji[item.rarity]}` : '???'}</div>
+    </div>`;
+  }).join('');
+}
+updateCollectionUI();
+
+// ============ DAILY BONUS ============
+function claimDaily() {
+  if (dailyClaimed) { showToast('✅ Already claimed today! Come back tomorrow!'); return; }
+  dailyClaimed = true;
+  document.getElementById('daily-btn').textContent = '✅ Claimed!';
+  document.getElementById('daily-btn').disabled = true;
+  updateCoins(50, '🎁 Daily bonus! +50 🪙');
+  confetti();
+}
+
+// ============ CATCH GAME ============
+let catchRunning = false;
+let catchAnimFrame;
+
+function startCatchGame() {
+  document.getElementById('catch-overlay').classList.add('show');
+  runCatchGame();
+}
+function closeCatch() {
+  catchRunning = false;
+  cancelAnimationFrame(catchAnimFrame);
+  document.getElementById('catch-overlay').classList.remove('show');
+}
+
+function runCatchGame() {
+  const canvas = document.getElementById('catch-canvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  let score = 0, lives = 3, gameOver = false;
+  let basketX = W / 2;
+  const basketW = 70, basketH = 30;
+  const items = [];
+  let lastSpawn = 0;
+  const icEmojis = ['🍦','🍓','🍒','🍮','🧁','🍭'];
+
+  canvas.onmousemove = e => {
+    const r = canvas.getBoundingClientRect();
+    basketX = (e.clientX - r.left) * (W / r.width);
+  };
+  canvas.ontouchmove = e => {
+    e.preventDefault();
+    const r = canvas.getBoundingClientRect();
+    basketX = (e.touches[0].clientX - r.left) * (W / r.width);
+  };
+
+  catchRunning = true;
+  function loop(ts) {
+    if (!catchRunning) return;
+    ctx.clearRect(0, 0, W, H);
+
+    // BG
+    const grad = ctx.createLinearGradient(0,0,0,H);
+    grad.addColorStop(0, '#ffe8f8');
+    grad.addColorStop(1, '#ffd0e8');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0,0,W,H);
+
+    // Spawn
+    if (ts - lastSpawn > 800 - Math.min(score*5, 500)) {
+      items.push({ x: 30 + Math.random()*(W-60), y: -20, speed: 2+Math.random()*2+score*0.05, emoji: icEmojis[Math.floor(Math.random()*icEmojis.length)] });
+      lastSpawn = ts;
+    }
+
+    // Items
+    for (let i = items.length-1; i >= 0; i--) {
+      const it = items[i];
+      it.y += it.speed;
+      ctx.font = '28px serif';
+      ctx.fillText(it.emoji, it.x - 14, it.y);
+      const bx = basketX - basketW/2;
+      if (it.y > H - basketH - 10 && it.y < H && it.x > bx && it.x < bx + basketW) {
+        items.splice(i,1); score++; updateCoins(2);
+        document.getElementById('catch-score').textContent = score;
+      } else if (it.y > H + 10) {
+        items.splice(i,1); lives--;
+        document.getElementById('catch-lives').textContent = lives;
+        if (lives <= 0) { gameOver = true; }
+      }
+    }
+
+    // Basket
+    ctx.fillStyle = '#ff7eb3';
+    ctx.beginPath();
+    ctx.roundRect(basketX - basketW/2, H - basketH, basketW, basketH, 8);
+    ctx.fill();
+    ctx.font = '20px serif';
+    ctx.fillText('🧺', basketX - 14, H - 5);
+
+    if (gameOver) {
+      ctx.fillStyle = 'rgba(0,0,0,0.5)';
+      ctx.fillRect(0,0,W,H);
+      ctx.fillStyle = 'white';
+      ctx.font = 'bold 24px Nunito, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Game Over! 🎀', W/2, H/2-20);
+      ctx.font = '18px Nunito, sans-serif';
+      const earned = score * 2;
+      ctx.fillText(`Score: ${score} | Earned: 🪙${earned}`, W/2, H/2+15);
+      ctx.fillText('Tap to play again!', W/2, H/2+45);
+      canvas.onclick = () => { canvas.onclick=null; runCatchGame(); };
+      showToast(`🍦 Game Over! Earned 🪙 ${earned}`);
+      catchRunning = false;
+      return;
+    }
+
+    catchAnimFrame = requestAnimationFrame(loop);
+  }
+  requestAnimationFrame(loop);
+}
+
+// ============ MEMORY GAME ============
+const memCards = ['🐰','🐱','🐶','🍮','🖤','🐸','🌸','🎀'];
+let memFlipped = [], memMatched = [], memLocked = false, memScore = 0;
+
+function startMemoryGame() {
+  document.getElementById('memory-overlay').classList.add('show');
+  buildMemoryBoard();
+}
+function closeMemory() {
+  document.getElementById('memory-overlay').classList.remove('show');
+}
+
+function buildMemoryBoard() {
+  memFlipped=[]; memMatched=[]; memLocked=false; memScore=0;
+  document.getElementById('mem-score').textContent=0;
+  document.getElementById('mem-pairs').textContent=0;
+  document.getElementById('mem-result').textContent='';
+  const cards = [...memCards,...memCards].sort(()=>Math.random()-0.5);
+  const board = document.getElementById('memory-board');
+  board.innerHTML = cards.map((c,i)=>`
+    <div onclick="flipCard(${i})" id="mc${i}" data-val="${c}" data-flipped="false"
+      style="height:70px;background:linear-gradient(135deg,#ff7eb3,#e8527a);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 10px rgba(255,126,179,0.3);">❓</div>
+  `).join('');
+}
+
+function flipCard(i) {
+  if (memLocked) return;
+  const card = document.getElementById('mc'+i);
+  if (card.dataset.flipped === 'true' || memMatched.includes(i)) return;
+  card.textContent = card.dataset.val;
+  card.dataset.flipped = 'true';
+  card.style.background = 'white';
+  card.style.border = '2px solid #ff7eb3';
+  memFlipped.push(i);
+  if (memFlipped.length === 2) {
+    memLocked = true;
+    const [a,b] = memFlipped;
+    const ca = document.getElementById('mc'+a), cb = document.getElementById('mc'+b);
+    if (ca.dataset.val === cb.dataset.val) {
+      memMatched.push(a,b);
+      ca.style.background = 'linear-gradient(135deg,#d0ffd8,#a0f0a0)';
+      cb.style.background = 'linear-gradient(135deg,#d0ffd8,#a0f0a0)';
+      memFlipped=[]; memLocked=false; memScore+=10;
+      updateCoins(10);
+      document.getElementById('mem-score').textContent = memScore;
+      document.getElementById('mem-pairs').textContent = memMatched.length/2;
+      if (memMatched.length === 16) {
+        confetti();
+        document.getElementById('mem-result').textContent = `🎉 You won! +🪙${memScore} total!`;
+        showToast(`🌸 Memory game complete! +🪙${memScore}`);
+      }
+    } else {
+      setTimeout(()=>{
+        ca.textContent='❓'; ca.dataset.flipped='false'; ca.style.background='linear-gradient(135deg,#ff7eb3,#e8527a)'; ca.style.border='none';
+        cb.textContent='❓'; cb.dataset.flipped='false'; cb.style.background='linear-gradient(135deg,#ff7eb3,#e8527a)'; cb.style.border='none';
+        memFlipped=[]; memLocked=false;
+      }, 800);
+    }
+  }
+}
+
+// ============ MODAL ============
+function showModal(html) {
+  const content = document.getElementById('result-content');
+  content.innerHTML = html;
+  document.getElementById('result-overlay').classList.add('show');
+}
+function closeResult() {
+  document.getElementById('result-overlay').classList.remove('show');
+}
+
+// ============ TOAST ============
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ============ CONFETTI ============
+function confetti() {
+  const colors = ['#ff7eb3','#e8527a','#ffd700','#a070ff','#70d0ff','#ff9040'];
+  for (let i = 0; i < 60; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.cssText = `
+      left:${Math.random()*100}vw; top:0;
+      width:${6+Math.random()*8}px; height:${6+Math.random()*8}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-delay:${Math.random()*0.5}s;
+      animation-duration:${1.5+Math.random()}s;
+    `;
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(), 3000);
+  }
+}
+
+// ============ INIT ============
+updateCoins(0);
+</script>
 </body>
 </html>
